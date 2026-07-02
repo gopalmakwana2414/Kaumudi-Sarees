@@ -1,0 +1,125 @@
+import { Request, Response } from "express";
+import { Order } from "../models/Order";
+import { User } from "../models/User";
+import { sendOrderStatusEmail } from "../services/emailService";
+
+// ====================================
+// GET ALL ORDERS
+// ====================================
+export const getAllOrders = async (req: Request, res: Response) => {
+  try {
+    const orders = await Order.find()
+      .populate("user", "name email")
+      .populate("shippingAddress")
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json(orders);
+  } catch (error: any) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// ====================================
+// GET ORDER BY ID
+// ====================================
+export const getOrderByIdAdmin = async (req: Request, res: Response) => {
+  try {
+    const order = await Order.findById(req.params.id)
+      .populate("user", "name email")
+      .populate("shippingAddress")
+      .populate("items.product");
+
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+
+    return res.status(200).json(order);
+  } catch (error: any) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// ====================================
+// UPDATE ORDER STATUS
+// ====================================
+export const updateOrderStatus = async (req: Request, res: Response) => {
+  try {
+    const { status } = req.body;
+
+    const allowedStatuses = [
+      "pending",
+      "confirmed",
+      "processing",
+      "shipped",
+      "delivered",
+      "cancelled",
+    ];
+
+    if (!allowedStatuses.includes(status)) {
+      return res.status(400).json({
+        message: "Invalid order status",
+      });
+    }
+
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+
+    order.orderStatus = status;
+
+    await order.save();
+
+    // Notify customer via email (non-blocking)
+    User.findById(order.user)
+      .then((user) => {
+        if (user) {
+          sendOrderStatusEmail({
+            to: user.email,
+            customerName: user.name,
+            orderId: order._id.toString(),
+            status,
+          }).catch((err) =>
+            console.error("Status email failed:", err.message)
+          );
+        }
+      })
+      .catch(() => {});
+
+    return res.status(200).json({
+      success: true,
+      message: "Order status updated",
+      order,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// ====================================
+// GET ALL CUSTOMERS (Users)
+// ====================================
+export const getAllCustomers = async (req: Request, res: Response) => {
+  try {
+    const users = await User.find()
+      .select("-password")
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json(users);
+  } catch (error: any) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
