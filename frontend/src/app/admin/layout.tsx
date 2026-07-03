@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/authStore";
+import Logo from "@/components/ui/Logo";
 import {
   LayoutDashboard,
   Package,
@@ -11,6 +12,7 @@ import {
   Users,
   Star,
   Ticket,
+  Image as ImageIcon,
   LogOut,
   Menu,
   X,
@@ -25,6 +27,7 @@ const NAV_LINKS = [
   { href: "/admin/customers", label: "Customers", icon: <Users size={18} /> },
   { href: "/admin/reviews", label: "Reviews", icon: <Star size={18} /> },
   { href: "/admin/coupons", label: "Coupons", icon: <Ticket size={18} /> },
+  { href: "/admin/banners", label: "Banners", icon: <ImageIcon size={18} /> },
 ];
 
 export default function AdminLayout({
@@ -50,8 +53,8 @@ export default function AdminLayout({
     <div className="flex flex-col h-full">
       {/* Logo */}
       <div className="px-6 py-6 border-b">
-        <h1 className="text-2xl font-bold text-[#d4af37]">Suhagan</h1>
-        <p className="text-xs text-gray-400 mt-0.5">Admin Panel</p>
+        <Logo height={196} />
+        <p className="text-xs text-gray-400 mt-1.5">Admin Panel</p>
       </div>
 
       {/* Nav */}

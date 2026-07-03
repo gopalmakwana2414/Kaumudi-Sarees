@@ -19,6 +19,10 @@ export default function AdminBannersPage() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  // When set, the form is in "replace/edit" mode for this banner instead
+  // of creating a new one — submits via PATCH, and keeps the existing
+  // Cloudinary image unless the admin picks a new file.
+  const [editingBanner, setEditingBanner] = useState<any | null>(null);
 
   const [form, setForm] = useState({
     title: "",
@@ -83,6 +87,67 @@ export default function AdminBannersPage() {
     },
   });
 
+  const openCreateForm = () => {
+    setEditingBanner(null);
+    setImageFile(null);
+    setImagePreview(null);
+    setForm({
+      title: "",
+      subtitle: "",
+      link: "/shop",
+      buttonText: "Shop Now",
+      position: "hero",
+      order: 0,
+    });
+    setShowForm(true);
+  };
+
+  const openEditForm = (banner: any) => {
+    setEditingBanner(banner);
+    setImageFile(null);
+    setImagePreview(banner.image?.url || null); // preview shows current image until replaced
+    setForm({
+      title: banner.title || "",
+      subtitle: banner.subtitle || "",
+      link: banner.link || "/shop",
+      buttonText: banner.buttonText || "Shop Now",
+      position: banner.position || "hero",
+      order: banner.order || 0,
+    });
+    setShowForm(true);
+  };
+
+  const updateMutation = useMutation({
+    mutationFn: async () => {
+      const formData = new FormData();
+      formData.append("title", form.title);
+      formData.append("subtitle", form.subtitle);
+      formData.append("link", form.link);
+      formData.append("buttonText", form.buttonText);
+      formData.append("position", form.position);
+      formData.append("order", String(form.order));
+      // Only attach a file if the admin actually chose a replacement —
+      // otherwise the backend leaves the existing Cloudinary image as-is.
+      if (imageFile) formData.append("image", imageFile);
+
+      const res = await api.patch(`/banners/${editingBanner._id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return res.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["admin-banners"] });
+      toast.success("Banner updated successfully!");
+      setShowForm(false);
+      setEditingBanner(null);
+      setImageFile(null);
+      setImagePreview(null);
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message || err.message || "Failed to update banner");
+    },
+  });
+
   const toggleMutation = useMutation({
     mutationFn: async (id: string) => {
       const res = await api.patch(`/banners/${id}/toggle`);
@@ -110,8 +175,13 @@ export default function AdminBannersPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.title.trim()) return toast.error("Title is required");
-    if (!imageFile) return toast.error("Please select an image");
-    createMutation.mutate();
+
+    if (editingBanner) {
+      updateMutation.mutate();
+    } else {
+      if (!imageFile) return toast.error("Please select an image");
+      createMutation.mutate();
+    }
   };
 
   return (
@@ -124,7 +194,7 @@ export default function AdminBannersPage() {
           </p>
         </div>
         <button
-          onClick={() => setShowForm(!showForm)}
+          onClick={openCreateForm}
           className="flex items-center gap-2 bg-[#d4af37] text-white px-4 py-2 rounded-xl hover:bg-[#b8860b] transition"
         >
           <Plus size={16} />
@@ -136,8 +206,16 @@ export default function AdminBannersPage() {
       {showForm && (
         <div className="bg-white rounded-2xl border shadow-sm p-6">
           <div className="flex justify-between items-center mb-5">
-            <h2 className="text-lg font-semibold">New Banner</h2>
-            <button onClick={() => setShowForm(false)} className="text-gray-400">
+            <h2 className="text-lg font-semibold">
+              {editingBanner ? "Edit Banner" : "New Banner"}
+            </h2>
+            <button
+              onClick={() => {
+                setShowForm(false);
+                setEditingBanner(null);
+              }}
+              className="text-gray-400"
+            >
               <X size={20} />
             </button>
           </div>
@@ -146,7 +224,7 @@ export default function AdminBannersPage() {
             {/* Image Upload */}
             <div>
               <label className="block text-sm font-medium mb-2">
-                Banner Image * (Recommended: 1920×800px)
+                Banner Image {editingBanner ? "" : "*"} (Recommended: 1920×800px)
               </label>
               <label className="flex flex-col items-center justify-center border-2 border-dashed rounded-2xl h-48 cursor-pointer hover:border-[#d4af37] transition overflow-hidden relative">
                 {imagePreview ? (
@@ -159,6 +237,11 @@ export default function AdminBannersPage() {
                   <div className="text-center text-gray-400">
                     <ImageIcon size={32} className="mx-auto mb-2" />
                     <p className="text-sm">Click to upload banner image</p>
+                  </div>
+                )}
+                {editingBanner && (
+                  <div className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2.5 py-1 rounded-full">
+                    Click to replace image
                   </div>
                 )}
                 <input
@@ -194,6 +277,10 @@ export default function AdminBannersPage() {
                     </option>
                   ))}
                 </select>
+                <p className="text-xs text-gray-400 mt-1.5">
+                  "Hero" is the large banner at the very top of your homepage.
+                  "Promo"/"Category" banners appear elsewhere and won't show there.
+                </p>
               </div>
 
               <div className="md:col-span-2">
@@ -244,14 +331,23 @@ export default function AdminBannersPage() {
             <div className="flex gap-3">
               <button
                 type="submit"
-                disabled={createMutation.isPending}
+                disabled={createMutation.isPending || updateMutation.isPending}
                 className="bg-[#d4af37] text-white px-6 py-2.5 rounded-xl hover:bg-[#b8860b] transition disabled:opacity-60"
               >
-                {createMutation.isPending ? "Uploading..." : "Create Banner"}
+                {editingBanner
+                  ? updateMutation.isPending
+                    ? "Saving..."
+                    : "Save Changes"
+                  : createMutation.isPending
+                  ? "Uploading..."
+                  : "Create Banner"}
               </button>
               <button
                 type="button"
-                onClick={() => setShowForm(false)}
+                onClick={() => {
+                  setShowForm(false);
+                  setEditingBanner(null);
+                }}
                 className="border px-6 py-2.5 rounded-xl hover:bg-gray-50"
               >
                 Cancel
@@ -306,6 +402,13 @@ export default function AdminBannersPage() {
                   <p className="text-gray-500 text-sm mt-1">{banner.subtitle}</p>
                 )}
                 <div className="flex items-center gap-2 mt-4">
+                  <button
+                    onClick={() => openEditForm(banner)}
+                    className="flex items-center gap-1.5 text-xs border px-3 py-1.5 rounded-lg hover:bg-gray-50 transition"
+                  >
+                    <ImageIcon size={13} />
+                    Edit / Replace
+                  </button>
                   <button
                     onClick={() => toggleMutation.mutate(banner._id)}
                     className="flex items-center gap-1.5 text-xs border px-3 py-1.5 rounded-lg hover:bg-gray-50 transition"

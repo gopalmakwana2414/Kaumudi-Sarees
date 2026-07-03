@@ -30,6 +30,16 @@ export interface IOrder extends Document {
 
   paymentId?: string;
 
+  // The Razorpay order_id this payment was created against. Used to make
+  // payment verification idempotent (a retried/duplicated verify call for
+  // the same Razorpay order must not create a second Order) and to cross-
+  // check the amount actually paid via the Razorpay API against what we
+  // computed server-side.
+  razorpayOrderId?: string;
+
+  couponCode?: string;
+  discountAmount?: number;
+
   orderStatus:
     | "pending"
     | "confirmed"
@@ -111,6 +121,26 @@ const orderSchema = new Schema<IOrder>(
     paymentId: {
       type: String,
       default: "",
+    },
+
+    razorpayOrderId: {
+      type: String,
+      default: undefined,
+      // sparse: COD orders never set this, so a plain unique index would
+      // conflict across multiple documents with no value.
+      unique: true,
+      sparse: true,
+    },
+
+    couponCode: {
+      type: String,
+      default: "",
+    },
+
+    discountAmount: {
+      type: Number,
+      default: 0,
+      min: 0,
     },
 
     orderStatus: {

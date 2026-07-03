@@ -8,6 +8,7 @@ import {
   createBanner,
   getAllBannersAdmin,
   getActiveBanners,
+  updateBanner,
   toggleBannerStatus,
   deleteBanner,
 } from "../controllers/bannerController";
@@ -26,6 +27,15 @@ router.post(
   adminOnly,
   upload.single("image"),
   createBanner
+);
+
+// Replace image and/or edit fields on an existing banner
+router.patch(
+  "/:id",
+  protect,
+  adminOnly,
+  upload.single("image"),
+  updateBanner
 );
 
 router.patch("/:id/toggle", protect, adminOnly, toggleBannerStatus);

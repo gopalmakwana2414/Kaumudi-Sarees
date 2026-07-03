@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Logo from "@/components/ui/Logo";
 import {
   Search,
   Heart,
@@ -97,11 +98,7 @@ export default function Navbar() {
         <div className="container-custom">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="/">
-              <h1 className="text-3xl font-bold tracking-wide text-[#b8860b]">
-                Suhagan
-              </h1>
-            </Link>
+            <Logo />
 
             {/* Desktop Menu */}
             <nav className="hidden lg:flex items-center gap-8 font-medium">

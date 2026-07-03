@@ -70,6 +70,55 @@ export const getActiveBanners = async (req: Request, res: Response) => {
 };
 
 // ====================================
+// UPDATE BANNER — replace image and/or edit fields
+// ====================================
+export const updateBanner = async (req: Request, res: Response) => {
+  try {
+    const banner = await Banner.findById(req.params.id);
+
+    if (!banner) {
+      return res.status(404).json({ message: "Banner not found" });
+    }
+
+    const { title, subtitle, link, buttonText, position, order } = req.body;
+
+    if (title !== undefined) banner.title = title;
+    if (subtitle !== undefined) banner.subtitle = subtitle;
+    if (link !== undefined) banner.link = link;
+    if (buttonText !== undefined) banner.buttonText = buttonText;
+    if (position !== undefined) banner.position = position;
+    if (order !== undefined) banner.order = Number(order);
+
+    // A new image was uploaded — replace it. Upload the new one first,
+    // then delete the old Cloudinary asset only after the new upload
+    // succeeds, so a failed upload never leaves the banner with no image.
+    if (req.file) {
+      const uploadResult = await uploadToCloudinary(
+        req.file.buffer,
+        "suhagan/banners"
+      );
+
+      const oldPublicId = banner.image?.publicId;
+
+      banner.image = {
+        url: uploadResult.secure_url,
+        publicId: uploadResult.public_id,
+      };
+
+      if (oldPublicId) {
+        await deleteFromCloudinary(oldPublicId).catch(() => {});
+      }
+    }
+
+    await banner.save();
+
+    return res.status(200).json(banner);
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+// ====================================
 // TOGGLE BANNER ACTIVE STATUS
 // ====================================
 export const toggleBannerStatus = async (req: Request, res: Response) => {

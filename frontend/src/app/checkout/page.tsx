@@ -151,22 +151,25 @@ export default function CheckoutPage() {
     setPlacingOrder(true);
 
     try {
+      // SECURITY: only send product IDs + quantities, never price or
+      // totalAmount. The backend now recomputes the real price from the
+      // database and ignores anything the client claims about cost — see
+      // paymentController.ts. Sending a client-computed total here was
+      // previously trusted as-is by the server, which meant a modified
+      // request could pay for a fraction of the order's real value.
       const orderItems = items.map((item) => ({
         product: item.product._id,
         quantity: item.quantity,
-        price: item.product.salePrice,
       }));
 
-      const orderData = {
-        user: user?._id,
+      const orderPayload = {
         items: orderItems,
         shippingAddress: selectedAddress,
-        totalItems: items.reduce((t, i) => t + i.quantity, 0),
-        totalAmount: total,
+        couponCode: couponData?.coupon || undefined,
       };
 
       if (paymentMethod === "COD") {
-        await api.post("/payment/cod", orderData);
+        await api.post("/payment/cod", orderPayload);
         clearCart();
         toast.success("Order placed successfully! 🎉");
         router.push("/orders");
@@ -182,10 +185,23 @@ export default function CheckoutPage() {
       }
 
       const { data } = await api.post("/payment/create-order", {
-        amount: total,
+        items: orderItems,
+        couponCode: couponData?.coupon || undefined,
       });
 
       const razorpayOrder = data.order;
+
+      // Prefill the customer's phone number for Razorpay
+      const selectedAddressData = addresses.find(
+        (a) => a._id === selectedAddress
+      );
+      const rawPhone = selectedAddressData?.mobileNumber?.replace(/\D/g, "");
+      const contact =
+        rawPhone && rawPhone.length === 10
+          ? `+91${rawPhone}`
+          : rawPhone
+          ? `+${rawPhone}`
+          : undefined;
 
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
@@ -197,6 +213,7 @@ export default function CheckoutPage() {
         prefill: {
           name: user?.name,
           email: user?.email,
+          ...(contact && { contact }),
         },
         theme: { color: "#d4af37" },
         handler: async (response: any) => {
@@ -205,13 +222,18 @@ export default function CheckoutPage() {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
-              orderData,
+              ...orderPayload,
             });
             clearCart();
             toast.success("Payment successful! Order placed 🎉");
             router.push("/orders");
-          } catch {
-            toast.error("Payment verification failed. Contact support.");
+          } catch (err: any) {
+            toast.error(
+              err?.response?.data?.message ||
+                "Payment verification failed. Contact support."
+            );
+          } finally {
+            setPlacingOrder(false);
           }
         },
         modal: {
@@ -226,7 +248,6 @@ export default function CheckoutPage() {
       rzp.open();
     } catch (err: any) {
       toast.error(err?.response?.data?.message || "Something went wrong");
-    } finally {
       setPlacingOrder(false);
     }
   };

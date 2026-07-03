@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,9 +11,11 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-bold text-[#d4af37] font-serif">
-              Suhagan
-            </h3>
+            {/* Footer sits on a dark background — brightness/invert keeps a
+                dark-on-transparent logo legible here without needing a
+                separate light-mode asset. Swap this for a dedicated white
+                logo file later if the design calls for it. */}
+            <Logo className="brightness-0 invert" />
             <p className="mt-4 text-gray-400 text-sm leading-7">
               Premium handcrafted sarees from Surat — Banarasi, Kanjivaram,
               Silk, and more. Direct from our factory to your door.
