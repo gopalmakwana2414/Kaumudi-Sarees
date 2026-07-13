@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
+import { motion, useReducedMotion } from "framer-motion";
 
 const CATEGORY_EMOJIS: Record<string, string> = {
   banarasi: "🪡",
@@ -18,6 +19,8 @@ const CATEGORY_EMOJIS: Record<string, string> = {
 };
 
 export default function Categories() {
+  const shouldReduceMotion = useReducedMotion();
+
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
@@ -31,8 +34,27 @@ export default function Categories() {
     return CATEGORY_EMOJIS[key] || "🪡";
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.08,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.215, 0.61, 0.355, 1] as const },
+    },
+  };
+
   return (
-    <section className="py-20">
+    <section className="py-20 overflow-hidden">
       <div className="container-custom">
         <div className="text-center mb-12">
           <p className="text-[#b8860b] font-semibold uppercase tracking-widest text-sm">
@@ -52,37 +74,63 @@ export default function Categories() {
           </div>
         ) : categories.length === 0 ? (
           // Fallback static categories if none added yet
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid md:grid-cols-3 lg:grid-cols-6 gap-6"
+          >
             {["Banarasi", "Kanjivaram", "Silk", "Wedding", "Party Wear", "Designer"].map(
               (name) => (
-                <Link
-                  key={name}
-                  href={`/shop?search=${encodeURIComponent(name)}`}
-                  className="bg-white border rounded-2xl p-6 text-center hover:shadow-xl hover:border-[#d4af37] transition group cursor-pointer"
-                >
-                  <div className="text-3xl mb-3">{getEmoji(name)}</div>
-                  <h3 className="font-semibold text-sm group-hover:text-[#b8860b] transition">
-                    {name}
-                  </h3>
-                </Link>
+                <motion.div key={name} variants={cardVariants}>
+                  <Link
+                    href={`/shop?search=${encodeURIComponent(name)}`}
+                    className="block bg-white border rounded-2xl p-6 text-center hover:border-[#d4af37] transition-colors group cursor-pointer"
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.15 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                      className="text-3xl mb-3"
+                    >
+                      {getEmoji(name)}
+                    </motion.div>
+                    <h3 className="font-semibold text-sm text-gray-700 group-hover:text-[#b8860b] transition-colors">
+                      {name}
+                    </h3>
+                  </Link>
+                </motion.div>
               )
             )}
-          </div>
+          </motion.div>
         ) : (
-          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid md:grid-cols-3 lg:grid-cols-6 gap-6"
+          >
             {categories.map((cat: any) => (
-              <Link
-                key={cat._id}
-                href={`/shop?category=${cat._id}`}
-                className="bg-white border rounded-2xl p-6 text-center hover:shadow-xl hover:border-[#d4af37] transition group cursor-pointer"
-              >
-                <div className="text-3xl mb-3">{getEmoji(cat.name)}</div>
-                <h3 className="font-semibold text-sm group-hover:text-[#b8860b] transition">
-                  {cat.name}
-                </h3>
-              </Link>
+              <motion.div key={cat._id} variants={cardVariants}>
+                <Link
+                  href={`/shop?category=${cat._id}`}
+                  className="block bg-white border rounded-2xl p-6 text-center hover:border-[#d4af37] transition-colors group cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.15 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    className="text-3xl mb-3"
+                  >
+                    {getEmoji(cat.name)}
+                  </motion.div>
+                  <h3 className="font-semibold text-sm text-gray-700 group-hover:text-[#b8860b] transition-colors">
+                    {cat.name}
+                  </h3>
+                </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { Heart, ShoppingCart, Zap, Star, Package, CheckCircle } from "lucide-react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 
 import { Product } from "@/types/product";
 import { useCartStore } from "@/store/cartStore";
@@ -129,7 +130,15 @@ export default function ProductInfo({ product }: { product: Product }) {
       </div>
 
       {/* Product Details */}
-      <div className="mt-8 grid grid-cols-2 gap-4">
+      <motion.div
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
+        }}
+        initial="hidden"
+        animate="visible"
+        className="mt-8 grid grid-cols-2 gap-4"
+      >
         {[
           { label: "Fabric", value: product.fabric },
           { label: "Color", value: product.color },
@@ -146,12 +155,20 @@ export default function ProductInfo({ product }: { product: Product }) {
         ]
           .filter((d) => d.value)
           .map((detail) => (
-            <div key={detail.label} className="bg-gray-50 rounded-xl p-3">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0, transition: { ease: "easeOut" } }
+              }}
+              whileHover={{ y: -2 }}
+              key={detail.label}
+              className="bg-gray-50 border border-gray-100/50 rounded-xl p-3 hover:shadow-sm transition-shadow duration-300"
+            >
               <p className="text-xs text-gray-400 mb-0.5">{detail.label}</p>
-              <p className="font-medium text-sm">{detail.value}</p>
-            </div>
+              <p className="font-medium text-sm text-gray-700">{detail.value}</p>
+            </motion.div>
           ))}
-      </div>
+      </motion.div>
 
       {/* Stock Status */}
       <div className="mt-5 flex items-center gap-2">
@@ -170,39 +187,49 @@ export default function ProductInfo({ product }: { product: Product }) {
 
       {/* Action Buttons */}
       <div className="mt-8 flex gap-3">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={handleAddToCart}
           disabled={product.stock === 0}
-          className="flex-1 flex items-center justify-center gap-2 bg-[#d4af37] text-white py-4 rounded-2xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 flex items-center justify-center gap-2 bg-[#d4af37] text-white py-4 rounded-2xl font-semibold hover:bg-[#b8860b] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           <ShoppingCart size={20} />
           Add to Cart
-        </button>
+        </motion.button>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           onClick={handleBuyNow}
           disabled={product.stock === 0}
-          className="flex-1 flex items-center justify-center gap-2 bg-[#111] text-white py-4 rounded-2xl font-semibold hover:bg-[#333] transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex-1 flex items-center justify-center gap-2 bg-[#111] text-white py-4 rounded-2xl font-semibold hover:bg-[#333] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           <Zap size={20} />
           Buy Now
-        </button>
+        </motion.button>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.9 }}
           onClick={() => {
             toggleWishlist(product._id);
             toast.success(
               isWishlisted ? "Removed from wishlist" : "Added to wishlist!"
             );
           }}
-          className={`border-2 px-4 rounded-2xl transition ${
+          className={`border-2 px-4 rounded-2xl transition-colors duration-200 cursor-pointer ${
             isWishlisted
               ? "border-red-400 text-red-500 bg-red-50"
-              : "border-gray-200 hover:border-red-300"
+              : "border-gray-200 text-gray-400 hover:text-red-500 hover:border-red-400"
           }`}
         >
-          <Heart size={20} fill={isWishlisted ? "currentColor" : "none"} />
-        </button>
+          <Heart
+            size={20}
+            className="transition-transform duration-300"
+            fill={isWishlisted ? "currentColor" : "none"}
+          />
+        </motion.button>
       </div>
 
       {/* Guarantees */}

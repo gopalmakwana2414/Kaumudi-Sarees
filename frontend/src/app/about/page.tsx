@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { constructMetadata } from "@/utils/seo";
+
+export const metadata: Metadata = constructMetadata({
+  title: "About Kaumudi | Premium Handcrafted Sarees from Surat",
+  description:
+    "Born in the city of Surat, Kaumudi is a celebration of India's finest saree traditions — Banarasi, Kanjivaram, and Silk sarees direct from our factory.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

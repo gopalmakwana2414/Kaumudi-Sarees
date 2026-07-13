@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { constructMetadata } from "@/utils/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructMetadata({
   title: "Refund & Return Policy | Kaumudi",
-  description: "Kaumudi return and refund policy — 7-day easy returns on all orders.",
-};
+  description: "Kaumudi return and refund policy — 7-day easy returns on all sarees and orders.",
+  path: "/refund-policy",
+});
 
 export default function RefundPolicyPage() {
   return (

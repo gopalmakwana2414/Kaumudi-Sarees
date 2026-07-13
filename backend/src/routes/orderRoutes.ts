@@ -1,17 +1,18 @@
 import express from "express";
 
-import { protect } from "../middlewares/auth";
+import { protect } from "../middlewares/auth.js";
+import { createOrderLimiter } from "../middlewares/rateLimiter.js";
 
 import {
   createOrder,
   getMyOrders,
   getOrderById,
   downloadInvoice,
-} from "../controllers/orderController";
+} from "../controllers/orderController.js";
 
 const router = express.Router();
 
-router.post("/", protect, createOrder);
+router.post("/", protect, createOrderLimiter, createOrder);
 
 router.get("/", protect, getMyOrders);
 

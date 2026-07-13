@@ -4,8 +4,11 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { optimizedCloudinaryUrl } from "@/lib/cloudinary";
+import { motion, useReducedMotion } from "framer-motion";
 
 export default function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   const { data: banners = [], isLoading } = useQuery({
     queryKey: ["hero-banners"],
     queryFn: async () => {
@@ -16,73 +19,128 @@ export default function Hero() {
 
   const banner = banners[0]; // First active hero banner
 
-  return (
-    <section className="hero-gradient">
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[700px]">
-          {/* Left Content */}
-          <div>
-            <p className="text-[#b8860b] font-semibold uppercase tracking-[4px]">
-              Premium Saree Collection
-            </p>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.12,
+        delayChildren: 0.1,
+      },
+    },
+  };
 
-            <h1 className="text-5xl lg:text-7xl font-bold mt-6 leading-tight">
+  const itemVariants = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 25 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.215, 0.61, 0.355, 1] as const, // easeOutCubic
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: shouldReduceMotion ? 1 : 0.97 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.9,
+        ease: [0.215, 0.61, 0.355, 1] as const,
+      },
+    },
+  };
+
+  return (
+    <section className="hero-gradient overflow-hidden">
+      <div className="container-custom">
+        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[700px] py-12 lg:py-0">
+          {/* Left Content */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col justify-center"
+          >
+            <motion.p
+              variants={itemVariants}
+              className="text-[#b8860b] font-semibold uppercase tracking-[4px]"
+            >
+              Premium Saree Collection
+            </motion.p>
+
+            <motion.h1
+              variants={itemVariants}
+              className="text-5xl lg:text-7xl font-bold mt-6 leading-tight"
+            >
               {banner ? banner.title : "Celebrate Every Occasion"}
               <span className="text-[#d4af37] block">
                 {banner ? "" : "With Elegance"}
               </span>
-            </h1>
+            </motion.h1>
 
-            <p className="mt-6 text-lg text-gray-600 max-w-xl">
+            <motion.p
+              variants={itemVariants}
+              className="mt-6 text-lg text-gray-600 max-w-xl"
+            >
               {banner
                 ? banner.subtitle
                 : "Discover handcrafted Banarasi, Kanjivaram, Silk and Designer Sarees curated specially for weddings, festivals and special moments."}
-            </p>
+            </motion.p>
 
-            <div className="flex gap-4 mt-10">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mt-10">
               <Link
                 href={banner?.link || "/shop"}
-                className="bg-[#d4af37] text-white px-8 py-4 rounded-full font-semibold hover:scale-105 transition"
+                className="bg-[#d4af37] text-white px-8 py-4 rounded-full font-semibold transition inline-block hover:bg-[#b8860b] active:scale-98 shadow-md hover:shadow-lg shadow-[#d4af37]/20"
+                style={{ transformOrigin: "center" }}
               >
                 {banner?.buttonText || "Shop Now"}
               </Link>
 
               <Link
                 href="/collections"
-                className="border border-[#d4af37] text-[#b8860b] px-8 py-4 rounded-full font-semibold hover:bg-[#fff8e7] transition"
+                className="border border-[#d4af37] text-[#b8860b] px-8 py-4 rounded-full font-semibold hover:bg-[#fff8e7] transition inline-block active:scale-98"
+                style={{ transformOrigin: "center" }}
               >
                 View Collections
               </Link>
-            </div>
+            </motion.div>
 
-            <div className="flex gap-10 mt-12">
+            <motion.div variants={itemVariants} className="flex gap-10 mt-12">
               <div>
-                <h3 className="font-bold text-2xl">10K+</h3>
-                <p className="text-gray-500">Happy Customers</p>
+                <h3 className="font-bold text-2xl text-gray-800">10K+</h3>
+                <p className="text-gray-500 text-sm">Happy Customers</p>
               </div>
 
               <div>
-                <h3 className="font-bold text-2xl">500+</h3>
-                <p className="text-gray-500">Saree Designs</p>
+                <h3 className="font-bold text-2xl text-gray-800">500+</h3>
+                <p className="text-gray-500 text-sm">Saree Designs</p>
               </div>
 
               <div>
-                <h3 className="font-bold text-2xl">4.8★</h3>
-                <p className="text-gray-500">Customer Rating</p>
+                <h3 className="font-bold text-2xl text-gray-800">4.8★</h3>
+                <p className="text-gray-500 text-sm">Customer Rating</p>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* pulled from Cloudinary via the banner API, never a local file —
-              shows a skeleton while loading and a placeholder if no hero
-              banner has been added yet */}
-          <div className="relative">
+          {/* Right Banner Image */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={imageVariants}
+            className="relative"
+          >
             {isLoading ? (
               <div className="rounded-3xl w-full h-[650px] bg-gray-100 animate-pulse" />
             ) : banner?.image?.url ? (
               <img
                 src={optimizedCloudinaryUrl(banner.image.url, 1600)}
                 alt={banner.title || "Kaumudi Saree Collection"}
+                fetchPriority="high"
                 className="rounded-3xl shadow-2xl w-full object-cover h-[650px]"
               />
             ) : (
@@ -97,15 +155,20 @@ export default function Hero() {
               </div>
             )}
 
-            <div className="absolute bottom-8 left-8 bg-white p-5 rounded-2xl shadow-lg">
-              <p className="font-semibold">
+            <motion.div
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="absolute bottom-8 left-8 bg-white/90 backdrop-blur p-5 rounded-2xl shadow-lg border border-gray-100"
+            >
+              <p className="font-semibold text-gray-800">
                 {banner ? banner.title : "Wedding Collection"}
               </p>
               <p className="text-sm text-gray-500">
                 {banner?.subtitle || "Starting from ₹2,999"}
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

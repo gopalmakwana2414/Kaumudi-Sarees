@@ -55,3 +55,32 @@ export const otpVerifyLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+// Dedicated rate limiter for creating orders (COD or Razorpay ONLINE)
+export const createOrderLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // limit each user/IP to 5 order creations per window
+  keyGenerator: (req: any) => {
+    return req.user?.id || req.ip || "";
+  },
+  message: {
+    message: "Too many checkout attempts. Please try again after 15 minutes.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Dedicated rate limiter for verifying Razorpay payments
+export const verifyPaymentLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 10, // limit each user/IP to 10 verification requests per window
+  keyGenerator: (req: any) => {
+    return req.user?.id || req.ip || "";
+  },
+  message: {
+    message: "Too many payment verification attempts. Please slow down.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+

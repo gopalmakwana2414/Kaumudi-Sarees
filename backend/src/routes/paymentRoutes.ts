@@ -3,9 +3,11 @@ import {
   createRazorpayOrder,
   verifyPaymentAndCreateOrder,
   createCODOrder,
-} from "../controllers/paymentController";
+} from "../controllers/paymentController.js";
+import { handleWebhook } from "../controllers/webhookController.js";
 
-import { protect } from "../middlewares/auth";
+import { protect } from "../middlewares/auth.js";
+import { createOrderLimiter, verifyPaymentLimiter } from "../middlewares/rateLimiter.js";
 
 const router = express.Router();
 
@@ -13,6 +15,7 @@ const router = express.Router();
 router.post(
   "/create-order",
   protect,
+  createOrderLimiter,
   createRazorpayOrder
 );
 
@@ -20,6 +23,7 @@ router.post(
 router.post(
   "/verify",
   protect,
+  verifyPaymentLimiter,
   verifyPaymentAndCreateOrder
 );
 
@@ -27,7 +31,14 @@ router.post(
 router.post(
   "/cod",
   protect,
+  createOrderLimiter,
   createCODOrder
+);
+
+// Razorpay Webhook
+router.post(
+  "/webhook",
+  handleWebhook
 );
 
 export default router;

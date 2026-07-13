@@ -26,7 +26,9 @@ export interface IOrder extends Document {
   paymentStatus:
     | "pending"
     | "paid"
-    | "failed";
+    | "failed"
+    | "refunded"
+    | "disputed";
 
   paymentId?: string;
 
@@ -116,6 +118,8 @@ const orderSchema = new Schema<IOrder>(
         "pending",
         "paid",
         "failed",
+        "refunded",
+        "disputed",
       ],
       default: "pending",
     },
@@ -171,6 +175,7 @@ const orderSchema = new Schema<IOrder>(
 orderSchema.index({ user: 1 });
 orderSchema.index({ orderStatus: 1 });
 orderSchema.index({ paymentStatus: 1 });
+orderSchema.index({ paymentId: 1 });
 orderSchema.index({ createdAt: -1 });
 
 export const Order =

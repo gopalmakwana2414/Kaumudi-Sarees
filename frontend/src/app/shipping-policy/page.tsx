@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { constructMetadata } from "@/utils/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructMetadata({
   title: "Shipping Policy | Kaumudi",
-  description: "Kaumudi shipping policy — delivery timelines, charges, and tracking.",
-};
+  description: "Kaumudi shipping policy — delivery timelines, shipping charges, and order tracking info.",
+  path: "/shipping-policy",
+});
 
 export default function ShippingPolicyPage() {
   return (

@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import { Order } from "../models/Order";
 import { User } from "../models/User";
+import { Product } from "../models/Product";
 import { sendOrderStatusEmail } from "../services/emailService";
+import { runTransactionWithRetry } from "../utils/dbUtils";
 
 // get all orders
 export const getAllOrders = async (req: Request, res: Response) => {
@@ -75,26 +77,38 @@ export const updateOrderStatus = async (req: Request, res: Response) => {
       });
     }
 
-    const order = await Order.findById(req.params.id);
+    const updatedOrder = await runTransactionWithRetry(async (session) => {
+      const order = await Order.findById(req.params.id).session(session);
 
-    if (!order) {
-      return res.status(404).json({
-        message: "Order not found",
-      });
-    }
+      if (!order) {
+        throw new Error("Order not found");
+      }
 
-    order.orderStatus = status;
+      // If status is being changed to cancelled, and it is not already cancelled, restore stock
+      if (status === "cancelled" && order.orderStatus !== "cancelled") {
+        logger.info(`Admin Order Cancellation: Restoring stock for Order ${order._id}`);
+        for (const item of order.items) {
+          await Product.findByIdAndUpdate(
+            item.product,
+            { $inc: { stock: item.quantity } },
+            { session }
+          );
+        }
+      }
 
-    await order.save();
+      order.orderStatus = status;
+      await order.save({ session });
+      return order;
+    });
 
     // Notify customer via email (non-blocking)
-    User.findById(order.user)
+    User.findById(updatedOrder.user)
       .then((user) => {
         if (user) {
           sendOrderStatusEmail({
             to: user.email,
             customerName: user.name,
-            orderId: order._id.toString(),
+            orderId: updatedOrder._id.toString(),
             status,
           }).catch((err) =>
             console.error("Status email failed:", err.message)
@@ -106,9 +120,12 @@ export const updateOrderStatus = async (req: Request, res: Response) => {
     return res.status(200).json({
       success: true,
       message: "Order status updated",
-      order,
+      order: updatedOrder,
     });
   } catch (error: any) {
+    if (error.message === "Order not found") {
+      return res.status(404).json({ message: "Order not found" });
+    }
     return res.status(500).json({
       message: error.message,
     });

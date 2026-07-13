@@ -1,6 +1,6 @@
 import express from "express";
 
-import { protect } from "../middlewares/auth";
+import { protect } from "../middlewares/auth.js";
 
 import {
   addToCart,
@@ -8,7 +8,8 @@ import {
   updateCartItem,
   removeCartItem,
   clearCart,
-} from "../controllers/cartController";
+  mergeCart,
+} from "../controllers/cartController.js";
 
 const router = express.Router();
 
@@ -30,6 +31,18 @@ router.put(
   updateCartItem
 );
 
+router.patch(
+  "/update-quantity",
+  protect,
+  updateCartItem
+);
+
+router.patch(
+  "/:productId",
+  protect,
+  updateCartItem
+);
+
 router.delete(
   "/remove/:productId",
   protect,
@@ -40,6 +53,12 @@ router.delete(
   "/clear",
   protect,
   clearCart
+);
+
+router.post(
+  "/merge",
+  protect,
+  mergeCart
 );
 
 export default router;

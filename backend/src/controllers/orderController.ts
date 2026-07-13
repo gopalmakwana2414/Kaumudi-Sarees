@@ -1,76 +1,103 @@
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 
-import { Cart } from "../models/Cart";
-import { Order } from "../models/Order";
-import { Address } from "../models/Address";
+import { Cart } from "../models/Cart.js";
+import { Order } from "../models/Order.js";
+import { Address } from "../models/Address.js";
+import { acquireLock, releaseLock } from "../services/lockService.js";
+import { processOrderCreation } from "../services/paymentService.js";
+import { enqueueJob, JOB_INVOICE_AND_EMAIL } from "../services/queueService.js";
+import logger from "../utils/logger.js";
 
 // create order from cart
 export const createOrder = async (
   req: Request,
   res: Response
 ) => {
+  const userId = (req as any).user.id;
+  const { addressId } = req.body;
+
+  if (!addressId) {
+    return res.status(400).json({
+      message: "Address ID is required",
+    });
+  }
+
+  // 1. Acquire distributed lock on user ID to prevent concurrent checkout requests
+  const userLockKey = `checkout:user:${userId}`;
+  let userLockAcquired = false;
   try {
-    const userId = (req as any).user.id;
+    userLockAcquired = await acquireLock(userLockKey, 15000);
+  } catch (lockErr: any) {
+    logger.error(`Lock service error in legacy createOrder: ${lockErr.message}`);
+    return res.status(503).json({
+      message: "Checkout service temporarily offline. Please try again.",
+    });
+  }
 
-    const { addressId } = req.body;
+  if (!userLockAcquired) {
+    logger.warn(`User checkout lock busy: ${userLockKey}`);
+    return res.status(409).json({
+      message: "Another checkout request is currently in progress. Please wait a moment.",
+    });
+  }
 
-    const address =
-      await Address.findOne({
-        _id: addressId,
-        user: userId,
-      });
-
-    if (!address) {
-      return res.status(404).json({
-        message: "Address not found",
-      });
-    }
-
+  const session = await mongoose.startSession();
+  session.startTransaction();
+  try {
     const cart = await Cart.findOne({
       user: userId,
-    });
+    }).session(session);
 
     if (
       !cart ||
       cart.items.length === 0
     ) {
+      await session.abortTransaction();
+      session.endSession();
       return res.status(400).json({
         message: "Cart is empty",
       });
     }
 
-    const order = await Order.create({
-      user: userId,
+    const items = cart.items.map((item: any) => ({
+      product: item.product.toString(),
+      quantity: item.quantity,
+    }));
 
-      items: cart.items,
-
-      shippingAddress:
-        address._id,
-
-      totalItems:
-        cart.totalItems,
-
-      totalAmount:
-        cart.totalAmount,
-
-      paymentMethod: "COD",
-    });
-
-    // clear cart after order
-
-    cart.items = [];
-    cart.totalItems = 0;
-    cart.totalAmount = 0;
-
-    await cart.save();
-
-    return res.status(201).json(
-      order
+    // 2. Call unified checkout logic (paymentMethod: COD)
+    const { order } = await processOrderCreation(
+      userId,
+      items,
+      undefined, // Coupon code not supported directly on this legacy route
+      addressId,
+      "COD",
+      session
     );
+
+    await session.commitTransaction();
+    session.endSession();
+
+    logger.info(`COD Order created successfully via legacy endpoint: ${order._id}`);
+
+    // clear cart is already handled inside processOrderCreation for COD orders
+    // Enqueue Invoice & Email jobs
+    await enqueueJob(JOB_INVOICE_AND_EMAIL, order._id.toString());
+
+    return res.status(201).json(order);
   } catch (error: any) {
-    return res.status(500).json({
-      message: error.message,
+    await session.abortTransaction();
+    session.endSession();
+    logger.error(`Error in legacy createOrder endpoint: ${error.message}`);
+    return res.status(400).json({
+      message: error.message || "Failed to place order",
     });
+  } finally {
+    try {
+      await releaseLock(userLockKey);
+    } catch (releaseErr: any) {
+      logger.error(`Failed to release checkout lock: ${releaseErr.message}`);
+    }
   }
 };
 

@@ -1,23 +1,31 @@
 "use client";
 
 import Link from "next/link";
-
+import { Trash2, ShoppingBag, Minus, Plus } from "lucide-react";
+import { useCart } from "@/hooks/useCart";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import { useState } from "react";
+import { toast } from "sonner";
 import {
-  Trash2,
-  ShoppingBag,
-} from "lucide-react";
-
-import { useCartStore } from "@/store/cartStore";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function CartPage() {
-  const {
-    items,
-    removeFromCart,
-    clearCart,
-  } = useCartStore();
+  const shouldReduceMotion = useReducedMotion();
+  const { cart, updateQuantity, removeItem, clearCart, isLoading } = useCart();
+  const [confirmRemoveItem, setConfirmRemoveItem] = useState<any>(null);
+
+  const items = cart?.items || [];
 
   const subtotal = items.reduce(
-    (total, item) =>
+    (total: number, item: any) =>
       total +
       item.product.salePrice *
         item.quantity,
@@ -29,16 +37,24 @@ export default function CartPage() {
 
   const total = subtotal + shipping;
 
+  if (isLoading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-[#d4af37] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   if (items.length === 0) {
     return (
-      <section className="py-20">
-        <div className="container-custom text-center">
+      <section className="py-20 overflow-hidden">
+        <ScrollReveal className="container-custom text-center">
           <ShoppingBag
             size={80}
-            className="mx-auto text-gray-400"
+            className="mx-auto text-[#d4af37]/60"
           />
 
-          <h1 className="text-3xl font-bold mt-6">
+          <h1 className="text-3xl font-bold mt-6 text-gray-800">
             Your Cart is Empty
           </h1>
 
@@ -48,131 +64,215 @@ export default function CartPage() {
 
           <Link
             href="/shop"
-            className="inline-block mt-8 bg-[#d4af37] text-white px-8 py-3 rounded-xl"
+            className="inline-block mt-8 bg-[#d4af37] text-white px-8 py-3 rounded-xl hover:bg-[#b8860b] transition-colors duration-200"
           >
             Continue Shopping
           </Link>
-        </div>
+        </ScrollReveal>
       </section>
     );
   }
 
   return (
-    <section className="py-16">
+    <section className="py-16 overflow-hidden">
       <div className="container-custom">
-        <h1 className="text-4xl font-bold mb-10">
-          Shopping Cart
-        </h1>
+        <ScrollReveal>
+          <h1 className="text-4xl font-bold mb-10 text-gray-800">
+            Shopping Cart
+          </h1>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-3 gap-10">
-          {/* Left */}
+          {/* Left - Item List */}
           <div className="lg:col-span-2 space-y-6">
-            {items.map((item) => (
-              <div
-                key={item.product._id}
-                className="bg-white rounded-2xl shadow-sm p-4 flex gap-4"
-              >
-                <img
-                  src={
-                    item.product.thumbnail
-                      .url
-                  }
-                  alt={item.product.name}
-                  className="w-32 h-40 object-cover rounded-xl"
-                />
-
-                <div className="flex-1">
-                  <h2 className="font-semibold text-lg">
-                    {item.product.name}
-                  </h2>
-
-                  <p className="text-gray-500 mt-1">
-                    {
-                      item.product
-                        .shortDescription
-                    }
-                  </p>
-
-                  <p className="font-bold text-[#b8860b] mt-3">
-                    ₹
-                    {
-                      item.product
-                        .salePrice
-                    }
-                  </p>
-
-                  <p className="text-sm text-gray-500 mt-1">
-                    Quantity:
-                    {" "}
-                    {item.quantity}
-                  </p>
-                </div>
-
-                <button
-                  onClick={() =>
-                    removeFromCart(
-                      item.product._id
-                    )
-                  }
+            <AnimatePresence mode="popLayout" initial={false}>
+              {items.map((item: any) => (
+                <motion.div
+                  key={item.product._id}
+                  layout={!shouldReduceMotion}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, x: shouldReduceMotion ? 0 : -50 }}
+                  transition={{ duration: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
+                  className="bg-white rounded-2xl shadow-sm p-4 flex gap-4 border border-gray-50"
                 >
-                  <Trash2
-                    size={20}
-                    className="text-red-500"
+                  <img
+                    src={item.product.thumbnail?.url}
+                    alt={item.product.name}
+                    className="w-32 h-40 object-cover rounded-xl flex-shrink-0"
                   />
-                </button>
-              </div>
-            ))}
+
+                  <div className="flex-1 min-w-0">
+                    <h2 className="font-semibold text-lg text-gray-800 truncate">
+                      {item.product.name}
+                    </h2>
+
+                    <p className="text-gray-500 mt-1 text-sm line-clamp-2">
+                      {item.product.shortDescription}
+                    </p>
+
+                    <p className="font-bold text-[#b8860b] mt-3">
+                      ₹{item.product.salePrice.toLocaleString()}
+                    </p>
+
+                    {/* Quantity Selectors */}
+                    <div className="flex flex-wrap items-center gap-3 mt-4">
+                      <span className="text-sm font-medium text-gray-505">Quantity:</span>
+                      <div className="flex items-center border border-gray-200 rounded-full bg-gray-50/50 p-1 shadow-sm">
+                        <motion.button
+                          whileHover={{ scale: 1.08, backgroundColor: "#f3f4f6" }}
+                          whileTap={{ scale: 0.92 }}
+                          onClick={() => {
+                            if (item.quantity === 1) {
+                              setConfirmRemoveItem(item);
+                            } else {
+                              updateQuantity(
+                                item.product._id,
+                                item.quantity - 1,
+                                item.product.stock,
+                                item.product.name
+                              );
+                            }
+                          }}
+                          className="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
+                          title="Decrease Quantity"
+                        >
+                          <Minus size={14} />
+                        </motion.button>
+
+                        <span className="w-10 text-center font-semibold text-gray-800 text-sm">
+                          {item.quantity}
+                        </span>
+
+                        <motion.button
+                          whileHover={{ scale: 1.08, backgroundColor: "#f3f4f6" }}
+                          whileTap={{ scale: 0.92 }}
+                          onClick={() => {
+                            if (item.quantity >= item.product.stock) {
+                              toast.error(`Maximum available quantity reached. Only ${item.product.stock} units left in stock.`);
+                            } else {
+                              updateQuantity(
+                                item.product._id,
+                                item.quantity + 1,
+                                item.product.stock,
+                                item.product.name
+                              );
+                            }
+                          }}
+                          className="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:text-[#b8860b] transition-colors cursor-pointer"
+                          title="Increase Quantity"
+                        >
+                          <Plus size={14} />
+                        </motion.button>
+                      </div>
+                      
+                      {item.product.stock <= 5 && (
+                        <span className="text-xs text-red-500 font-medium ml-2 animate-pulse self-center">
+                          Only {item.product.stock} left in stock!
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => removeItem(item.product._id)}
+                    className="flex-shrink-0 p-1 self-start text-gray-400 hover:text-red-500 transition-colors duration-200 cursor-pointer"
+                  >
+                    <Trash2 size={20} />
+                  </motion.button>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </div>
 
-          {/* Right */}
-          <div className="bg-white rounded-2xl shadow-sm p-6 h-fit">
-            <h2 className="text-2xl font-semibold mb-6">
+          {/* Right - Summary */}
+          <ScrollReveal y={20} className="bg-white rounded-2xl shadow-sm p-6 h-fit border border-gray-50">
+            <h2 className="text-2xl font-semibold mb-6 text-gray-800">
               Order Summary
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-4 text-gray-600">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>
-                  ₹{subtotal}
+                <span className="font-semibold text-gray-800">
+                  ₹{subtotal.toLocaleString()}
                 </span>
               </div>
 
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>
-                  {shipping === 0
-                    ? "Free"
-                    : `₹${shipping}`}
+                <span className="font-semibold text-gray-800">
+                  {shipping === 0 ? "Free" : `₹${shipping}`}
                 </span>
               </div>
 
-              <hr />
+              <hr className="border-gray-100" />
 
-              <div className="flex justify-between text-xl font-bold">
+              <div className="flex justify-between text-xl font-bold text-gray-800">
                 <span>Total</span>
-                <span>
-                  ₹{total}
+                <span className="text-[#b8860b]">
+                  ₹{total.toLocaleString()}
                 </span>
               </div>
             </div>
 
-            <Link
-              href="/checkout"
-              className="block text-center mt-8 bg-[#d4af37] text-white py-3 rounded-xl"
+            <motion.div
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              className="mt-8"
             >
-              Proceed To Checkout
-            </Link>
+              <Link
+                href="/checkout"
+                className="block text-center bg-[#d4af37] text-white py-3.5 rounded-xl font-semibold hover:bg-[#b8860b] transition-colors duration-200 shadow-md shadow-[#d4af37]/10"
+              >
+                Proceed To Checkout
+              </Link>
+            </motion.div>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
               onClick={clearCart}
-              className="w-full mt-3 border py-3 rounded-xl"
+              className="w-full mt-3 border border-gray-200 py-3.5 rounded-xl font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-700 transition-colors duration-200 cursor-pointer"
             >
               Clear Cart
-            </button>
-          </div>
+            </motion.button>
+          </ScrollReveal>
         </div>
       </div>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={!!confirmRemoveItem} onOpenChange={(open) => !open && setConfirmRemoveItem(null)}>
+        <DialogContent className="sm:max-w-md bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-bold text-gray-800">Remove from Cart?</DialogTitle>
+            <DialogDescription className="text-gray-500 mt-2">
+              Are you sure you want to remove <span className="font-medium text-gray-800">"{confirmRemoveItem?.product.name}"</span> from your cart?
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="mt-6 flex flex-row justify-end gap-3">
+            <Button
+              variant="outline"
+              onClick={() => setConfirmRemoveItem(null)}
+              className="rounded-xl px-5 border-gray-200 hover:bg-gray-50 text-gray-600 transition-all font-medium h-10 cursor-pointer"
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                removeItem(confirmRemoveItem.product._id);
+                setConfirmRemoveItem(null);
+              }}
+              className="rounded-xl px-5 bg-red-600 hover:bg-red-700 text-white transition-all font-medium h-10 cursor-pointer"
+            >
+              Remove
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

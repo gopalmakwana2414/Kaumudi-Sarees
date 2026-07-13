@@ -3,12 +3,19 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import PageTransitionWrapper from "@/components/layout/PageTransitionWrapper";
 
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 
 import AuthInitializer from "@/components/AuthInitializer";
 
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
+import {
+  constructMetadata,
+  getOrganizationSchema,
+  getLocalBusinessSchema,
+  getWebsiteSchema,
+} from "@/utils/seo";
 
 import "./globals.css";
 
@@ -22,10 +29,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Kaumudi",
-  description: "Premium Saree Collection",
-};
+export const metadata: Metadata = constructMetadata({
+  title: "Kaumudi | Premium Sarees Online in India",
+  description:
+    "Shop premium Banarasi, Silk, Cotton, Linen, Wedding and Designer Sarees from Kaumudi. Elegant collections crafted for every occasion with secure payments and fast delivery.",
+  path: "",
+});
+
+const orgSchema = getOrganizationSchema();
+const localBusinessSchema = getLocalBusinessSchema();
+const websiteSchema = getWebsiteSchema();
 
 export default function RootLayout({
   children,
@@ -37,14 +50,30 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col">
         <ReactQueryProvider>
           <AuthInitializer />
 
           <Navbar />
 
-          <main className="flex-1">
-            {children}
+          <main className="flex-1 flex flex-col">
+            <PageTransitionWrapper>
+              {children}
+            </PageTransitionWrapper>
           </main>
 
           <Footer />

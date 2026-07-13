@@ -1,38 +1,55 @@
 import dotenv from "dotenv";
+import { z } from "zod";
 
 dotenv.config();
 
-export const env = {
-  PORT: process.env.PORT || 5000,
+const envSchema = z.object({
+  PORT: z.coerce.number().default(5000),
 
-  MONGO_URI: process.env.MONGO_URI as string,
+  MONGO_URI: z.string().min(1, "MONGO_URI is required"),
 
-  JWT_SECRET: process.env.JWT_SECRET as string,
+  JWT_SECRET: z.string().min(1, "JWT_SECRET is required"),
 
-  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
+  CLOUDINARY_CLOUD_NAME: z.string().optional(),
+  CLOUDINARY_API_KEY: z.string().optional(),
+  CLOUDINARY_API_SECRET: z.string().optional(),
 
-  CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
+  RAZORPAY_KEY_ID: z.string().min(1, "RAZORPAY_KEY_ID is required"),
+  RAZORPAY_KEY_SECRET: z.string().min(1, "RAZORPAY_KEY_SECRET is required"),
+  RAZORPAY_WEBHOOK_SECRET: z.string().min(1, "RAZORPAY_WEBHOOK_SECRET is required"),
 
-  CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
+  REDIS_URL: z.string().optional(),
+  REDIS_HOST: z.string().default("127.0.0.1"),
+  REDIS_PORT: z.coerce.number().default(6379),
+  REDIS_PASSWORD: z.string().optional(),
 
-  RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID as string,
+  NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
 
-  RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET as string,
+  FRONTEND_URL: z.string().default("http://localhost:3000"),
 
-  NODE_ENV: process.env.NODE_ENV || "development",
+  SMTP_HOST: z.string().optional(),
+  SMTP_PORT: z.coerce.number().default(587),
+  SMTP_SECURE: z.preprocess((val) => val === "true", z.boolean()).default(false),
+  SMTP_USER: z.string().optional(),
+  SMTP_PASS: z.string().optional(),
 
-  FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:3000",
+  EMAIL_FROM: z.string().optional(),
+  ADMIN_EMAIL: z.string().default("g91652251@gmail.com"),
+});
 
-  // ── Email (SMTP via Nodemailer) ──
-  SMTP_HOST: process.env.SMTP_HOST || "",
-  SMTP_PORT: Number(process.env.SMTP_PORT) || 587,
-  SMTP_SECURE: process.env.SMTP_SECURE === "true",
-  SMTP_USER: process.env.SMTP_USER || "",
-  SMTP_PASS: process.env.SMTP_PASS || "",
+const parsed = envSchema.safeParse(process.env);
 
-  // Address emails are sent "from". Falls back to SMTP_USER if unset.
-  EMAIL_FROM: process.env.EMAIL_FROM || process.env.SMTP_USER || "",
+if (!parsed.success) {
+  console.error("❌ Environment validation failed:");
+  console.error(JSON.stringify(parsed.error.format(), null, 2));
+  process.exit(1);
+}
 
-  // Where contact-form submissions and new-order alerts are sent.
-  ADMIN_EMAIL: process.env.ADMIN_EMAIL || "g91652251@gmail.com",
+// Pre-compute EMAIL_FROM if it was empty, matching original logic
+const validatedEnv = {
+  ...parsed.data,
+  EMAIL_FROM: parsed.data.EMAIL_FROM || parsed.data.SMTP_USER || "",
 };
+
+export const env = validatedEnv;
+

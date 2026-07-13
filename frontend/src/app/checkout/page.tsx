@@ -184,6 +184,7 @@ export default function CheckoutPage() {
       const { data } = await api.post("/payment/create-order", {
         items: orderItems,
         couponCode: couponData?.coupon || undefined,
+        shippingAddress: selectedAddress,
       });
 
       const razorpayOrder = data.order;

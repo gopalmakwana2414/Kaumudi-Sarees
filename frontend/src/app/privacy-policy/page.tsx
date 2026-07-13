@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { constructMetadata } from "@/utils/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = constructMetadata({
   title: "Privacy Policy | Kaumudi",
-  description: "Kaumudi privacy policy — how we collect, use, and protect your data.",
-};
+  description: "Kaumudi privacy policy — how we collect, use, and protect your personal information.",
+  path: "/privacy-policy",
+});
 
 export default function PrivacyPolicyPage() {
   return (

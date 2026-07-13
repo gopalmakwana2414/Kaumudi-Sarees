@@ -1,41 +1,77 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
 import { ArrowRight } from "lucide-react";
-import api from "@/lib/api";
+import { constructMetadata } from "@/utils/seo";
+
+export const metadata: Metadata = constructMetadata({
+  title: "Shop Sarees by Category | Premium Collections | Kaumudi",
+  description:
+    "Browse our premium saree collections by fabric type, occasion, or style. Discover Banarasi, Kanjivaram, Silk, Cotton, and Designer Sarees handcrafted in Surat.",
+  path: "/categories",
+});
 
 const FALLBACK_CATEGORIES = [
-  "Banarasi", "Kanjivaram", "Silk", "Wedding", "Party Wear",
-  "Designer", "Casual", "Festival", "Cotton", "Linen",
+  "Banarasi",
+  "Kanjivaram",
+  "Silk",
+  "Wedding",
+  "Party Wear",
+  "Designer",
+  "Casual",
+  "Festival",
+  "Cotton",
+  "Linen",
 ];
 
 const EMOJI_MAP: Record<string, string> = {
-  banarasi: "🪡", kanjivaram: "🌸", silk: "✨", wedding: "💍",
-  cotton: "🌿", designer: "👗", festival: "🪔", party: "🎉",
-  casual: "☀️", linen: "🍃", georgette: "💫", chiffon: "🌊",
+  banarasi: "🪡",
+  kanjivaram: "🌸",
+  silk: "✨",
+  wedding: "💍",
+  cotton: "🌿",
+  designer: "👗",
+  festival: "🪔",
+  party: "🎉",
+  casual: "☀️",
+  linen: "🍃",
+  georgette: "💫",
+  chiffon: "🌊",
 };
 
 const getEmoji = (name: string) =>
   EMOJI_MAP[name.toLowerCase().split(" ")[0]] || "🪡";
 
-export default function CategoriesPage() {
-  const { data: categories = [], isLoading } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const res = await api.get("/categories");
-      return res.data;
-    },
-  });
+async function getCategories() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"}/categories`,
+      { next: { revalidate: 300 } }
+    );
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+}
 
-  const { data: productsData } = useQuery({
-    queryKey: ["shop-products-count"],
-    queryFn: async () => {
-      const res = await api.get("/products?limit=1");
-      return res.data;
-    },
-  });
+async function getProductsData() {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api"}/products?limit=1`,
+      { next: { revalidate: 300 } }
+    );
+    if (!res.ok) return { totalProducts: 500 };
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching products count:", error);
+    return { totalProducts: 500 };
+  }
+}
+
+export default async function CategoriesPage() {
+  const categories = await getCategories();
+  const productsData = await getProductsData();
 
   return (
     <main>
@@ -58,18 +94,12 @@ export default function CategoriesPage() {
       {/* Categories Grid */}
       <section className="py-20">
         <div className="container-custom">
-          {isLoading ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-48 bg-gray-100 rounded-3xl animate-pulse" />
-              ))}
-            </div>
-          ) : categories.length > 0 ? (
+          {categories.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {categories.map((cat: any) => (
                 <Link
                   key={cat._id}
-                  href={`/shop?category=${cat._id}`}
+                  href={`/category/${cat.slug}`}
                   className="group bg-white border rounded-3xl p-8 hover:shadow-2xl hover:border-[#d4af37] transition-all duration-300"
                 >
                   <div className="flex items-center gap-5">
