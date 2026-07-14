@@ -112,12 +112,12 @@ export default function Navbar() {
   };
 
   // Nav link custom styles
-  const navLinkClass = "relative py-2 text-gray-700 hover:text-[#b8860b] transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-[#b8860b] after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100";
+  const navLinkClass = "relative py-2 text-gray-700 hover:text-primary transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100";
 
   return (
     <>
       {/* Announcement Bar */}
-      <div className="bg-[#d4af37] text-white text-center text-sm py-2">
+      <div className="bg-primary text-white text-center text-sm py-2">
         🎁 Free Shipping on Orders Above ₹999 &nbsp;|&nbsp; Handcrafted Sarees
         Direct from Surat
       </div>
@@ -155,7 +155,7 @@ export default function Navbar() {
             <div ref={searchRef} className="hidden lg:block relative transition-[width] duration-300 w-[240px] focus-within:w-[320px]">
               <form
                 onSubmit={handleSearch}
-                className="flex items-center border border-gray-200 focus-within:border-[#d4af37] rounded-full px-4 py-2 bg-gray-50/50 focus-within:bg-white transition-all duration-300"
+                className="flex items-center border border-gray-200 focus-within:border-primary rounded-full px-4 py-2 bg-gray-50/50 focus-within:bg-white transition-all duration-300"
               >
                 <Search size={16} className="text-gray-400" />
                 <input
@@ -205,7 +205,7 @@ export default function Navbar() {
                               <p className="text-sm font-medium line-clamp-1 text-gray-800">
                                 {product.name}
                               </p>
-                              <p className="text-xs text-[#b8860b] font-semibold">
+                              <p className="text-xs text-primary font-semibold">
                                 ₹{product.salePrice.toLocaleString()}
                               </p>
                             </div>
@@ -213,7 +213,7 @@ export default function Navbar() {
                         ))}
                         <button
                           onClick={handleSearch}
-                          className="w-full text-center text-sm text-[#b8860b] font-medium py-2 hover:underline cursor-pointer"
+                          className="w-full text-center text-sm text-primary font-medium py-2 hover:underline cursor-pointer"
                         >
                           View all results for &quot;{debouncedSearch}&quot;
                         </button>
@@ -227,7 +227,7 @@ export default function Navbar() {
             {/* Right Icons */}
             <div className="flex items-center gap-5">
               {/* Wishlist */}
-              <Link href="/wishlist" className="relative p-1 text-gray-600 hover:text-[#b8860b] transition-colors">
+              <Link href="/wishlist" className="relative p-1 text-gray-600 hover:text-primary transition-colors">
                 <Heart size={22} />
                 <AnimatePresence>
                   {wishlistCount > 0 && (
@@ -246,7 +246,7 @@ export default function Navbar() {
               </Link>
 
               {/* Cart */}
-              <Link href="/cart" className="relative p-1 text-gray-600 hover:text-[#b8860b] transition-colors">
+              <Link href="/cart" className="relative p-1 text-gray-600 hover:text-primary transition-colors">
                 <ShoppingBag size={22} />
                 <AnimatePresence>
                   {cartCount > 0 && (
@@ -256,7 +256,7 @@ export default function Navbar() {
                       animate={{ scale: 1, opacity: 1 }}
                       exit={{ scale: 0, opacity: 0 }}
                       transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                      className="absolute -top-1 -right-1 bg-[#d4af37] text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold"
+                      className="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold"
                     >
                       {cartCount}
                     </motion.span>
@@ -268,14 +268,14 @@ export default function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setUserMenu(!userMenu)}
-                  className="flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/45 rounded-full p-0.5 transition cursor-pointer"
+                  className="flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-primary/45 rounded-full p-0.5 transition cursor-pointer"
                   aria-expanded={userMenu}
                   aria-haspopup="true"
                   aria-label="User profile menu"
                   suppressHydrationWarning
                 >
-                  <div className="w-9 h-9 bg-[#fff8e7] border border-[#d4af37] rounded-full flex items-center justify-center hover:bg-[#fff0c8] transition-colors">
-                    <User size={18} className="text-[#b8860b]" />
+                  <div className="w-9 h-9 bg-secondary border border-primary rounded-full flex items-center justify-center hover:bg-soft-bg-hover transition-colors">
+                    <User size={18} className="text-primary" />
                   </div>
                 </button>
 
@@ -300,7 +300,7 @@ export default function Navbar() {
                             href="/profile"
                             role="menuitem"
                             onClick={() => setUserMenu(false)}
-                            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-[#fff8e7] hover:text-[#b8860b] text-gray-700 text-sm font-medium transition focus:outline-none focus:bg-[#fff8e7] focus:text-[#b8860b]"
+                            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-secondary hover:text-primary text-gray-700 text-sm font-medium transition focus:outline-none focus:bg-secondary focus:text-primary"
                           >
                             <User size={15} /> My Profile
                           </Link>
@@ -308,7 +308,7 @@ export default function Navbar() {
                             href="/orders"
                             role="menuitem"
                             onClick={() => setUserMenu(false)}
-                            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-[#fff8e7] hover:text-[#b8860b] text-gray-700 text-sm font-medium transition focus:outline-none focus:bg-[#fff8e7] focus:text-[#b8860b]"
+                            className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-secondary hover:text-primary text-gray-700 text-sm font-medium transition focus:outline-none focus:bg-secondary focus:text-primary"
                           >
                             <ShoppingBag size={15} /> My Orders
                           </Link>
@@ -317,7 +317,7 @@ export default function Navbar() {
                               href="/admin"
                               role="menuitem"
                               onClick={() => setUserMenu(false)}
-                              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-[#fff8e7] hover:text-[#b8860b] text-gray-700 text-sm font-medium transition focus:outline-none focus:bg-[#fff8e7] focus:text-[#b8860b]"
+                              className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-secondary hover:text-primary text-gray-700 text-sm font-medium transition focus:outline-none focus:bg-secondary focus:text-primary"
                             >
                               <Settings size={15} /> Admin Panel
                             </Link>
@@ -336,7 +336,7 @@ export default function Navbar() {
                             href="/login"
                             role="menuitem"
                             onClick={() => setUserMenu(false)}
-                            className="block w-full text-center px-4 py-2.5 rounded-xl border border-[#d4af37] text-[#b8860b] hover:bg-[#fff8e7] text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-[#d4af37]/40"
+                            className="block w-full text-center px-4 py-2.5 rounded-xl border border-primary text-primary hover:bg-secondary text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-primary/40"
                           >
                             Login
                           </Link>
@@ -344,7 +344,7 @@ export default function Navbar() {
                             href="/register"
                             role="menuitem"
                             onClick={() => setUserMenu(false)}
-                            className="block w-full text-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white hover:from-[#b8860b] hover:to-[#996515] text-sm font-semibold transition shadow-md shadow-[#d4af37]/20 hover:shadow-lg hover:shadow-[#d4af37]/30 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/40"
+                            className="block w-full text-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-primary-dark text-white hover:from-primary-dark hover:to-deep-maroon text-sm font-semibold transition shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/30 focus:outline-none focus:ring-2 focus:ring-primary/40"
                           >
                             Create Account
                           </Link>
@@ -358,7 +358,7 @@ export default function Navbar() {
 
               {/* Mobile Toggle */}
               <button
-                className="lg:hidden text-gray-600 hover:text-[#b8860b] transition cursor-pointer"
+                className="lg:hidden text-gray-600 hover:text-primary transition cursor-pointer"
                 onClick={() => setMobileMenu(!mobileMenu)}
               >
                 {mobileMenu ? <X size={26} /> : <Menu size={26} />}
@@ -378,31 +378,31 @@ export default function Navbar() {
               className="lg:hidden border-t bg-white overflow-hidden"
             >
               <div className="flex flex-col p-5 gap-4 font-medium text-gray-700">
-                <Link href="/" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                <Link href="/" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                   Home
                 </Link>
-                <Link href="/shop" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                <Link href="/shop" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                   Shop
                 </Link>
-                <Link href="/categories" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                <Link href="/categories" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                   Categories
                 </Link>
-                <Link href="/collections" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                <Link href="/collections" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                   Collections
                 </Link>
-                <Link href="/about" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                <Link href="/about" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                   About
                 </Link>
-                <Link href="/contact" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                <Link href="/contact" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                   Contact
                 </Link>
                 <hr className="border-gray-100" />
                 {user ? (
                   <>
-                    <Link href="/profile" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                    <Link href="/profile" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                       My Profile
                     </Link>
-                    <Link href="/orders" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                    <Link href="/orders" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                       My Orders
                     </Link>
                     <button
@@ -417,18 +417,18 @@ export default function Navbar() {
                   </>
                 ) : (
                   <>
-                    <Link href="/login" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                    <Link href="/login" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                       Login
                     </Link>
-                    <Link href="/register" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                    <Link href="/register" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                       Register
                     </Link>
                   </>
                 )}
-                <Link href="/wishlist" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                <Link href="/wishlist" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                   Wishlist {wishlistCount > 0 && `(${wishlistCount})`}
                 </Link>
-                <Link href="/cart" onClick={() => setMobileMenu(false)} className="hover:text-[#b8860b] transition">
+                <Link href="/cart" onClick={() => setMobileMenu(false)} className="hover:text-primary transition">
                   Cart {cartCount > 0 && `(${cartCount})`}
                 </Link>
               </div>

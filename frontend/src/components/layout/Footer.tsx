@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#111] text-white mt-20">
+    <footer className="bg-footer-bg text-white mt-20">
       <div className="container-custom py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
 
@@ -27,7 +27,7 @@ export default function Footer() {
                 href="https://www.instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#d4af37] transition"
+                className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:scale-110 hover:-rotate-6 transition-all duration-300 ease-out shadow-md hover:shadow-primary/30"
                 aria-label="Instagram"
               >
                 <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://www.facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#d4af37] transition"
+                className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary hover:scale-110 hover:-rotate-6 transition-all duration-300 ease-out shadow-md hover:shadow-primary/30"
                 aria-label="Facebook"
               >
                 <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
@@ -49,7 +49,7 @@ export default function Footer() {
                 href="https://wa.me/918959465264"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-500 transition"
+                className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-600 hover:scale-110 hover:rotate-6 transition-all duration-300 ease-out shadow-md hover:shadow-green-600/30"
                 aria-label="WhatsApp"
               >
                 <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
@@ -63,12 +63,12 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-5 text-white">Quick Links</h4>
             <div className="flex flex-col gap-3 text-gray-400 text-sm">
-              <Link href="/" className="hover:text-[#d4af37] transition">Home</Link>
-              <Link href="/shop" className="hover:text-[#d4af37] transition">Shop All Sarees</Link>
-              <Link href="/collections" className="hover:text-[#d4af37] transition">Collections</Link>
-              <Link href="/categories" className="hover:text-[#d4af37] transition">Categories</Link>
-              <Link href="/about" className="hover:text-[#d4af37] transition">About Us</Link>
-              <Link href="/contact" className="hover:text-[#d4af37] transition">Contact</Link>
+              <Link href="/" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">Home</Link>
+              <Link href="/shop" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">Shop All Sarees</Link>
+              <Link href="/collections" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">Collections</Link>
+              <Link href="/categories" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">Categories</Link>
+              <Link href="/about" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">About Us</Link>
+              <Link href="/contact" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">Contact</Link>
             </div>
           </div>
 
@@ -76,19 +76,19 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-5 text-white">Customer Support</h4>
             <div className="flex flex-col gap-3 text-gray-400 text-sm">
-              <Link href="/shipping-policy" className="hover:text-[#d4af37] transition">
+              <Link href="/shipping-policy" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">
                 Shipping Policy
               </Link>
-              <Link href="/refund-policy" className="hover:text-[#d4af37] transition">
+              <Link href="/refund-policy" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">
                 Refund & Return Policy
               </Link>
-              <Link href="/privacy-policy" className="hover:text-[#d4af37] transition">
+              <Link href="/privacy-policy" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">
                 Privacy Policy
               </Link>
-              <Link href="/orders" className="hover:text-[#d4af37] transition">
+              <Link href="/orders" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">
                 Track My Order
               </Link>
-              <Link href="/wishlist" className="hover:text-[#d4af37] transition">
+              <Link href="/wishlist" className="hover:text-white hover:translate-x-1.5 transition-all duration-300 ease-out inline-block">
                 My Wishlist
               </Link>
             </div>
@@ -104,7 +104,7 @@ export default function Footer() {
                 </p>
                 <a
                   href="mailto:g91652251@gmail.com"
-                  className="hover:text-[#d4af37] transition"
+                  className="hover:text-white hover:translate-x-1 transition-all duration-300 ease-out inline-block"
                 >
                   g91652251@gmail.com
                 </a>
@@ -115,7 +115,7 @@ export default function Footer() {
                 </p>
                 <a
                   href="https://wa.me/918959465264"
-                  className="hover:text-[#d4af37] transition"
+                  className="hover:text-white hover:translate-x-1 transition-all duration-300 ease-out inline-block"
                 >
                   +91 89594 65264
                 </a>
@@ -139,17 +139,17 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-gray-800/40">
         <div className="container-custom py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
           <p>© {currentYear} Kaumudi. All Rights Reserved.</p>
           <div className="flex gap-5">
-            <Link href="/privacy-policy" className="hover:text-[#d4af37] transition">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors duration-300">
               Privacy
             </Link>
-            <Link href="/refund-policy" className="hover:text-[#d4af37] transition">
+            <Link href="/refund-policy" className="hover:text-white transition-colors duration-300">
               Returns
             </Link>
-            <Link href="/shipping-policy" className="hover:text-[#d4af37] transition">
+            <Link href="/shipping-policy" className="hover:text-white transition-colors duration-300">
               Shipping
             </Link>
           </div>

@@ -377,29 +377,29 @@ export default function ProfilePage() {
   if (!user) return null;
 
   return (
-    <section className="py-12 min-h-[85vh] bg-[#faf9f6]">
+    <section className="py-12 min-h-[85vh] bg-gradient-to-tr from-[#fff8f8] via-[#fffbfb] to-[#ffffff]">
       <div className="container-custom max-w-6xl mx-auto px-4">
         
         {/* Profile Header */}
-        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 md:p-8 mb-8 flex flex-col md:flex-row items-center gap-6 justify-between">
+        <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 md:p-8 mb-8 flex flex-col md:flex-row items-center gap-6 justify-between shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
           <div className="flex flex-col md:flex-row items-center gap-6">
             
             {/* Avatar & Photo Upload */}
             <div className="relative group">
-              <div className="w-24 h-24 bg-[#fff8e7] border-2 border-[#d4af37] rounded-full overflow-hidden flex items-center justify-center shadow-inner">
+              <div className="w-24 h-24 bg-secondary border-2 border-primary rounded-full overflow-hidden flex items-center justify-center shadow-inner">
                 {loadingPic ? (
-                  <Loader2 className="w-8 h-8 text-[#d4af37] animate-spin" />
+                  <Loader2 className="w-8 h-8 text-primary animate-spin" />
                 ) : profileData?.profilePic ? (
                   <img src={profileData.profilePic} alt={user.name} className="w-full h-full object-cover" />
                 ) : (
-                  <UserIcon size={44} className="text-[#d4af37]" />
+                  <UserIcon size={44} className="text-primary" />
                 )}
               </div>
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={loadingPic}
-                className="absolute bottom-0 right-0 w-8 h-8 bg-[#d4af37] text-white rounded-full flex items-center justify-center border-2 border-white hover:bg-[#b8860b] transition shadow-md"
+                className="absolute bottom-0 right-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center border-2 border-white hover:bg-primary-dark transition shadow-md cursor-pointer"
               >
                 <Camera size={14} />
               </button>
@@ -428,7 +428,7 @@ export default function ProfilePage() {
             {user.role === "admin" && (
               <Link
                 href="/admin"
-                className="bg-[#d4af37] text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-[#b8860b] transition shadow-sm text-sm"
+                className="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-primary-dark transition shadow-sm text-sm cursor-pointer hover:scale-[1.02] duration-300"
               >
                 Admin Panel
               </Link>
@@ -449,24 +449,24 @@ export default function ProfilePage() {
           <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-4 h-fit space-y-1">
             <button
               onClick={() => setActiveTab("profile")}
-              className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium transition text-left text-sm ${
-                activeTab === "profile" ? "bg-[#fff8e7] text-[#b8860b]" : "text-gray-600 hover:bg-gray-50"
+              className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium transition text-left text-sm cursor-pointer ${
+                activeTab === "profile" ? "bg-secondary text-primary" : "text-gray-600 hover:bg-gray-50"
               }`}
             >
               <UserIcon size={18} /> Profile Overview
             </button>
             <button
               onClick={() => setActiveTab("addresses")}
-              className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium transition text-left text-sm ${
-                activeTab === "addresses" ? "bg-[#fff8e7] text-[#b8860b]" : "text-gray-600 hover:bg-gray-50"
+              className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium transition text-left text-sm cursor-pointer ${
+                activeTab === "addresses" ? "bg-secondary text-primary" : "text-gray-600 hover:bg-gray-50"
               }`}
             >
               <MapPin size={18} /> Saved Addresses
             </button>
             <button
               onClick={() => setActiveTab("orders")}
-              className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium transition text-left text-sm ${
-                activeTab === "orders" ? "bg-[#fff8e7] text-[#b8860b]" : "text-gray-600 hover:bg-gray-50"
+              className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium transition text-left text-sm cursor-pointer ${
+                activeTab === "orders" ? "bg-secondary text-primary" : "text-gray-600 hover:bg-gray-50"
               }`}
             >
               <ShoppingBag size={18} /> My Orders
@@ -481,12 +481,12 @@ export default function ProfilePage() {
               <div className="space-y-6">
                 
                 {/* Account Details Info */}
-                <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 md:p-8">
+                <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 md:p-8 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-bold text-gray-900">Personal Information</h2>
                     <button
                       onClick={() => setShowEditProfile(true)}
-                      className="flex items-center gap-1 text-[#b8860b] hover:underline font-semibold text-sm"
+                      className="flex items-center gap-1 text-primary hover:underline font-semibold text-sm cursor-pointer"
                     >
                       <Edit2 size={14} /> Edit details
                     </button>
@@ -512,7 +512,7 @@ export default function ProfilePage() {
                           <p className="font-semibold text-gray-800 text-sm">{profileData?.email}</p>
                           <button
                             onClick={() => setShowChangeEmail(true)}
-                            className="text-xs text-[#b8860b] hover:underline font-semibold"
+                            className="text-xs text-primary hover:underline font-semibold cursor-pointer"
                           >
                             Change
                           </button>
@@ -525,7 +525,7 @@ export default function ProfilePage() {
                           <p className="font-semibold text-gray-800 text-sm">{profileData?.mobile ? `+91 ${profileData.mobile}` : "Not provided"}</p>
                           <button
                             onClick={() => setShowChangePhone(true)}
-                            className="text-xs text-[#b8860b] hover:underline font-semibold"
+                            className="text-xs text-primary hover:underline font-semibold cursor-pointer"
                           >
                             {profileData?.mobile ? "Change" : "Add Number"}
                           </button>
@@ -560,7 +560,7 @@ export default function ProfilePage() {
                   <h2 className="text-xl font-bold text-gray-900">Saved Addresses</h2>
                   <button
                     onClick={openNewAddressModal}
-                    className="flex items-center gap-1.5 bg-[#d4af37] text-white px-4 py-2.5 rounded-xl font-semibold hover:bg-[#b8860b] transition text-sm shadow-sm"
+                    className="flex items-center gap-1.5 bg-primary text-white px-4 py-2.5 rounded-xl font-semibold hover:bg-primary-dark transition text-sm shadow-md hover:shadow-lg shadow-primary/20 cursor-pointer hover:scale-[1.02] duration-300"
                   >
                     <Plus size={16} /> Add Address
                   </button>
@@ -572,7 +572,7 @@ export default function ProfilePage() {
                     <div className="bg-gray-100 rounded-3xl h-44" />
                   </div>
                 ) : addresses.length === 0 ? (
-                  <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-12 text-center">
+                  <div className="bg-white rounded-3xl border border-gray-100 shadow-sm p-12 text-center shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
                     <MapPin size={48} className="mx-auto text-gray-300 mb-4" />
                     <h3 className="text-lg font-bold text-gray-800">No Saved Addresses</h3>
                     <p className="text-gray-500 text-sm mt-1">Please add an address to speed up checkout.</p>
@@ -583,14 +583,14 @@ export default function ProfilePage() {
                       <div
                         key={addr._id}
                         className={`bg-white rounded-2xl border p-5 shadow-sm transition relative flex flex-col justify-between ${
-                          addr.isDefault ? "border-[#d4af37] bg-[#fff8e7]/10" : "border-gray-100 hover:border-gray-200"
+                          addr.isDefault ? "border-primary bg-secondary/30" : "border-gray-100 hover:border-gray-200"
                         }`}
                       >
                         <div>
                           <div className="flex items-center justify-between mb-3">
                             <span className="font-semibold text-gray-900 text-sm">{addr.name}</span>
                             {addr.isDefault && (
-                              <span className="text-[10px] bg-[#d4af37]/15 text-[#b8860b] px-2 py-0.5 rounded-full font-bold border border-[#d4af37]/20 uppercase">
+                              <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold border border-primary/20 uppercase">
                                 Default
                               </span>
                             )}
@@ -611,7 +611,7 @@ export default function ProfilePage() {
                           {!addr.isDefault ? (
                             <button
                               onClick={() => setDefaultAddressMutation.mutate(addr._id)}
-                              className="text-xs text-[#b8860b] font-semibold hover:underline"
+                              className="text-xs text-primary font-semibold hover:underline cursor-pointer"
                             >
                               Set as Default
                             </button>
@@ -624,13 +624,13 @@ export default function ProfilePage() {
                           <div className="flex items-center gap-3">
                             <button
                               onClick={() => openEditAddressModal(addr)}
-                              className="text-gray-500 hover:text-[#b8860b]"
+                              className="text-gray-500 hover:text-primary cursor-pointer"
                             >
                               <Edit2 size={14} />
                             </button>
                             <button
                               onClick={() => deleteAddressMutation.mutate(addr._id)}
-                              className="text-gray-400 hover:text-red-600"
+                              className="text-gray-400 hover:text-red-600 cursor-pointer"
                             >
                               <Trash2 size={14} />
                             </button>
@@ -666,10 +666,10 @@ export default function ProfilePage() {
                       <div
                         key={order._id}
                         onClick={() => router.push(`/orders/${order._id}`)}
-                        className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:border-[#d4af37] transition cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4"
+                        className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:border-primary transition cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-md hover:shadow-primary/5"
                       >
                         <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-[#fff8e7] text-[#d4af37] rounded-xl flex items-center justify-center shadow-inner shrink-0">
+                          <div className="w-12 h-12 bg-secondary text-primary rounded-xl flex items-center justify-center shadow-inner shrink-0">
                             <Package size={20} />
                           </div>
                           <div>
@@ -698,7 +698,7 @@ export default function ProfilePage() {
                         <div className="flex items-center justify-between md:justify-end gap-6 border-t md:border-t-0 pt-3 md:pt-0">
                           <div className="text-left md:text-right">
                             <span className="text-xs text-gray-400 block">Total Price</span>
-                            <span className="font-bold text-[#b8860b] text-sm">
+                            <span className="font-bold text-primary text-sm">
                               ₹{order.totalAmount?.toLocaleString()}
                             </span>
                           </div>
@@ -742,7 +742,7 @@ export default function ProfilePage() {
                   required
                   value={profileForm.name}
                   onChange={(e) => setProfileForm({ ...profileForm, name: e.target.value })}
-                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -753,7 +753,7 @@ export default function ProfilePage() {
                     required
                     value={profileForm.houseNumber}
                     onChange={(e) => setProfileForm({ ...profileForm, houseNumber: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -763,7 +763,7 @@ export default function ProfilePage() {
                     required
                     value={profileForm.street}
                     onChange={(e) => setProfileForm({ ...profileForm, street: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
               </div>
@@ -773,7 +773,7 @@ export default function ProfilePage() {
                   type="text"
                   value={profileForm.landmark}
                   onChange={(e) => setProfileForm({ ...profileForm, landmark: e.target.value })}
-                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -784,7 +784,7 @@ export default function ProfilePage() {
                     required
                     value={profileForm.city}
                     onChange={(e) => setProfileForm({ ...profileForm, city: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -794,7 +794,7 @@ export default function ProfilePage() {
                     required
                     value={profileForm.state}
                     onChange={(e) => setProfileForm({ ...profileForm, state: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
               </div>
@@ -806,7 +806,7 @@ export default function ProfilePage() {
                     required
                     value={profileForm.postalCode}
                     onChange={(e) => setProfileForm({ ...profileForm, postalCode: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -816,14 +816,14 @@ export default function ProfilePage() {
                     required
                     value={profileForm.country}
                     onChange={(e) => setProfileForm({ ...profileForm, country: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
               </div>
               <button
                 type="submit"
                 disabled={updateProfileMutation.isPending}
-                className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition mt-4 disabled:opacity-60"
+                className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition mt-4 disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20"
               >
                 {updateProfileMutation.isPending ? "Saving..." : "Save Profile Details"}
               </button>
@@ -842,7 +842,7 @@ export default function ProfilePage() {
             >
               <X size={20} />
             </button>
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2"><Lock size={20} className="text-[#d4af37]" /> Change Password</h3>
+            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2"><Lock size={20} className="text-primary" /> Change Password</h3>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -858,7 +858,7 @@ export default function ProfilePage() {
                   value={passwordForm.currentPassword}
                   onChange={(e) => setPasswordForm({ ...passwordForm, currentPassword: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                 />
               </div>
               <div>
@@ -869,7 +869,7 @@ export default function ProfilePage() {
                   value={passwordForm.newPassword}
                   onChange={(e) => setPasswordForm({ ...passwordForm, newPassword: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                 />
               </div>
               <div>
@@ -880,13 +880,13 @@ export default function ProfilePage() {
                   value={passwordForm.confirmPassword}
                   onChange={(e) => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                 />
               </div>
               <button
                 type="submit"
                 disabled={changePasswordMutation.isPending}
-                className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition mt-4 disabled:opacity-60"
+                className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition mt-4 disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20"
               >
                 {changePasswordMutation.isPending ? "Updating Password..." : "Update Password"}
               </button>
@@ -909,7 +909,7 @@ export default function ProfilePage() {
             >
               <X size={20} />
             </button>
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2"><Mail size={20} className="text-[#d4af37]" /> Change Email Address</h3>
+            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2"><Mail size={20} className="text-primary" /> Change Email Address</h3>
             
             {!emailOtpSent ? (
               <form
@@ -930,7 +930,7 @@ export default function ProfilePage() {
                     value={emailForm.currentPassword}
                     onChange={(e) => setEmailForm({ ...emailForm, currentPassword: e.target.value })}
                     placeholder="••••••••"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -941,13 +941,13 @@ export default function ProfilePage() {
                     value={emailForm.newEmail}
                     onChange={(e) => setEmailForm({ ...emailForm, newEmail: e.target.value })}
                     placeholder="new@example.com"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={sendEmailOtpMutation.isPending}
-                  className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition mt-4 disabled:opacity-60"
+                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition mt-4 disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20"
                 >
                   {sendEmailOtpMutation.isPending ? "Sending OTP..." : "Request Verification Code"}
                 </button>
@@ -960,7 +960,7 @@ export default function ProfilePage() {
                 }}
                 className="space-y-4"
               >
-                <div className="p-4 bg-[#fff8e7] border border-[#d4af37]/20 rounded-xl text-xs text-gray-600 mb-2 leading-relaxed">
+                <div className="p-4 bg-secondary border border-primary/20 rounded-xl text-xs text-gray-600 mb-2 leading-relaxed">
                   We sent a 6-digit verification code to <strong className="text-gray-800">{emailForm.newEmail}</strong>. Please check your inbox and enter it below.
                 </div>
                 <div>
@@ -972,13 +972,13 @@ export default function ProfilePage() {
                     value={emailForm.otp}
                     onChange={(e) => setEmailForm({ ...emailForm, otp: e.target.value.replace(/\D/g, "") })}
                     placeholder="123456"
-                    className="w-full text-center tracking-[0.5em] text-xl font-bold border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full text-center tracking-[0.5em] text-xl font-bold border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={verifyEmailChangeMutation.isPending}
-                  className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition mt-4 disabled:opacity-60"
+                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition mt-4 disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20"
                 >
                   {verifyEmailChangeMutation.isPending ? "Verifying..." : "Verify & Update Email"}
                 </button>
@@ -1009,7 +1009,7 @@ export default function ProfilePage() {
             >
               <X size={20} />
             </button>
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2"><Phone size={20} className="text-[#d4af37]" /> Change Mobile Number</h3>
+            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2"><Phone size={20} className="text-primary" /> Change Mobile Number</h3>
             
             {!phoneOtpSent ? (
               <form
@@ -1030,7 +1030,7 @@ export default function ProfilePage() {
                     value={phoneForm.currentPassword}
                     onChange={(e) => setPhoneForm({ ...phoneForm, currentPassword: e.target.value })}
                     placeholder="••••••••"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -1041,13 +1041,13 @@ export default function ProfilePage() {
                     value={phoneForm.newPhone}
                     onChange={(e) => setPhoneForm({ ...phoneForm, newPhone: e.target.value })}
                     placeholder="9876543210"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={sendPhoneOtpMutation.isPending}
-                  className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition mt-4 disabled:opacity-60"
+                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition mt-4 disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20"
                 >
                   {sendPhoneOtpMutation.isPending ? "Sending OTP..." : "Request SMS Code"}
                 </button>
@@ -1060,7 +1060,7 @@ export default function ProfilePage() {
                 }}
                 className="space-y-4"
               >
-                <div className="p-4 bg-[#fff8e7] border border-[#d4af37]/20 rounded-xl text-xs text-gray-600 mb-2 leading-relaxed">
+                <div className="p-4 bg-secondary border border-primary/20 rounded-xl text-xs text-gray-600 mb-2 leading-relaxed">
                   We sent a 6-digit verification code via SMS to <strong className="text-gray-800">+91 {phoneForm.newPhone}</strong>. Enter it below to complete verification.
                 </div>
                 <div>
@@ -1072,13 +1072,13 @@ export default function ProfilePage() {
                     value={phoneForm.otp}
                     onChange={(e) => setPhoneForm({ ...phoneForm, otp: e.target.value.replace(/\D/g, "") })}
                     placeholder="123456"
-                    className="w-full text-center tracking-[0.5em] text-xl font-bold border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full text-center tracking-[0.5em] text-xl font-bold border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={verifyPhoneChangeMutation.isPending}
-                  className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition mt-4 disabled:opacity-60"
+                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition mt-4 disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20"
                 >
                   {verifyPhoneChangeMutation.isPending ? "Verifying..." : "Verify & Update Number"}
                 </button>
@@ -1105,7 +1105,7 @@ export default function ProfilePage() {
             >
               <X size={20} />
             </button>
-            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2"><MapPin size={22} className="text-[#d4af37]" /> {addressForm._id ? "Edit Address" : "Add New Address"}</h3>
+            <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-2"><MapPin size={22} className="text-primary" /> {addressForm._id ? "Edit Address" : "Add New Address"}</h3>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -1122,7 +1122,7 @@ export default function ProfilePage() {
                     value={addressForm.name}
                     onChange={(e) => setAddressForm({ ...addressForm, name: e.target.value })}
                     placeholder="Receiver's name"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -1133,7 +1133,7 @@ export default function ProfilePage() {
                     value={addressForm.mobile}
                     onChange={(e) => setAddressForm({ ...addressForm, mobile: e.target.value })}
                     placeholder="10 digit number"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
               </div>
@@ -1146,7 +1146,7 @@ export default function ProfilePage() {
                     required
                     value={addressForm.houseNumber}
                     onChange={(e) => setAddressForm({ ...addressForm, houseNumber: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -1156,7 +1156,7 @@ export default function ProfilePage() {
                     required
                     value={addressForm.street}
                     onChange={(e) => setAddressForm({ ...addressForm, street: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
               </div>
@@ -1168,7 +1168,7 @@ export default function ProfilePage() {
                   value={addressForm.landmark}
                   onChange={(e) => setAddressForm({ ...addressForm, landmark: e.target.value })}
                   placeholder="e.g. Near Station"
-                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                 />
               </div>
 
@@ -1180,7 +1180,7 @@ export default function ProfilePage() {
                     required
                     value={addressForm.city}
                     onChange={(e) => setAddressForm({ ...addressForm, city: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -1190,7 +1190,7 @@ export default function ProfilePage() {
                     required
                     value={addressForm.state}
                     onChange={(e) => setAddressForm({ ...addressForm, state: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
               </div>
@@ -1204,7 +1204,7 @@ export default function ProfilePage() {
                     value={addressForm.postalCode}
                     onChange={(e) => setAddressForm({ ...addressForm, postalCode: e.target.value })}
                     placeholder="PIN code"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div>
@@ -1214,7 +1214,7 @@ export default function ProfilePage() {
                     required
                     value={addressForm.country}
                     onChange={(e) => setAddressForm({ ...addressForm, country: e.target.value })}
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50"
                   />
                 </div>
               </div>
@@ -1224,7 +1224,7 @@ export default function ProfilePage() {
                   type="checkbox"
                   checked={addressForm.isDefault}
                   onChange={(e) => setAddressForm({ ...addressForm, isDefault: e.target.checked })}
-                  className="accent-[#d4af37] w-4.5 h-4.5"
+                  className="accent-primary w-4.5 h-4.5"
                 />
                 <span className="text-xs text-gray-500 font-medium">Set as my default shipping address</span>
               </label>
@@ -1232,7 +1232,7 @@ export default function ProfilePage() {
               <button
                 type="submit"
                 disabled={addressSaveMutation.isPending}
-                className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition mt-4 disabled:opacity-60"
+                className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition mt-4 disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20"
               >
                 {addressSaveMutation.isPending ? "Saving..." : "Save Address"}
               </button>

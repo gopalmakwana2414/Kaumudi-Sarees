@@ -17,8 +17,8 @@ interface OrderConfirmationEmailData {
   address: string;
 }
 
-const GOLD = "#b8860b";
-const GOLD_LIGHT = "#fff9ec";
+const GOLD = "#800020";
+const GOLD_LIGHT = "#fff5f5";
 const TEXT_DARK = "#1f1f1f";
 const TEXT_MUTED = "#555555";
 const BORDER_COLOR = "#e5e7eb";

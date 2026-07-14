@@ -68,15 +68,15 @@ export default function ContactClient() {
   };
 
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden bg-gradient-to-tr from-[#fff8f8] via-[#fffbfb] to-[#ffffff]">
       {/* Hero */}
       <section className="hero-gradient py-24">
         <ScrollReveal className="container-custom text-center">
-          <p className="text-[#b8860b] font-semibold uppercase tracking-[4px] text-sm">
+          <p className="text-primary font-semibold uppercase tracking-[4px] text-sm">
             Get in Touch
           </p>
           <h1 className="text-5xl font-bold mt-4">
-            Contact <span className="text-[#d4af37]">Us</span>
+            Contact <span className="text-primary">Us</span>
           </h1>
           <p className="mt-4 text-gray-600 max-w-xl mx-auto">
             We&apos;re here to help. Write to us, call us, or visit our store in
@@ -89,7 +89,7 @@ export default function ContactClient() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-14">
             {/* Contact Form */}
-            <ScrollReveal y={30} duration={0.6} className="bg-white rounded-3xl border shadow-sm p-8">
+            <ScrollReveal y={30} duration={0.6} className="bg-white rounded-3xl border shadow-sm p-8 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
               <h2 className="text-2xl font-bold mb-6 text-gray-800">Send a Message</h2>
 
               <form onSubmit={handleSubmit} className="space-y-5">
@@ -102,7 +102,7 @@ export default function ContactClient() {
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Priya Sharma"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-4 focus:ring-[#d4af37]/10 transition-all duration-200"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200"
                   />
                 </div>
 
@@ -116,7 +116,7 @@ export default function ContactClient() {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="you@example.com"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-4 focus:ring-[#d4af37]/10 transition-all duration-200"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200"
                   />
                 </div>
 
@@ -130,12 +130,12 @@ export default function ContactClient() {
                     value={form.phone}
                     onChange={handleChange}
                     placeholder="9876543210"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-4 focus:ring-[#d4af37]/10 transition-all duration-200"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-1.5 text-gray-700">
+                  <label className="block text-sm font-semibold mb-1.5 text-gray-700">
                     Message <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -144,7 +144,7 @@ export default function ContactClient() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="How can we help you?"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-4 focus:ring-[#d4af37]/10 transition-all duration-200 resize-none"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200 resize-none"
                   />
                 </div>
 
@@ -153,7 +153,7 @@ export default function ContactClient() {
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#d4af37] text-white py-3.5 rounded-xl font-semibold hover:bg-[#b8860b] transition-colors duration-200 disabled:opacity-60 cursor-pointer shadow-md shadow-[#d4af37]/10"
+                  className="w-full bg-primary text-white py-3.5 rounded-xl font-semibold hover:bg-primary-dark transition-colors duration-200 disabled:opacity-60 cursor-pointer shadow-md hover:shadow-lg shadow-primary/20 hover:scale-[1.02] duration-300"
                 >
                   {loading ? "Sending..." : "Send Message"}
                 </motion.button>
@@ -175,22 +175,22 @@ export default function ContactClient() {
               >
                 {[
                   {
-                    icon: <MapPin size={22} className="text-[#d4af37]" />,
+                    icon: <MapPin size={22} className="text-primary" />,
                     label: "Factory & Store",
                     value: "Ring Road, Surat, Gujarat – 395002",
                   },
                   {
-                    icon: <Phone size={22} className="text-[#d4af37]" />,
+                    icon: <Phone size={22} className="text-primary" />,
                     label: "Phone",
                     value: "+91 89594 65264",
                   },
                   {
-                    icon: <Mail size={22} className="text-[#d4af37]" />,
+                    icon: <Mail size={22} className="text-primary" />,
                     label: "Email",
                     value: "g91652251@gmail.com",
                   },
                   {
-                    icon: <Clock size={22} className="text-[#d4af37]" />,
+                    icon: <Clock size={22} className="text-primary" />,
                     label: "Business Hours",
                     value: "Mon – Sat: 9:00 AM – 6:00 PM",
                   },

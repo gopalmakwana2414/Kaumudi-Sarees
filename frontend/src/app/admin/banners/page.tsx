@@ -188,14 +188,14 @@ export default function AdminBannersPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-[#b8860b]">Banners</h1>
+          <h1 className="text-2xl font-bold text-primary">Banners</h1>
           <p className="text-gray-500 text-sm mt-1">
             Manage homepage hero and promotional banners
           </p>
         </div>
         <button
           onClick={openCreateForm}
-          className="flex items-center gap-2 bg-[#d4af37] text-white px-4 py-2 rounded-xl hover:bg-[#b8860b] transition"
+          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-dark transition cursor-pointer hover:scale-[1.02] duration-300 shadow-md"
         >
           <Plus size={16} />
           Add Banner
@@ -204,9 +204,9 @@ export default function AdminBannersPage() {
 
       {/* Form */}
       {showForm && (
-        <div className="bg-white rounded-2xl border shadow-sm p-6">
-          <div className="flex justify-between items-center mb-5">
-            <h2 className="text-lg font-semibold">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+          <div className="flex justify-between items-center mb-5 border-b border-gray-50 pb-3">
+            <h2 className="text-lg font-semibold text-gray-800">
               {editingBanner ? "Edit Banner" : "New Banner"}
             </h2>
             <button
@@ -214,7 +214,7 @@ export default function AdminBannersPage() {
                 setShowForm(false);
                 setEditingBanner(null);
               }}
-              className="text-gray-400"
+              className="text-gray-400 hover:text-gray-600 cursor-pointer"
             >
               <X size={20} />
             </button>
@@ -223,10 +223,10 @@ export default function AdminBannersPage() {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Image Upload */}
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium mb-2 text-gray-600">
                 Banner Image {editingBanner ? "" : "*"} (Recommended: 1920×800px)
               </label>
-              <label className="flex flex-col items-center justify-center border-2 border-dashed rounded-2xl h-48 cursor-pointer hover:border-[#d4af37] transition overflow-hidden relative">
+              <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-2xl h-48 cursor-pointer hover:border-primary transition overflow-hidden relative bg-gray-50">
                 {imagePreview ? (
                   <img
                     src={imagePreview}
@@ -235,7 +235,7 @@ export default function AdminBannersPage() {
                   />
                 ) : (
                   <div className="text-center text-gray-400">
-                    <ImageIcon size={32} className="mx-auto mb-2" />
+                    <ImageIcon size={32} className="mx-auto mb-2 text-gray-300" />
                     <p className="text-sm">Click to upload banner image</p>
                   </div>
                 )}
@@ -255,21 +255,21 @@ export default function AdminBannersPage() {
 
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Title *</label>
+                <label className="block text-sm font-medium mb-1 text-gray-600">Title *</label>
                 <input
                   value={form.title}
                   onChange={(e) => setForm({ ...form, title: e.target.value })}
                   placeholder="Wedding Collection"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Position</label>
+                <label className="block text-sm font-medium mb-1 text-gray-600">Position</label>
                 <select
                   value={form.position}
                   onChange={(e) => setForm({ ...form, position: e.target.value })}
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
                 >
                   {POSITIONS.map((p) => (
                     <option key={p.value} value={p.value}>
@@ -277,44 +277,44 @@ export default function AdminBannersPage() {
                     </option>
                   ))}
                 </select>
-                <p className="text-xs text-gray-400 mt-1.5">
+                <p className="text-xs text-gray-400 mt-1.5 font-medium">
                   "Hero" is the large banner at the very top of your homepage.
                   "Promo"/"Category" banners appear elsewhere and won't show there.
                 </p>
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium mb-1">Subtitle</label>
+                <label className="block text-sm font-medium mb-1 text-gray-600">Subtitle</label>
                 <input
                   value={form.subtitle}
                   onChange={(e) => setForm({ ...form, subtitle: e.target.value })}
                   placeholder="Starting from ₹2,999"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Link URL</label>
+                <label className="block text-sm font-medium mb-1 text-gray-600">Link URL</label>
                 <input
                   value={form.link}
                   onChange={(e) => setForm({ ...form, link: e.target.value })}
                   placeholder="/shop"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Button Text</label>
+                <label className="block text-sm font-medium mb-1 text-gray-600">Button Text</label>
                 <input
                   value={form.buttonText}
                   onChange={(e) => setForm({ ...form, buttonText: e.target.value })}
                   placeholder="Shop Now"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-gray-600">
                   Display Order
                 </label>
                 <input
@@ -323,16 +323,16 @@ export default function AdminBannersPage() {
                   onChange={(e) =>
                     setForm({ ...form, order: Number(e.target.value) })
                   }
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
                 />
               </div>
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 pt-3 border-t border-gray-50">
               <button
                 type="submit"
                 disabled={createMutation.isPending || updateMutation.isPending}
-                className="bg-[#d4af37] text-white px-6 py-2.5 rounded-xl hover:bg-[#b8860b] transition disabled:opacity-60"
+                className="bg-primary text-white px-6 py-2.5 rounded-xl hover:bg-primary-dark transition disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md shadow-primary/5"
               >
                 {editingBanner
                   ? updateMutation.isPending
@@ -348,7 +348,7 @@ export default function AdminBannersPage() {
                   setShowForm(false);
                   setEditingBanner(null);
                 }}
-                className="border px-6 py-2.5 rounded-xl hover:bg-gray-50"
+                className="border border-gray-200 px-6 py-2.5 rounded-xl hover:bg-gray-50 cursor-pointer text-gray-600 font-medium"
               >
                 Cancel
               </button>

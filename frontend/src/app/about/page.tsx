@@ -15,12 +15,12 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="hero-gradient py-24">
         <div className="container-custom text-center">
-          <p className="text-[#b8860b] font-semibold uppercase tracking-[4px] text-sm">
+          <p className="text-primary font-semibold uppercase tracking-[4px] text-sm">
             Our Story
           </p>
           <h1 className="text-5xl lg:text-6xl font-bold mt-4">
             About{" "}
-            <span className="text-[#d4af37]">Kaumudi</span>
+            <span className="text-primary">Kaumudi</span>
           </h1>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
             Born in the city of Surat, Kaumudi is a celebration of India&apos;s
@@ -48,7 +48,7 @@ export default function AboutPage() {
               {
                 title: "Customer First",
                 desc: "From easy returns to personalised styling, we make every saree shopping experience delightful.",
-                icon: "💛",
+                icon: "❤️",
               },
             ].map((item) => (
               <div
@@ -69,7 +69,7 @@ export default function AboutPage() {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-[#b8860b] font-semibold uppercase tracking-widest text-sm">
+              <p className="text-primary font-semibold uppercase tracking-widest text-sm">
                 Who We Are
               </p>
               <h2 className="text-4xl font-bold mt-4 mb-6">
@@ -88,7 +88,7 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/shop"
-                className="bg-[#d4af37] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#b8860b] transition"
+                className="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary-dark transition inline-block cursor-pointer hover:scale-[1.02] duration-300 shadow-md shadow-primary/10"
               >
                 Explore Collection
               </Link>
@@ -105,7 +105,7 @@ export default function AboutPage() {
                   key={stat.label}
                   className="bg-white border rounded-2xl p-6 text-center hover:shadow-md transition"
                 >
-                  <h3 className="text-3xl font-bold text-[#d4af37]">
+                  <h3 className="text-3xl font-bold text-primary">
                     {stat.value}
                   </h3>
                   <p className="text-gray-500 mt-2 text-sm">{stat.label}</p>

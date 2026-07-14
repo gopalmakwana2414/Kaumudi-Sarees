@@ -54,7 +54,7 @@ export default function ProductTable({ products, onEdit, onDelete }: Props) {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by name, SKU, category..."
-            className="w-full border pl-9 pr-3 py-2.5 rounded-xl text-sm outline-none focus:border-[#d4af37] transition"
+            className="w-full border pl-9 pr-3 py-2.5 rounded-xl text-sm outline-none focus:border-primary transition"
           />
         </div>
 
@@ -68,9 +68,9 @@ export default function ProductTable({ products, onEdit, onDelete }: Props) {
             <button
               key={f.key}
               onClick={() => setStockFilter(f.key as any)}
-              className={`px-3 py-1.5 rounded-lg font-medium transition ${
+              className={`px-3 py-1.5 rounded-lg font-medium transition cursor-pointer ${
                 stockFilter === f.key
-                  ? "bg-[#d4af37] text-white"
+                  ? "bg-primary text-white shadow-sm shadow-primary/15"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
@@ -81,7 +81,7 @@ export default function ProductTable({ products, onEdit, onDelete }: Props) {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-2xl shadow-sm overflow-x-auto">
+      <div className="bg-white rounded-2xl shadow-sm overflow-x-auto border border-gray-100">
         <table className="w-full text-sm">
           <thead className="bg-gray-50 text-left">
             <tr>
@@ -112,7 +112,7 @@ export default function ProductTable({ products, onEdit, onDelete }: Props) {
                 );
 
                 return (
-                  <tr key={p._id} className="border-t hover:bg-gray-50 transition">
+                  <tr key={p._id} className="border-t border-gray-100 hover:bg-gray-50/50 transition">
                     <td className="p-4">
                       {p.thumbnail?.url ? (
                         <Image
@@ -138,7 +138,7 @@ export default function ProductTable({ products, onEdit, onDelete }: Props) {
                     <td className="p-4 text-gray-500">{p.category?.name || "—"}</td>
 
                     <td className="p-4">
-                      <p className="font-semibold text-[#b8860b]">
+                      <p className="font-semibold text-primary">
                         ₹{p.salePrice.toLocaleString()}
                       </p>
                       {discount > 0 && (

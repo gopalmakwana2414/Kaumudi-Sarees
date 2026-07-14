@@ -57,7 +57,7 @@ export default function Categories() {
     <section className="py-20 overflow-hidden">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <p className="text-[#b8860b] font-semibold uppercase tracking-widest text-sm">
+          <p className="text-primary font-semibold uppercase tracking-widest text-sm">
             Find Your Style
           </p>
           <h2 className="text-4xl font-bold mt-3">Shop By Category</h2>
@@ -86,7 +86,7 @@ export default function Categories() {
                 <motion.div key={name} variants={cardVariants}>
                   <Link
                     href={`/shop?search=${encodeURIComponent(name)}`}
-                    className="block bg-white border rounded-2xl p-6 text-center hover:border-[#d4af37] transition-colors group cursor-pointer"
+                    className="block bg-white border rounded-2xl p-6 text-center hover:border-primary hover:shadow-md hover:shadow-primary/5 transition-all duration-300 group cursor-pointer"
                   >
                     <motion.div
                       whileHover={{ scale: 1.15 }}
@@ -95,7 +95,7 @@ export default function Categories() {
                     >
                       {getEmoji(name)}
                     </motion.div>
-                    <h3 className="font-semibold text-sm text-gray-700 group-hover:text-[#b8860b] transition-colors">
+                    <h3 className="font-semibold text-sm text-gray-700 group-hover:text-primary transition-colors">
                       {name}
                     </h3>
                   </Link>
@@ -115,7 +115,7 @@ export default function Categories() {
               <motion.div key={cat._id} variants={cardVariants}>
                 <Link
                   href={`/shop?category=${cat._id}`}
-                  className="block bg-white border rounded-2xl p-6 text-center hover:border-[#d4af37] transition-colors group cursor-pointer"
+                  className="block bg-white border rounded-2xl p-6 text-center hover:border-primary hover:shadow-md hover:shadow-primary/5 transition-all duration-300 group cursor-pointer"
                 >
                   <motion.div
                     whileHover={{ scale: 1.15 }}
@@ -124,7 +124,7 @@ export default function Categories() {
                   >
                     {getEmoji(cat.name)}
                   </motion.div>
-                  <h3 className="font-semibold text-sm text-gray-700 group-hover:text-[#b8860b] transition-colors">
+                  <h3 className="font-semibold text-sm text-gray-700 group-hover:text-primary transition-colors">
                     {cat.name}
                   </h3>
                 </Link>

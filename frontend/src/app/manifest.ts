@@ -8,7 +8,7 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",
-    theme_color: "#b8860b",
+    theme_color: "#800020",
     icons: [
       {
         src: "/kaumodi.png",

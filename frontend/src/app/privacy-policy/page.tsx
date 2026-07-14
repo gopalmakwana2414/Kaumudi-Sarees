@@ -106,7 +106,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-xl font-bold mb-3">Contact Us</h2>
             <p className="text-gray-600">
               For privacy-related queries, contact us at{" "}
-              <a href="mailto:g91652251@gmail.com" className="text-[#b8860b] underline">
+              <a href="mailto:g91652251@gmail.com" className="text-primary hover:text-primary-dark underline transition">
                 g91652251@gmail.com
               </a>
               <br />

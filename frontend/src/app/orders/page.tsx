@@ -62,7 +62,7 @@ export default function OrdersPage() {
           </p>
           <Link
             href="/shop"
-            className="inline-block mt-8 bg-[#d4af37] text-white px-8 py-3 rounded-xl font-medium"
+            className="inline-block mt-8 bg-primary text-white px-8 py-3 rounded-xl font-medium hover:bg-primary-dark cursor-pointer hover:scale-[1.02] duration-300 shadow-md transition-all"
           >
             Shop Now
           </Link>
@@ -81,7 +81,7 @@ export default function OrdersPage() {
             <Link
               href={`/orders/${order._id}`}
               key={order._id}
-              className="block bg-white rounded-2xl shadow-sm border p-6 hover:shadow-md hover:border-[#d4af37] transition cursor-pointer"
+              className="block bg-white rounded-2xl shadow-sm border p-6 hover:shadow-md hover:border-primary transition cursor-pointer"
             >
               <div className="flex flex-wrap justify-between items-start gap-4">
                 <div>
@@ -104,7 +104,7 @@ export default function OrdersPage() {
 
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Total</p>
-                  <p className="font-bold text-[#b8860b]">
+                  <p className="font-bold text-primary">
                     ₹{order.totalAmount?.toLocaleString()}
                   </p>
                 </div>

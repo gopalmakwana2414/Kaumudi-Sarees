@@ -97,12 +97,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           <nav className="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
             <ol className="flex items-center gap-2 flex-wrap">
               <li>
-                <Link href="/" className="hover:text-[#b8860b] transition">
+                <Link href="/" className="hover:text-primary transition font-medium">
                   Home
                 </Link>
               </li>
               <li className="before:content-['/'] before:mr-2 before:text-gray-300">
-                <Link href="/shop" className="hover:text-[#b8860b] transition">
+                <Link href="/shop" className="hover:text-primary transition font-medium">
                   Shop
                 </Link>
               </li>
@@ -117,29 +117,29 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
           {/* Category Header */}
           <header className="mb-12">
-            <p className="text-sm text-[#b8860b] font-semibold uppercase tracking-widest mb-2">
+            <p className="text-sm text-primary font-semibold uppercase tracking-widest mb-2">
               Saree Category
             </p>
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              {category.name} <span className="text-[#d4af37]">Collection</span>
+              {category.name} <span className="text-primary">Collection</span>
             </h1>
             {category.description && (
               <p className="text-gray-600 max-w-3xl leading-relaxed text-lg">
                 {category.description} Curated directly from our Surat weavers.
               </p>
             )}
-            <p className="text-sm text-gray-400 mt-2">
+            <p className="text-sm text-gray-400 mt-2 font-medium">
               Showing {products.length} of {totalProducts} premium designs
             </p>
           </header>
 
           {/* Products Grid */}
           {products.length === 0 ? (
-            <div className="text-center py-20 bg-gray-50 rounded-3xl border">
-              <p className="text-gray-400 text-xl">
+            <div className="text-center py-20 bg-gray-50 rounded-3xl border border-gray-100">
+              <p className="text-gray-400 text-xl font-medium">
                 No sarees found in this category right now.
               </p>
-              <Link href="/shop" className="mt-4 inline-block text-[#b8860b] underline font-medium">
+              <Link href="/shop" className="mt-4 inline-block text-primary hover:text-primary-dark underline font-semibold transition">
                 Browse all products
               </Link>
             </div>
@@ -159,7 +159,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                 >
                   <Link
                     href={`/category/${slug}?page=${Math.max(1, page - 1)}`}
-                    className={`px-4 py-2 border rounded-xl hover:bg-gray-50 text-sm transition ${
+                    className={`px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-sm transition ${
                       page === 1 ? "pointer-events-none opacity-40" : ""
                     }`}
                     aria-label="Previous Page"
@@ -174,10 +174,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                       <Link
                         key={pageNum}
                         href={`/category/${slug}?page=${pageNum}`}
-                        className={`px-4 py-2 rounded-xl text-sm transition ${
+                        className={`px-4 py-2 rounded-xl text-sm transition font-medium ${
                           isActive
-                            ? "bg-[#d4af37] text-white font-semibold"
-                            : "border hover:bg-gray-50"
+                            ? "bg-primary text-white font-bold shadow-md shadow-primary/10"
+                            : "border border-gray-200 hover:bg-gray-50 text-gray-600"
                         }`}
                         aria-label={`Page ${pageNum}`}
                         aria-current={isActive ? "page" : undefined}
@@ -192,7 +192,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
                       totalPages,
                       page + 1
                     )}`}
-                    className={`px-4 py-2 border rounded-xl hover:bg-gray-50 text-sm transition ${
+                    className={`px-4 py-2 border border-gray-200 rounded-xl hover:bg-gray-50 text-sm transition ${
                       page === totalPages ? "pointer-events-none opacity-40" : ""
                     }`}
                     aria-label="Next Page"

@@ -27,8 +27,8 @@ export default function AdminDashboard() {
     {
       label: "Total Products",
       value: data?.totalProducts ?? "—",
-      icon: <Package size={24} className="text-[#d4af37]" />,
-      bg: "bg-yellow-50",
+      icon: <Package size={24} className="text-primary" />,
+      bg: "bg-secondary/40 border border-primary/5",
     },
     {
       label: "Total Orders",
@@ -53,7 +53,7 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-[#b8860b]">Dashboard</h1>
+        <h1 className="text-3xl font-bold text-primary">Dashboard</h1>
         <p className="text-gray-500 text-sm mt-1">
           Welcome to Kaumudi Admin Panel
         </p>
@@ -151,7 +151,7 @@ export default function AdminDashboard() {
                         <p className="font-medium">{order.user?.name || "—"}</p>
                         <p className="text-gray-400 text-xs">{order.user?.email}</p>
                       </td>
-                      <td className="p-3 font-semibold text-[#b8860b]">
+                      <td className="p-3 font-semibold text-primary">
                         ₹{order.totalAmount?.toLocaleString()}
                       </td>
                       <td className="p-3">{order.paymentMethod}</td>

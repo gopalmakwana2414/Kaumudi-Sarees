@@ -90,13 +90,13 @@ export default function AdminOrdersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#b8860b]">Orders</h1>
+        <h1 className="text-2xl font-bold text-primary">Orders</h1>
         <p className="text-gray-500 text-sm mt-1">
           Manage and track all customer orders
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         {isLoading ? (
           <div className="p-6 space-y-3">
             {[...Array(5)].map((_, i) => (
@@ -124,7 +124,7 @@ export default function AdminOrdersPage() {
               </thead>
               <tbody>
                 {orders.map((order: any) => (
-                  <tr key={order._id} className="border-t hover:bg-gray-50">
+                  <tr key={order._id} className="border-t border-gray-100 hover:bg-gray-50/50">
                     <td className="p-4 font-mono text-xs">
                       #{order._id.slice(-8).toUpperCase()}
                     </td>
@@ -136,7 +136,7 @@ export default function AdminOrdersPage() {
 
                     <td className="p-4">{order.totalItems}</td>
 
-                    <td className="p-4 font-semibold text-[#b8860b]">
+                    <td className="p-4 font-semibold text-primary">
                       ₹{order.totalAmount?.toLocaleString()}
                     </td>
 

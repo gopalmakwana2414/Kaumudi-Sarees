@@ -39,7 +39,7 @@ export default function ProductGallery({
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => setSelectedImage(image)}
-            className="outline-none focus:ring-2 focus:ring-[#d4af37] rounded-xl overflow-hidden cursor-pointer"
+            className="outline-none focus:ring-2 focus:ring-primary rounded-xl overflow-hidden cursor-pointer"
             aria-label={`View ${productName} image ${index + 1}`}
           >
             <img
@@ -48,7 +48,7 @@ export default function ProductGallery({
               loading="lazy"
               className={`w-full h-28 object-cover rounded-xl border transition-all duration-300 ${
                 selectedImage === image
-                  ? "border-[#d4af37] opacity-100"
+                  ? "border-primary opacity-100"
                   : "border-gray-200 opacity-60 hover:opacity-100"
               }`}
             />

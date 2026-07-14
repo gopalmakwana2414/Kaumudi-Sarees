@@ -21,7 +21,7 @@ export default function AdminProductsPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-[#b8860b]">Products</h1>
+          <h1 className="text-2xl font-bold text-primary">Products</h1>
           <p className="text-gray-500 text-sm mt-1">
             Manage your saree catalog — {data?.length || 0} products
           </p>
@@ -32,7 +32,7 @@ export default function AdminProductsPage() {
             setSelectedProduct(null);
             setOpenModal(true);
           }}
-          className="flex items-center gap-2 bg-[#d4af37] text-white px-4 py-2.5 rounded-xl font-medium hover:bg-[#b8860b] transition"
+          className="flex items-center gap-2 bg-primary text-white px-4 py-2.5 rounded-xl font-medium hover:bg-primary-dark transition cursor-pointer hover:scale-[1.02] duration-300 shadow-md"
         >
           <Plus size={16} />
           Add Product

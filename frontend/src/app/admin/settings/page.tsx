@@ -251,7 +251,7 @@ export default function AdminSettingsPage() {
   return (
     <div className="space-y-6 max-w-5xl">
       <div>
-        <h1 className="text-3xl font-bold text-[#b8860b]">Settings & Admin Panel</h1>
+        <h1 className="text-3xl font-bold text-primary">Settings & Admin Panel</h1>
         <p className="text-gray-500 text-sm mt-1">
           Configure Kaumudi settings, manage active login sessions, and monitor security logs.
         </p>
@@ -261,9 +261,9 @@ export default function AdminSettingsPage() {
       <div className="flex border-b border-gray-200">
         <button
           onClick={() => setActiveTab("store")}
-          className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 transition ${
+          className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 transition cursor-pointer ${
             activeTab === "store"
-              ? "border-[#d4af37] text-[#b8860b]"
+              ? "border-primary text-primary"
               : "border-transparent text-gray-500 hover:text-gray-800"
           }`}
         >
@@ -271,9 +271,9 @@ export default function AdminSettingsPage() {
         </button>
         <button
           onClick={() => setActiveTab("profile")}
-          className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 transition ${
+          className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 transition cursor-pointer ${
             activeTab === "profile"
-              ? "border-[#d4af37] text-[#b8860b]"
+              ? "border-primary text-primary"
               : "border-transparent text-gray-500 hover:text-gray-800"
           }`}
         >
@@ -281,9 +281,9 @@ export default function AdminSettingsPage() {
         </button>
         <button
           onClick={() => setActiveTab("sessions")}
-          className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 transition relative ${
+          className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 transition relative cursor-pointer ${
             activeTab === "sessions"
-              ? "border-[#d4af37] text-[#b8860b]"
+              ? "border-primary text-primary"
               : "border-transparent text-gray-500 hover:text-gray-800"
           }`}
         >
@@ -296,9 +296,9 @@ export default function AdminSettingsPage() {
         </button>
         <button
           onClick={() => setActiveTab("audit")}
-          className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 transition ${
+          className={`flex items-center gap-2 px-5 py-3 font-semibold text-sm border-b-2 transition cursor-pointer ${
             activeTab === "audit"
-              ? "border-[#d4af37] text-[#b8860b]"
+              ? "border-primary text-primary"
               : "border-transparent text-gray-500 hover:text-gray-800"
           }`}
         >
@@ -309,9 +309,9 @@ export default function AdminSettingsPage() {
       {/* Tab 1: Store Configuration */}
       {activeTab === "store" && (
         <div className="space-y-6">
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <div className="flex items-center gap-2 mb-6">
-              <Store size={20} className="text-[#d4af37]" />
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+            <div className="flex items-center gap-2 mb-6 border-b border-gray-50 pb-3">
+              <Store size={20} className="text-primary" />
               <h2 className="text-lg font-semibold text-gray-800">Store Information</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
@@ -320,7 +320,7 @@ export default function AdminSettingsPage() {
                 <input
                   value={storeInfo.storeName}
                   onChange={(e) => setStoreInfo({ ...storeInfo, storeName: e.target.value })}
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                 />
               </div>
               <div>
@@ -328,7 +328,7 @@ export default function AdminSettingsPage() {
                 <input
                   value={storeInfo.email}
                   onChange={(e) => setStoreInfo({ ...storeInfo, email: e.target.value })}
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                 />
               </div>
               <div>
@@ -336,7 +336,7 @@ export default function AdminSettingsPage() {
                 <input
                   value={storeInfo.phone}
                   onChange={(e) => setStoreInfo({ ...storeInfo, phone: e.target.value })}
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                 />
               </div>
               <div>
@@ -347,7 +347,7 @@ export default function AdminSettingsPage() {
                   onChange={(e) =>
                     setStoreInfo({ ...storeInfo, freeShippingThreshold: Number(e.target.value) })
                   }
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                 />
               </div>
               <div className="md:col-span-2">
@@ -356,36 +356,36 @@ export default function AdminSettingsPage() {
                   value={storeInfo.address}
                   onChange={(e) => setStoreInfo({ ...storeInfo, address: e.target.value })}
                   rows={2}
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] resize-none bg-gray-50/50"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary resize-none bg-gray-50/50 text-sm"
                 />
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <div className="flex items-center gap-2 mb-6">
-              <Shield size={20} className="text-[#d4af37]" />
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+            <div className="flex items-center gap-2 mb-6 border-b border-gray-50 pb-3">
+              <Shield size={20} className="text-primary" />
               <h2 className="text-lg font-semibold text-gray-800">Payment Methods</h2>
             </div>
             <div className="space-y-4">
               <label className="flex items-center justify-between cursor-pointer">
-                <span className="text-sm font-medium text-gray-700">Cash on Delivery (COD)</span>
+                <span className="text-sm font-medium text-gray-700 select-none">Cash on Delivery (COD)</span>
                 <input
                   type="checkbox"
                   checked={storeInfo.codAvailable}
                   onChange={(e) => setStoreInfo({ ...storeInfo, codAvailable: e.target.checked })}
-                  className="accent-[#d4af37] w-5 h-5"
+                  className="accent-primary w-5 h-5 cursor-pointer"
                 />
               </label>
               <label className="flex items-center justify-between cursor-pointer">
-                <span className="text-sm font-medium text-gray-700">Online Payments (Razorpay)</span>
+                <span className="text-sm font-medium text-gray-700 select-none">Online Payments (Razorpay)</span>
                 <input
                   type="checkbox"
                   checked={storeInfo.onlinePaymentAvailable}
                   onChange={(e) =>
                     setStoreInfo({ ...storeInfo, onlinePaymentAvailable: e.target.checked })
                   }
-                  className="accent-[#d4af37] w-5 h-5"
+                  className="accent-primary w-5 h-5 cursor-pointer"
                 />
               </label>
             </div>
@@ -393,7 +393,7 @@ export default function AdminSettingsPage() {
 
           <button
             onClick={handleSaveStore}
-            className="flex items-center gap-2 bg-[#d4af37] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition shadow-sm"
+            className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary-dark transition cursor-pointer hover:scale-[1.02] duration-300 shadow-md shadow-primary/5"
           >
             <Save size={16} /> Save Settings
           </button>
@@ -405,9 +405,9 @@ export default function AdminSettingsPage() {
         <div className="space-y-6">
           
           {/* Admin Profile Picture and Details */}
-          <div className="bg-white rounded-2xl shadow-sm border p-6 flex flex-col md:flex-row items-center gap-6 justify-between">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)] flex flex-col md:flex-row items-center gap-6 justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-[#fff8e7] border border-[#d4af37] rounded-full flex items-center justify-center font-bold text-[#b8860b] text-xl shadow-inner">
+              <div className="w-16 h-16 bg-secondary border border-primary rounded-full flex items-center justify-center font-bold text-primary text-xl shadow-inner">
                 {adminName?.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -423,7 +423,7 @@ export default function AdminSettingsPage() {
                   if (newName) updateProfileMutation.mutate(newName);
                 }}
                 disabled={updateProfileMutation.isPending}
-                className="border border-[#d4af37] text-[#b8860b] px-4 py-2.5 rounded-xl font-semibold hover:bg-[#fff8e7] transition text-sm shadow-sm"
+                className="border border-primary text-primary px-4 py-2.5 rounded-xl font-semibold hover:bg-secondary/50 transition text-sm cursor-pointer hover:scale-[1.02] duration-300 shadow-sm"
               >
                 Update Name
               </button>
@@ -431,8 +431,8 @@ export default function AdminSettingsPage() {
           </div>
 
           {/* Change Password Panel */}
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2"><Lock size={18} className="text-[#d4af37]" /> Change Admin Password</h3>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+            <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2"><Lock size={18} className="text-primary" /> Change Admin Password</h3>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -441,43 +441,43 @@ export default function AdminSettingsPage() {
               className="grid sm:grid-cols-3 gap-4"
             >
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Current Password</label>
+                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">Current Password</label>
                 <input
                   type="password"
                   required
                   value={passwordForm.currentPassword}
                   onChange={(e) => setPasswordForm({ ...passwordForm, currentPassword: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50 text-sm"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">New Password</label>
+                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">New Password</label>
                 <input
                   type="password"
                   required
                   value={passwordForm.newPassword}
                   onChange={(e) => setPasswordForm({ ...passwordForm, newPassword: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50 text-sm"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Confirm New Password</label>
+                <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">Confirm New Password</label>
                 <input
                   type="password"
                   required
                   value={passwordForm.confirmPassword}
                   onChange={(e) => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })}
                   placeholder="••••••••"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50 text-sm"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                 />
               </div>
               <div className="sm:col-span-3">
                 <button
                   type="submit"
                   disabled={changePasswordMutation.isPending}
-                  className="bg-[#d4af37] text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-60 text-sm shadow-sm"
+                  className="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-primary-dark transition disabled:opacity-60 text-sm cursor-pointer hover:scale-[1.02] duration-300 shadow-md shadow-primary/5"
                 >
                   {changePasswordMutation.isPending ? "Updating..." : "Change Password"}
                 </button>
@@ -486,8 +486,8 @@ export default function AdminSettingsPage() {
           </div>
 
           {/* Change Email Panel */}
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2"><Mail size={18} className="text-[#d4af37]" /> Change Admin Email</h3>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+            <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2"><Mail size={18} className="text-primary" /> Change Admin Email</h3>
             
             {!emailOtpSent ? (
               <form
@@ -502,32 +502,32 @@ export default function AdminSettingsPage() {
                 className="grid sm:grid-cols-2 gap-4"
               >
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Confirm Password</label>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">Confirm Password</label>
                   <input
                     type="password"
                     required
                     value={emailForm.currentPassword}
                     onChange={(e) => setEmailForm({ ...emailForm, currentPassword: e.target.value })}
                     placeholder="••••••••"
-                    className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50 text-sm"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">New Email Address</label>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">New Email Address</label>
                   <input
                     type="email"
                     required
                     value={emailForm.newEmail}
                     onChange={(e) => setEmailForm({ ...emailForm, newEmail: e.target.value })}
                     placeholder="admin-new@kaumudi.com"
-                    className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50 text-sm"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                   />
                 </div>
                 <div className="sm:col-span-2">
                   <button
                     type="submit"
                     disabled={changeEmailMutation.isPending}
-                    className="bg-[#d4af37] text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-60 text-sm shadow-sm"
+                    className="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-primary-dark transition disabled:opacity-60 text-sm cursor-pointer hover:scale-[1.02] duration-300 shadow-md shadow-primary/5"
                   >
                     Request OTP Verification
                   </button>
@@ -541,32 +541,32 @@ export default function AdminSettingsPage() {
                 }}
                 className="space-y-4 max-w-sm"
               >
-                <div className="p-3 bg-[#fff8e7] border border-[#d4af37]/25 text-xs rounded-xl text-gray-600">
+                <div className="p-3 bg-secondary border border-primary/25 text-xs rounded-xl text-gray-600">
                   Verification OTP code sent to <strong>{emailForm.newEmail}</strong>.
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Enter Code</label>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">Enter Code</label>
                   <input
                     type="text"
                     required
                     maxLength={6}
                     value={emailForm.otp}
                     onChange={(e) => setEmailForm({ ...emailForm, otp: e.target.value.replace(/\D/g, "") })}
-                    className="w-full text-center tracking-[0.5em] text-lg font-bold border p-3 rounded-xl focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full text-center tracking-[0.5em] text-lg font-bold border border-gray-200 p-3 rounded-xl focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div className="flex gap-2">
                   <button
                     type="submit"
                     disabled={changeEmailMutation.isPending}
-                    className="bg-green-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-green-700 transition text-sm shadow-sm"
+                    className="bg-green-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-green-700 transition text-sm cursor-pointer"
                   >
                     Verify & Update Email
                   </button>
                   <button
                     type="button"
                     onClick={() => setEmailOtpSent(false)}
-                    className="border px-5 py-2.5 rounded-xl font-semibold hover:bg-gray-50 transition text-sm text-gray-500"
+                    className="border border-gray-200 px-5 py-2.5 rounded-xl font-semibold hover:bg-gray-50 transition text-sm text-gray-500 cursor-pointer"
                   >
                     Cancel
                   </button>
@@ -576,8 +576,8 @@ export default function AdminSettingsPage() {
           </div>
 
           {/* Change Phone Panel */}
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2"><Phone size={18} className="text-[#d4af37]" /> Change Admin Phone</h3>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+            <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2"><Phone size={18} className="text-primary" /> Change Admin Phone</h3>
             
             {!phoneOtpSent ? (
               <form
@@ -592,32 +592,32 @@ export default function AdminSettingsPage() {
                 className="grid sm:grid-cols-2 gap-4"
               >
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Confirm Password</label>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">Confirm Password</label>
                   <input
                     type="password"
                     required
                     value={phoneForm.currentPassword}
                     onChange={(e) => setPhoneForm({ ...phoneForm, currentPassword: e.target.value })}
                     placeholder="••••••••"
-                    className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50 text-sm"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">New Mobile Number</label>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">New Mobile Number</label>
                   <input
                     type="tel"
                     required
                     value={phoneForm.newPhone}
                     onChange={(e) => setPhoneForm({ ...phoneForm, newPhone: e.target.value })}
                     placeholder="9876543210"
-                    className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] bg-gray-50/50 text-sm"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary bg-gray-50/50 text-sm"
                   />
                 </div>
                 <div className="sm:col-span-2">
                   <button
                     type="submit"
                     disabled={changePhoneMutation.isPending}
-                    className="bg-[#d4af37] text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-60 text-sm shadow-sm"
+                    className="bg-primary text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-primary-dark transition disabled:opacity-60 text-sm cursor-pointer hover:scale-[1.02] duration-300 shadow-md shadow-primary/5"
                   >
                     Request OTP Verification
                   </button>
@@ -631,32 +631,32 @@ export default function AdminSettingsPage() {
                 }}
                 className="space-y-4 max-w-sm"
               >
-                <div className="p-3 bg-[#fff8e7] border border-[#d4af37]/25 text-xs rounded-xl text-gray-600">
+                <div className="p-3 bg-secondary border border-primary/25 text-xs rounded-xl text-gray-600">
                   Verification OTP code sent to <strong>{phoneForm.newPhone}</strong>.
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1">Enter Code</label>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase mb-1 text-gray-500">Enter Code</label>
                   <input
                     type="text"
                     required
                     maxLength={6}
                     value={phoneForm.otp}
                     onChange={(e) => setPhoneForm({ ...phoneForm, otp: e.target.value.replace(/\D/g, "") })}
-                    className="w-full text-center tracking-[0.5em] text-lg font-bold border p-3 rounded-xl focus:border-[#d4af37] bg-gray-50/50"
+                    className="w-full text-center tracking-[0.5em] text-lg font-bold border border-gray-200 p-3 rounded-xl focus:border-primary bg-gray-50/50"
                   />
                 </div>
                 <div className="flex gap-2">
                   <button
                     type="submit"
                     disabled={changePhoneMutation.isPending}
-                    className="bg-green-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-green-700 transition text-sm shadow-sm"
+                    className="bg-green-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-green-700 transition text-sm cursor-pointer"
                   >
                     Verify & Update Phone
                   </button>
                   <button
                     type="button"
                     onClick={() => setPhoneOtpSent(false)}
-                    className="border px-5 py-2.5 rounded-xl font-semibold hover:bg-gray-50 transition text-sm text-gray-500"
+                    className="border border-gray-200 px-5 py-2.5 rounded-xl font-semibold hover:bg-gray-50 transition text-sm text-gray-500 cursor-pointer"
                   >
                     Cancel
                   </button>
@@ -748,16 +748,16 @@ export default function AdminSettingsPage() {
         <div className="space-y-6">
           
           {/* Security Log Table */}
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <div className="flex items-center gap-2 mb-6">
-              <Activity size={20} className="text-[#d4af37]" />
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+            <div className="flex items-center gap-2 mb-6 border-b border-gray-50 pb-3">
+              <Activity size={20} className="text-primary" />
               <h2 className="text-lg font-semibold text-gray-800">Critical Security Audit Logs</h2>
             </div>
             
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="bg-gray-50 border-b text-gray-400 font-semibold uppercase tracking-wider">
+                  <tr className="bg-gray-50 border-b border-gray-100 text-gray-400 font-semibold uppercase tracking-wider">
                     <th className="p-3">Timestamp</th>
                     <th className="p-3">Actor</th>
                     <th className="p-3">Action performed</th>
@@ -799,9 +799,9 @@ export default function AdminSettingsPage() {
           </div>
 
           {/* Login History Table */}
-          <div className="bg-white rounded-2xl shadow-sm border p-6">
-            <div className="flex items-center gap-2 mb-6">
-              <History size={20} className="text-[#d4af37]" />
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+            <div className="flex items-center gap-2 mb-6 border-b border-gray-50 pb-3">
+              <History size={20} className="text-primary" />
               <h2 className="text-lg font-semibold text-gray-800">Recent Login History</h2>
             </div>
             

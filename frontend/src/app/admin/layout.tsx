@@ -64,10 +64,10 @@ export default function AdminLayout({
             key={link.href}
             href={link.href}
             onClick={() => setMobileSidebar(false)}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition font-medium text-sm ${
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition font-semibold text-sm cursor-pointer ${
               isActive(link.href)
-                ? "bg-[#d4af37] text-white shadow-sm"
-                : "text-gray-600 hover:bg-gray-100 hover:text-[#b8860b]"
+                ? "bg-primary text-white shadow-md shadow-primary/10"
+                : "text-gray-600 hover:bg-secondary/40 hover:text-primary"
             }`}
           >
             {link.icon}

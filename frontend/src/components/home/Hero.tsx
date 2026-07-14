@@ -67,7 +67,7 @@ export default function Hero() {
           >
             <motion.p
               variants={itemVariants}
-              className="text-[#b8860b] font-semibold uppercase tracking-[4px]"
+              className="text-primary font-semibold uppercase tracking-[4px]"
             >
               Premium Saree Collection
             </motion.p>
@@ -77,7 +77,7 @@ export default function Hero() {
               className="text-5xl lg:text-7xl font-bold mt-6 leading-tight"
             >
               {banner ? banner.title : "Celebrate Every Occasion"}
-              <span className="text-[#d4af37] block">
+              <span className="text-primary block">
                 {banner ? "" : "With Elegance"}
               </span>
             </motion.h1>
@@ -94,7 +94,7 @@ export default function Hero() {
             <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mt-10">
               <Link
                 href={banner?.link || "/shop"}
-                className="bg-[#d4af37] text-white px-8 py-4 rounded-full font-semibold transition inline-block hover:bg-[#b8860b] active:scale-98 shadow-md hover:shadow-lg shadow-[#d4af37]/20"
+                className="bg-primary text-white px-8 py-4 rounded-full font-semibold transition inline-block hover:bg-primary-dark active:scale-98 shadow-md hover:shadow-lg shadow-primary/20 hover:scale-[1.02] duration-300"
                 style={{ transformOrigin: "center" }}
               >
                 {banner?.buttonText || "Shop Now"}
@@ -102,7 +102,7 @@ export default function Hero() {
 
               <Link
                 href="/collections"
-                className="border border-[#d4af37] text-[#b8860b] px-8 py-4 rounded-full font-semibold hover:bg-[#fff8e7] transition inline-block active:scale-98"
+                className="border border-primary text-primary px-8 py-4 rounded-full font-semibold hover:bg-secondary transition inline-block active:scale-98 hover:scale-[1.02] duration-300"
                 style={{ transformOrigin: "center" }}
               >
                 View Collections
@@ -144,8 +144,8 @@ export default function Hero() {
                 className="rounded-3xl shadow-2xl w-full object-cover h-[650px]"
               />
             ) : (
-              <div className="rounded-3xl shadow-2xl w-full h-[650px] hero-gradient border border-[#eee0c0] flex flex-col items-center justify-center text-center px-10">
-                <p className="text-[#b8860b] font-semibold uppercase tracking-[3px] text-sm">
+              <div className="rounded-3xl shadow-2xl w-full h-[650px] hero-gradient border border-primary/20 flex flex-col items-center justify-center text-center px-10">
+                <p className="text-primary font-semibold uppercase tracking-[3px] text-sm">
                   Kaumudi
                 </p>
                 <p className="text-gray-400 mt-3 text-sm max-w-xs">

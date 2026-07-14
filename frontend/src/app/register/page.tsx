@@ -248,7 +248,7 @@ export default function RegisterPage() {
                     {...register("name")}
                     placeholder="Priya Sharma"
                     suppressHydrationWarning
-                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                   />
                   {errors.name && (
                     <p className="text-red-500 text-xs mt-1">
@@ -268,7 +268,7 @@ export default function RegisterPage() {
                     placeholder="you@example.com"
                     disabled={emailVerified}
                     suppressHydrationWarning
-                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm disabled:bg-gray-50 disabled:text-gray-400"
+                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm disabled:bg-gray-50 disabled:text-gray-400"
                   />
                   {errors.email && (
                     <p className="text-red-500 text-xs mt-1">
@@ -288,7 +288,7 @@ export default function RegisterPage() {
                     placeholder="9876543210"
                     disabled={mobileVerified}
                     suppressHydrationWarning
-                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm disabled:bg-gray-50 disabled:text-gray-400"
+                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm disabled:bg-gray-50 disabled:text-gray-400"
                   />
                   {errors.mobile && (
                     <p className="text-red-500 text-xs mt-1">
@@ -307,7 +307,7 @@ export default function RegisterPage() {
                     {...register("password")}
                     placeholder="Min. 8 characters"
                     suppressHydrationWarning
-                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                   />
                   {errors.password && (
                     <p className="text-red-500 text-xs mt-1">
@@ -326,7 +326,7 @@ export default function RegisterPage() {
                     {...register("confirmPassword")}
                     placeholder="Repeat password"
                     suppressHydrationWarning
-                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                   />
                   {errors.confirmPassword && (
                     <p className="text-red-500 text-xs mt-1">
@@ -351,7 +351,7 @@ export default function RegisterPage() {
                     {...register("houseNumber")}
                     placeholder="Flat 302, Royal Enclave"
                     suppressHydrationWarning
-                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                   />
                   {errors.houseNumber && (
                     <p className="text-red-500 text-xs mt-1">
@@ -369,7 +369,7 @@ export default function RegisterPage() {
                     {...register("street")}
                     placeholder="Ring Road, Textile Market"
                     suppressHydrationWarning
-                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                   />
                   {errors.street && (
                     <p className="text-red-500 text-xs mt-1">
@@ -387,7 +387,7 @@ export default function RegisterPage() {
                     {...register("landmark")}
                     placeholder="Near Golden Plaza"
                     suppressHydrationWarning
-                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                    className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                   />
                   {errors.landmark && (
                     <p className="text-red-500 text-xs mt-1">
@@ -406,7 +406,7 @@ export default function RegisterPage() {
                       {...register("city")}
                       placeholder="Surat"
                       suppressHydrationWarning
-                      className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                      className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                     />
                     {errors.city && (
                       <p className="text-red-500 text-xs mt-1">
@@ -422,7 +422,7 @@ export default function RegisterPage() {
                       {...register("state")}
                       placeholder="Gujarat"
                       suppressHydrationWarning
-                      className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                      className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                     />
                     {errors.state && (
                       <p className="text-red-500 text-xs mt-1">
@@ -442,7 +442,7 @@ export default function RegisterPage() {
                       {...register("country")}
                       placeholder="India"
                       suppressHydrationWarning
-                      className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                      className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                     />
                     {errors.country && (
                       <p className="text-red-500 text-xs mt-1">
@@ -458,7 +458,7 @@ export default function RegisterPage() {
                       {...register("postalCode")}
                       placeholder="395003"
                       suppressHydrationWarning
-                      className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition text-sm"
+                      className="w-full border border-gray-250 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition text-sm"
                     />
                     {errors.postalCode && (
                       <p className="text-red-500 text-xs mt-1">
@@ -482,11 +482,11 @@ export default function RegisterPage() {
                   onClick={handleSendOTPs}
                   disabled={sendingEmailOtp || sendingMobileOtp}
                   suppressHydrationWarning
-                  className="w-full bg-[#fff8e7] border border-[#d4af37] text-[#b8860b] hover:bg-[#fff0c8] py-3.5 rounded-xl font-bold transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#d4af37]/40 disabled:opacity-60"
+                  className="w-full bg-secondary border border-primary text-primary hover:bg-soft-bg-hover py-3.5 rounded-xl font-bold transition flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300"
                 >
                   {sendingEmailOtp || sendingMobileOtp ? (
                     <span className="flex items-center gap-2">
-                      <span className="w-4 h-4 border-2 border-[#b8860b] border-t-transparent rounded-full animate-spin"></span>
+                      <span className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></span>
                       Sending OTP Codes...
                     </span>
                   ) : (
@@ -516,14 +516,14 @@ export default function RegisterPage() {
                             value={emailOtp}
                             suppressHydrationWarning
                             onChange={(e) => setEmailOtp(e.target.value.replace(/\D/g, ""))}
-                            className="w-full border border-gray-250 p-2.5 rounded-xl outline-none focus:border-[#d4af37] text-center tracking-widest text-lg font-semibold bg-white transition"
+                            className="w-full border border-gray-250 p-2.5 rounded-xl outline-none focus:border-primary text-center tracking-widest text-lg font-semibold bg-white transition"
                           />
                           <button
                             type="button"
                             onClick={verifyEmailOtpFunc}
                             disabled={verifyingEmailOtp || emailOtp.length !== 6}
                             suppressHydrationWarning
-                            className="bg-[#d4af37] hover:bg-[#b8860b] text-white px-5 rounded-xl font-semibold transition disabled:opacity-60 text-sm flex items-center justify-center"
+                            className="bg-primary hover:bg-primary-dark text-white px-5 rounded-xl font-semibold transition disabled:opacity-60 text-sm flex items-center justify-center cursor-pointer hover:scale-[1.02] duration-300"
                           >
                             {verifyingEmailOtp ? (
                               <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
@@ -542,7 +542,7 @@ export default function RegisterPage() {
                               onClick={() => sendEmailOtpFunc(getValues("email"))}
                               disabled={sendingEmailOtp}
                               suppressHydrationWarning
-                              className="text-[#b8860b] hover:underline font-bold"
+                              className="text-primary hover:underline font-bold cursor-pointer"
                             >
                               Resend OTP
                             </button>
@@ -572,14 +572,14 @@ export default function RegisterPage() {
                             value={mobileOtp}
                             suppressHydrationWarning
                             onChange={(e) => setMobileOtp(e.target.value.replace(/\D/g, ""))}
-                            className="w-full border border-gray-250 p-2.5 rounded-xl outline-none focus:border-[#d4af37] text-center tracking-widest text-lg font-semibold bg-white transition"
+                            className="w-full border border-gray-250 p-2.5 rounded-xl outline-none focus:border-primary text-center tracking-widest text-lg font-semibold bg-white transition"
                           />
                           <button
                             type="button"
                             onClick={verifyMobileOtpFunc}
                             disabled={verifyingMobileOtp || mobileOtp.length !== 6}
                             suppressHydrationWarning
-                            className="bg-[#d4af37] hover:bg-[#b8860b] text-white px-5 rounded-xl font-semibold transition disabled:opacity-60 text-sm flex items-center justify-center"
+                            className="bg-primary hover:bg-primary-dark text-white px-5 rounded-xl font-semibold transition disabled:opacity-60 text-sm flex items-center justify-center cursor-pointer hover:scale-[1.02] duration-300"
                           >
                             {verifyingMobileOtp ? (
                               <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
@@ -598,7 +598,7 @@ export default function RegisterPage() {
                               onClick={() => sendMobileOtpFunc(getValues("mobile"))}
                               disabled={sendingMobileOtp}
                               suppressHydrationWarning
-                              className="text-[#b8860b] hover:underline font-bold"
+                              className="text-primary hover:underline font-bold cursor-pointer"
                             >
                               Resend OTP
                             </button>
@@ -617,7 +617,7 @@ export default function RegisterPage() {
                 type="submit"
                 disabled={loading || !emailVerified || !mobileVerified}
                 suppressHydrationWarning
-                className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white py-3.5 rounded-xl font-bold hover:from-[#b8860b] hover:to-[#996515] transition shadow-md shadow-[#d4af37]/20 disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-primary to-primary-dark text-white py-3.5 rounded-xl font-bold hover:from-primary-dark hover:to-deep-maroon transition shadow-md shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed text-base flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02] duration-300"
               >
                 {loading ? (
                   <>
@@ -640,7 +640,7 @@ export default function RegisterPage() {
               Already have an account?
               <Link
                 href="/login"
-                className="text-[#b8860b] ml-1 font-bold hover:underline"
+                className="text-primary ml-1 font-bold hover:underline"
               >
                 Login
               </Link>

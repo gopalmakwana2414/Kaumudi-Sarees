@@ -51,7 +51,7 @@ const getTransporter = (): nodemailer.Transporter => {
   return transporter;
 };
 
-const BRAND_COLOR = "#d4af37";
+const BRAND_COLOR = "#800020";
 
 const wrapTemplate = (title: string, bodyHtml: string) => `
   <div style="font-family: Georgia, 'Times New Roman', serif; max-width: 560px; margin: 0 auto; color: #2b2b2b;">

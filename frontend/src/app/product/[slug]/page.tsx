@@ -160,16 +160,16 @@ export default async function ProductPage({ params }: Props) {
 
       <section className="py-12">
         <div className="container-custom">
-          {/* Breadcrumb visual navigation trail */}
+           {/* Breadcrumb visual navigation trail */}
           <nav className="text-sm text-gray-500 mb-8" aria-label="Breadcrumb">
             <ol className="flex items-center gap-2 flex-wrap">
               <li>
-                <Link href="/" className="hover:text-[#b8860b] transition">
+                <Link href="/" className="hover:text-primary transition font-medium">
                   Home
                 </Link>
               </li>
               <li className="before:content-['/'] before:mr-2 before:text-gray-300">
-                <Link href="/shop" className="hover:text-[#b8860b] transition">
+                <Link href="/shop" className="hover:text-primary transition font-medium">
                   Shop
                 </Link>
               </li>
@@ -177,7 +177,7 @@ export default async function ProductPage({ params }: Props) {
                 <li className="before:content-['/'] before:mr-2 before:text-gray-300">
                   <Link
                     href={`/category/${categorySlug}`}
-                    className="hover:text-[#b8860b] transition"
+                    className="hover:text-primary transition font-medium"
                   >
                     {categoryName}
                   </Link>

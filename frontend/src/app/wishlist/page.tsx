@@ -38,7 +38,7 @@ export default function WishlistPage() {
           </p>
           <Link
             href="/shop"
-            className="inline-block mt-8 bg-[#d4af37] text-white px-8 py-3 rounded-xl font-medium"
+            className="inline-block mt-8 bg-primary text-white px-8 py-3 rounded-xl font-medium hover:bg-primary-dark cursor-pointer hover:scale-[1.02] duration-300 shadow-md transition-all"
           >
             Explore Collection
           </Link>
@@ -78,7 +78,7 @@ export default function WishlistPage() {
                   </Link>
                   <button
                     onClick={() => toggleWishlist(product._id)}
-                    className="absolute top-4 right-4 bg-white rounded-full p-2 shadow text-red-500"
+                    className="absolute top-4 right-4 bg-white rounded-full p-2 shadow text-red-500 cursor-pointer"
                   >
                     <Heart size={18} fill="currentColor" />
                   </button>
@@ -86,13 +86,13 @@ export default function WishlistPage() {
 
                 <div className="p-5">
                   <Link href={`/product/${product.slug}`}>
-                    <h3 className="font-semibold text-lg hover:text-[#b8860b] transition line-clamp-1">
+                    <h3 className="font-semibold text-lg hover:text-primary transition line-clamp-1">
                       {product.name}
                     </h3>
                   </Link>
 
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="font-bold text-[#b8860b] text-lg">
+                    <span className="font-bold text-primary text-lg">
                       ₹{product.salePrice.toLocaleString()}
                     </span>
                     <span className="line-through text-gray-400 text-sm">
@@ -102,7 +102,7 @@ export default function WishlistPage() {
 
                   <button
                     onClick={() => addToCart(product)}
-                    className="w-full mt-4 bg-[#d4af37] text-white py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-[#b8860b] transition"
+                    className="w-full mt-4 bg-primary text-white py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-dark hover:scale-[1.02] duration-300 transition-all cursor-pointer shadow-md shadow-primary/5"
                   >
                     <ShoppingBag size={16} />
                     Add to Cart

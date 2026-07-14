@@ -520,7 +520,7 @@ const generateCaptchaText = (): string => {
 const generateCaptchaSvg = (text: string): string => {
   const width = 180;
   const height = 50;
-  let svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg" style="background: #fdfaf2; border: 1px solid #d4af3733; border-radius: 8px;">`;
+  let svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg" style="background: #fff5f5; border: 1px solid #80002033; border-radius: 8px;">`;
   
   // Add noise lines
   for (let i = 0; i < 4; i++) {
@@ -528,7 +528,7 @@ const generateCaptchaSvg = (text: string): string => {
     const y1 = Math.random() * height;
     const x2 = Math.random() * width;
     const y2 = Math.random() * height;
-    svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#d4af37" stroke-width="1.5" opacity="0.3" />`;
+    svg += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#800020" stroke-width="1.5" opacity="0.3" />`;
   }
   
   // Add noise circles
@@ -536,12 +536,12 @@ const generateCaptchaSvg = (text: string): string => {
     const cx = Math.random() * width;
     const cy = Math.random() * height;
     const r = Math.random() * 2 + 1;
-    svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#b8860b" opacity="0.25" />`;
+    svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#800020" opacity="0.25" />`;
   }
 
   // Draw characters
   const charWidth = width / (text.length + 1);
-  const colors = ["#1f2937", "#b8860b", "#4b5563", "#0f172a", "#78350f"];
+  const colors = ["#1f2937", "#800020", "#4b5563", "#0f172a", "#c0405c"];
   for (let i = 0; i < text.length; i++) {
     const char = text[i];
     const x = (i + 0.5) * charWidth + (Math.random() * 6 - 3);

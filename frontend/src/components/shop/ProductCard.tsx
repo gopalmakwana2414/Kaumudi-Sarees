@@ -25,7 +25,7 @@ export default function ProductCard({
           className="object-cover transition duration-500 group-hover:scale-110"
         />
 
-        <Badge className="absolute top-3 left-3 bg-yellow-600">
+        <Badge className="absolute top-3 left-3 bg-primary">
           New
         </Badge>
       </div>
@@ -36,7 +36,7 @@ export default function ProductCard({
         </h3>
 
         <div className="flex items-center gap-3">
-          <span className="text-lg font-bold text-yellow-700">
+          <span className="text-lg font-bold text-primary">
             ₹{price}
           </span>
 

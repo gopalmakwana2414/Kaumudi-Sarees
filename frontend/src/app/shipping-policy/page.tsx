@@ -16,8 +16,8 @@ export default function ShippingPolicyPage() {
 
         <div className="prose prose-gray max-w-none space-y-8">
 
-          <div className="bg-[#fff8e7] border border-[#f0d060] rounded-2xl p-6">
-            <h2 className="text-xl font-bold text-[#b8860b] mb-3">Free Shipping</h2>
+          <div className="bg-secondary/50 border border-primary/20 rounded-2xl p-6">
+            <h2 className="text-xl font-bold text-primary mb-3">Free Shipping</h2>
             <p className="text-gray-600">
               We offer <strong>free shipping on all orders above ₹999</strong> across India.
               For orders below ₹999, a flat shipping charge of <strong>₹99</strong> applies.
@@ -69,11 +69,11 @@ export default function ShippingPolicyPage() {
             <h2 className="text-xl font-bold mb-3">Need Help?</h2>
             <p className="text-gray-600">
               For shipping queries, contact us at{" "}
-              <a href="mailto:g91652251@gmail.com" className="text-[#b8860b] underline">
+              <a href="mailto:g91652251@gmail.com" className="text-primary hover:text-primary-dark underline transition">
                 g91652251@gmail.com
               </a>{" "}
               or call/WhatsApp{" "}
-              <a href="https://wa.me/918959465264" className="text-[#b8860b] underline">
+              <a href="https://wa.me/918959465264" className="text-primary hover:text-primary-dark underline transition">
                 +91 89594 65264
               </a>
               .

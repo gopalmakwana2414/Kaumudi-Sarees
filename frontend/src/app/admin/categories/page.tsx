@@ -115,7 +115,7 @@ export default function AdminCategoriesPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-[#b8860b]">Categories</h1>
+          <h1 className="text-2xl font-bold text-primary">Categories</h1>
           <p className="text-gray-500 text-sm mt-1">Manage saree categories</p>
         </div>
         <button
@@ -126,7 +126,7 @@ export default function AdminCategoriesPage() {
             setImagePreview(null);
             setForm({ name: "", slug: "", description: "" });
           }}
-          className="flex items-center gap-2 bg-[#d4af37] text-white px-4 py-2 rounded-xl hover:bg-[#b8860b] transition"
+          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary-dark transition cursor-pointer hover:scale-[1.02] duration-300 shadow-md"
           suppressHydrationWarning
         >
           <Plus size={16} />
@@ -135,9 +135,9 @@ export default function AdminCategoriesPage() {
       </div>
 
       {showForm && (
-        <div className="bg-white rounded-2xl border shadow-sm p-6">
-          <div className="flex justify-between items-center mb-5">
-            <h2 className="text-lg font-semibold">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+          <div className="flex justify-between items-center mb-5 border-b border-gray-50 pb-3">
+            <h2 className="text-lg font-semibold text-gray-800">
               {editingCategory ? "Edit Category" : "New Category"}
             </h2>
             <button
@@ -145,7 +145,7 @@ export default function AdminCategoriesPage() {
                 setShowForm(false);
                 setEditingCategory(null);
               }}
-              className="text-gray-400 hover:text-gray-600"
+              className="text-gray-400 hover:text-gray-600 cursor-pointer"
             >
               <X size={20} />
             </button>
@@ -153,10 +153,10 @@ export default function AdminCategoriesPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium mb-2 text-gray-600">
                 Category Image (Optional)
               </label>
-              <label className="flex flex-col items-center justify-center border-2 border-dashed rounded-2xl h-36 cursor-pointer hover:border-[#d4af37] transition overflow-hidden relative bg-gray-50">
+              <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-2xl h-36 cursor-pointer hover:border-primary transition overflow-hidden relative bg-gray-50">
                 {imagePreview ? (
                   <img
                     src={imagePreview}
@@ -165,7 +165,7 @@ export default function AdminCategoriesPage() {
                   />
                 ) : (
                   <div className="text-center text-gray-400">
-                    <ImageIcon size={24} className="mx-auto mb-2" />
+                    <ImageIcon size={24} className="mx-auto mb-2 text-gray-300" />
                     <p className="text-xs">Click to upload category image</p>
                   </div>
                 )}
@@ -185,47 +185,47 @@ export default function AdminCategoriesPage() {
 
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-gray-600">
                   Category Name <span className="text-red-500">*</span>
                 </label>
                 <input
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="e.g. Banarasi Silk"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] transition"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary transition text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
+                <label className="block text-sm font-medium mb-1 text-gray-600">
                   Slug (Auto-generated if empty)
                 </label>
                 <input
                   value={form.slug}
                   onChange={(e) => setForm({ ...form, slug: e.target.value })}
                   placeholder="e.g. banarasi-silk"
-                  className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] transition font-mono text-sm"
+                  className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary transition font-mono text-sm"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">Description</label>
+              <label className="block text-sm font-medium mb-1 text-gray-600">Description</label>
               <input
                 value={form.description}
                 onChange={(e) =>
                   setForm({ ...form, description: e.target.value })
                 }
                 placeholder="Optional description"
-                className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] transition"
+                className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary transition text-sm"
               />
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 pt-3 border-t border-gray-50">
               <button
                 type="submit"
                 disabled={createMutation.isPending || updateMutation.isPending}
-                className="bg-[#d4af37] text-white px-6 py-2.5 rounded-xl hover:bg-[#b8860b] transition disabled:opacity-60"
+                className="bg-primary text-white px-6 py-2.5 rounded-xl hover:bg-primary-dark transition disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md shadow-primary/5"
               >
                 {createMutation.isPending || updateMutation.isPending ? "Saving..." : "Save Category"}
               </button>
@@ -235,7 +235,7 @@ export default function AdminCategoriesPage() {
                   setShowForm(false);
                   setEditingCategory(null);
                 }}
-                className="border px-6 py-2.5 rounded-xl hover:bg-gray-50 transition"
+                className="border border-gray-200 px-6 py-2.5 rounded-xl hover:bg-gray-50 transition cursor-pointer text-gray-600 font-medium"
               >
                 Cancel
               </button>
@@ -307,7 +307,7 @@ export default function AdminCategoriesPage() {
                           });
                           setShowForm(true);
                         }}
-                        className="text-[#d4af37] hover:text-[#b8860b] transition"
+                        className="text-primary hover:text-primary-dark transition cursor-pointer"
                         title="Edit"
                       >
                         <Pencil size={16} />

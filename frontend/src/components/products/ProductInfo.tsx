@@ -79,7 +79,7 @@ export default function ProductInfo({ product }: { product: Product }) {
     <div>
       {/* Category */}
       {product.category && (
-        <p className="text-sm text-[#b8860b] font-medium uppercase tracking-widest mb-3">
+        <p className="text-sm text-primary font-medium uppercase tracking-widest mb-3">
           {product.category.name}
         </p>
       )}
@@ -96,7 +96,7 @@ export default function ProductInfo({ product }: { product: Product }) {
               size={16}
               className={
                 s <= Math.round(product.averageRating)
-                  ? "fill-[#d4af37] text-[#d4af37]"
+                  ? "fill-primary text-primary"
                   : "text-gray-300"
               }
             />
@@ -114,7 +114,7 @@ export default function ProductInfo({ product }: { product: Product }) {
 
       {/* Price */}
       <div className="mt-6 flex items-end gap-4">
-        <span className="text-4xl font-bold text-[#b8860b]">
+        <span className="text-4xl font-bold text-primary">
           ₹{product.salePrice.toLocaleString()}
         </span>
         {discount > 0 && (
@@ -192,7 +192,7 @@ export default function ProductInfo({ product }: { product: Product }) {
           whileTap={{ scale: 0.98 }}
           onClick={handleAddToCart}
           disabled={product.stock === 0}
-          className="flex-1 flex items-center justify-center gap-2 bg-[#d4af37] text-white py-4 rounded-2xl font-semibold hover:bg-[#b8860b] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-2xl font-semibold hover:bg-primary-dark transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-md hover:shadow-lg shadow-primary/20"
         >
           <ShoppingCart size={20} />
           Add to Cart
@@ -203,7 +203,7 @@ export default function ProductInfo({ product }: { product: Product }) {
           whileTap={{ scale: 0.98 }}
           onClick={handleBuyNow}
           disabled={product.stock === 0}
-          className="flex-1 flex items-center justify-center gap-2 bg-[#111] text-white py-4 rounded-2xl font-semibold hover:bg-[#333] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="flex-1 flex items-center justify-center gap-2 bg-[#111] text-white py-4 rounded-2xl font-semibold hover:bg-black transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           <Zap size={20} />
           Buy Now
@@ -237,7 +237,7 @@ export default function ProductInfo({ product }: { product: Product }) {
         {["Free Returns", "Authentic Handwoven", "Secure Payment"].map((tag) => (
           <span
             key={tag}
-            className="bg-[#fff8e7] border border-[#f0d060] text-[#b8860b] text-xs px-3 py-1.5 rounded-full font-medium"
+            className="bg-secondary border border-primary/20 text-primary text-xs px-3 py-1.5 rounded-full font-medium"
           >
             ✓ {tag}
           </span>
@@ -282,7 +282,7 @@ export default function ProductInfo({ product }: { product: Product }) {
                         size={14}
                         className={
                           s <= review.rating
-                            ? "fill-[#d4af37] text-[#d4af37]"
+                            ? "fill-primary text-primary"
                             : "text-gray-300"
                         }
                       />
@@ -296,12 +296,12 @@ export default function ProductInfo({ product }: { product: Product }) {
         )}
 
         {/* Write Review */}
-        <div className="bg-[#fff8e7] border border-[#f0d060] rounded-2xl p-5">
+        <div className="bg-secondary border border-primary/20 rounded-2xl p-5">
           <h4 className="font-semibold mb-4">Write a Review</h4>
 
           {!user ? (
             <p className="text-sm text-gray-500">
-              <Link href="/login" className="text-[#b8860b] underline">
+              <Link href="/login" className="text-primary underline font-medium">
                 Login
               </Link>{" "}
               to write a review.
@@ -314,14 +314,14 @@ export default function ProductInfo({ product }: { product: Product }) {
                   <button
                     key={s}
                     onClick={() => setReviewRating(s)}
-                    className="transition"
+                    className="transition cursor-pointer"
                   >
                     <Star
                       size={22}
                       className={
                         s <= reviewRating
-                          ? "fill-[#d4af37] text-[#d4af37]"
-                          : "text-gray-300 hover:text-[#d4af37]"
+                          ? "fill-primary text-primary"
+                          : "text-gray-300 hover:text-primary"
                       }
                     />
                   </button>
@@ -333,13 +333,13 @@ export default function ProductInfo({ product }: { product: Product }) {
                 onChange={(e) => setReviewText(e.target.value)}
                 rows={3}
                 placeholder="Share your experience with this saree..."
-                className="w-full border bg-white p-3 rounded-xl text-sm outline-none focus:border-[#d4af37] resize-none"
+                className="w-full border bg-white p-3 rounded-xl text-sm outline-none focus:border-primary resize-none"
               />
 
               <button
                 onClick={handleSubmitReview}
                 disabled={submittingReview}
-                className="mt-3 bg-[#d4af37] text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-[#b8860b] transition disabled:opacity-60"
+                className="mt-3 bg-primary text-white px-6 py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300"
               >
                 {submittingReview ? "Submitting..." : "Submit Review"}
               </button>

@@ -128,7 +128,7 @@ export default function AdminCouponsPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-[#b8860b]">Coupons</h1>
+          <h1 className="text-2xl font-bold text-primary">Coupons</h1>
           <p className="text-gray-500 text-sm mt-1">
             Manage discount coupons for customers
           </p>
@@ -146,7 +146,7 @@ export default function AdminCouponsPage() {
             });
             setShowForm(true);
           }}
-          className="flex items-center gap-2 bg-[#d4af37] text-white px-4 py-2 rounded-xl hover:bg-[#b8860b] transition"
+          className="flex items-center gap-2 bg-primary text-white px-4 py-2.5 rounded-xl hover:bg-primary-dark transition cursor-pointer hover:scale-[1.02] duration-300 shadow-md"
         >
           <Plus size={16} />
           Create Coupon
@@ -155,9 +155,9 @@ export default function AdminCouponsPage() {
 
       {/* Form */}
       {showForm && (
-        <div className="bg-white rounded-2xl border shadow-sm p-6">
-          <div className="flex justify-between items-center mb-5">
-            <h2 className="text-lg font-semibold">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 shadow-[0_20px_50px_rgba(128,0,32,0.02)]">
+          <div className="flex justify-between items-center mb-5 border-b border-gray-50 pb-3">
+            <h2 className="text-lg font-semibold text-gray-800">
               {editingCoupon ? "Edit Coupon" : "New Coupon"}
             </h2>
             <button
@@ -165,7 +165,7 @@ export default function AdminCouponsPage() {
                 setShowForm(false);
                 setEditingCoupon(null);
               }}
-              className="text-gray-400 hover:text-gray-600"
+              className="text-gray-400 hover:text-gray-600 cursor-pointer"
             >
               <X size={20} />
             </button>
@@ -173,7 +173,7 @@ export default function AdminCouponsPage() {
 
           <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-gray-600">
                 Coupon Code *
               </label>
               <input
@@ -182,12 +182,12 @@ export default function AdminCouponsPage() {
                   setForm({ ...form, code: e.target.value.toUpperCase() })
                 }
                 placeholder="KAUMUDI20"
-                className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37] font-mono uppercase"
+                className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary font-mono uppercase text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-gray-600">
                 Discount (%) *
               </label>
               <input
@@ -201,12 +201,12 @@ export default function AdminCouponsPage() {
                     discountPercentage: Number(e.target.value),
                   })
                 }
-                className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-gray-600">
                 Minimum Order Amount (₹)
               </label>
               <input
@@ -219,12 +219,12 @@ export default function AdminCouponsPage() {
                     minimumOrderAmount: Number(e.target.value),
                   })
                 }
-                className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-gray-600">
                 Expiry Date *
               </label>
               <input
@@ -234,12 +234,12 @@ export default function AdminCouponsPage() {
                 onChange={(e) =>
                   setForm({ ...form, expiresAt: e.target.value })
                 }
-                className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-1">
+              <label className="block text-sm font-medium mb-1 text-gray-600">
                 Usage Limit (Optional)
               </label>
               <input
@@ -253,7 +253,7 @@ export default function AdminCouponsPage() {
                     usageLimit: e.target.value === "" ? "" : Number(e.target.value),
                   })
                 }
-                className="w-full border p-3 rounded-xl outline-none focus:border-[#d4af37]"
+                className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary text-sm"
               />
             </div>
 
@@ -265,18 +265,18 @@ export default function AdminCouponsPage() {
                 onChange={(e) =>
                   setForm({ ...form, isActive: e.target.checked })
                 }
-                className="accent-[#d4af37]"
+                className="accent-primary"
               />
-              <label htmlFor="isActive" className="text-sm">
+              <label htmlFor="isActive" className="text-sm cursor-pointer select-none">
                 Active (can be used by customers)
               </label>
             </div>
 
-            <div className="md:col-span-2 flex gap-3">
+            <div className="md:col-span-2 flex gap-3 pt-3 border-t border-gray-50">
               <button
                 type="submit"
                 disabled={createMutation.isPending || updateMutation.isPending}
-                className="bg-[#d4af37] text-white px-6 py-2.5 rounded-xl hover:bg-[#b8860b] transition disabled:opacity-60"
+                className="bg-primary text-white px-6 py-2.5 rounded-xl hover:bg-primary-dark transition disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md shadow-primary/5 font-semibold"
               >
                 {editingCoupon
                   ? updateMutation.isPending
@@ -292,7 +292,7 @@ export default function AdminCouponsPage() {
                   setShowForm(false);
                   setEditingCoupon(null);
                 }}
-                className="border px-6 py-2.5 rounded-xl hover:bg-gray-50"
+                className="border border-gray-200 px-6 py-2.5 rounded-xl hover:bg-gray-50 cursor-pointer text-gray-600 font-medium font-semibold"
               >
                 Cancel
               </button>
@@ -329,9 +329,9 @@ export default function AdminCouponsPage() {
             </thead>
             <tbody>
               {coupons.map((coupon: any) => (
-                <tr key={coupon._id} className="border-t hover:bg-gray-50">
+                <tr key={coupon._id} className="border-t border-gray-100 hover:bg-gray-50/50">
                   <td className="p-4">
-                    <span className="font-mono font-bold text-[#b8860b] bg-[#fff8e7] px-2 py-1 rounded-lg">
+                    <span className="font-mono font-bold text-primary bg-secondary/50 px-2 py-1 rounded-lg">
                       {coupon.code}
                     </span>
                   </td>
@@ -385,14 +385,14 @@ export default function AdminCouponsPage() {
                           });
                           setShowForm(true);
                         }}
-                        className="text-[#d4af37] hover:text-[#b8860b] transition"
+                        className="text-primary hover:text-primary-dark transition cursor-pointer"
                         title="Edit"
                       >
                         <Pencil size={16} />
                       </button>
                       <button
                         onClick={() => setDeleteId(coupon._id)}
-                        className="text-red-500 hover:text-red-700 transition"
+                        className="text-red-500 hover:text-red-700 transition cursor-pointer"
                         title="Delete"
                       >
                         <Trash2 size={16} />

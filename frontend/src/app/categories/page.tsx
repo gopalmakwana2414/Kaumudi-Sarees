@@ -78,11 +78,11 @@ export default async function CategoriesPage() {
       {/* Hero */}
       <section className="hero-gradient py-24">
         <div className="container-custom text-center">
-          <p className="text-[#b8860b] font-semibold uppercase tracking-[4px] text-sm">
+          <p className="text-primary font-semibold uppercase tracking-[4px] text-sm">
             Browse
           </p>
           <h1 className="text-5xl lg:text-6xl font-bold mt-4">
-            Shop by <span className="text-[#d4af37]">Category</span>
+            Shop by <span className="text-primary">Category</span>
           </h1>
           <p className="mt-5 text-gray-600 max-w-xl mx-auto text-lg">
             Find your perfect saree — browse by fabric type, occasion, or
@@ -100,14 +100,14 @@ export default async function CategoriesPage() {
                 <Link
                   key={cat._id}
                   href={`/category/${cat.slug}`}
-                  className="group bg-white border rounded-3xl p-8 hover:shadow-2xl hover:border-[#d4af37] transition-all duration-300"
+                  className="group bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:border-primary/30 transition-all duration-300"
                 >
                   <div className="flex items-center gap-5">
-                    <div className="w-16 h-16 bg-[#fff8e7] rounded-2xl flex items-center justify-center text-3xl group-hover:bg-[#d4af37] group-hover:scale-110 transition-all duration-300 flex-shrink-0">
+                    <div className="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center text-3xl group-hover:bg-primary group-hover:text-white group-hover:scale-110 transition-all duration-300 flex-shrink-0">
                       {getEmoji(cat.name)}
                     </div>
                     <div>
-                      <h2 className="text-xl font-bold group-hover:text-[#b8860b] transition">
+                      <h2 className="text-xl font-bold text-gray-800 group-hover:text-primary transition">
                         {cat.name}
                       </h2>
                       {cat.description && (
@@ -117,7 +117,7 @@ export default async function CategoriesPage() {
                       )}
                     </div>
                   </div>
-                  <div className="mt-5 flex items-center gap-1 text-[#b8860b] text-sm font-medium opacity-0 group-hover:opacity-100 transition">
+                  <div className="mt-5 flex items-center gap-1 text-primary text-sm font-semibold opacity-0 group-hover:opacity-100 transition duration-300">
                     Browse {cat.name} <ArrowRight size={14} />
                   </div>
                 </Link>
@@ -130,13 +130,13 @@ export default async function CategoriesPage() {
                 <Link
                   key={name}
                   href={`/shop?search=${encodeURIComponent(name)}`}
-                  className="group bg-white border rounded-3xl p-8 hover:shadow-2xl hover:border-[#d4af37] transition-all duration-300"
+                  className="group bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:border-primary/30 transition-all duration-300"
                 >
                   <div className="flex items-center gap-5">
-                    <div className="w-16 h-16 bg-[#fff8e7] rounded-2xl flex items-center justify-center text-3xl group-hover:bg-[#d4af37] transition-all duration-300">
+                    <div className="w-16 h-16 bg-secondary rounded-2xl flex items-center justify-center text-3xl group-hover:bg-primary group-hover:text-white transition-all duration-300">
                       {getEmoji(name)}
                     </div>
-                    <h2 className="text-xl font-bold group-hover:text-[#b8860b] transition">
+                    <h2 className="text-xl font-bold text-gray-800 group-hover:text-primary transition">
                       {name}
                     </h2>
                   </div>
@@ -150,7 +150,7 @@ export default async function CategoriesPage() {
       {/* Why Shop CTA */}
       <section className="py-20 bg-[#fafafa]">
         <div className="container-custom">
-          <div className="bg-gradient-to-br from-[#d4af37] to-[#b8860b] rounded-3xl p-12 text-center text-white">
+          <div className="bg-gradient-to-br from-primary to-primary-dark rounded-3xl p-12 text-center text-white shadow-xl shadow-primary/10">
             <h2 className="text-3xl lg:text-4xl font-bold">
               Can&apos;t Find Your Style?
             </h2>
@@ -160,7 +160,7 @@ export default async function CategoriesPage() {
             </p>
             <Link
               href="/shop"
-              className="inline-block mt-8 bg-white text-[#b8860b] font-bold px-10 py-4 rounded-full hover:bg-[#fff8e7] transition"
+              className="inline-block mt-8 bg-white text-primary font-bold px-10 py-4 rounded-full hover:bg-secondary hover:scale-105 transition-all duration-300 shadow-md"
             >
               View All Sarees
             </Link>

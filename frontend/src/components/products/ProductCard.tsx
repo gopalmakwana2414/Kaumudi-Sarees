@@ -58,7 +58,7 @@ export default function ProductCard({
             )}
 
             {product.newArrival && (
-              <span className="absolute top-4 right-4 bg-[#d4af37] text-white px-3 py-1 rounded-full text-xs font-semibold tracking-wider">
+              <span className="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold tracking-wider">
                 NEW
               </span>
             )}
@@ -69,7 +69,7 @@ export default function ProductCard({
         <div className="p-5 flex flex-col flex-1 justify-between">
           <div>
             <Link href={`/product/${product.slug}`}>
-              <h3 className="font-semibold text-lg text-gray-800 line-clamp-1 hover:text-[#b8860b] transition-colors duration-200">
+              <h3 className="font-semibold text-lg text-gray-800 line-clamp-1 hover:text-primary transition-colors duration-200">
                 {product.name}
               </h3>
             </Link>
@@ -79,7 +79,7 @@ export default function ProductCard({
             </p>
 
             <div className="flex items-center gap-2 mt-3">
-              <span className="font-bold text-xl text-[#b8860b]">
+              <span className="font-bold text-xl text-primary">
                 ₹{product.salePrice.toLocaleString()}
               </span>
 
@@ -96,7 +96,7 @@ export default function ProductCard({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => addToCart(product)}
-              className="flex-1 bg-[#d4af37] hover:bg-[#b8860b] text-white py-3 rounded-xl flex items-center justify-center gap-2 transition-colors font-medium text-sm cursor-pointer"
+              className="flex-1 bg-primary hover:bg-primary-dark text-white py-3 rounded-xl flex items-center justify-center gap-2 transition-colors font-medium text-sm cursor-pointer"
             >
               <ShoppingCart size={16} />
               Add to Cart

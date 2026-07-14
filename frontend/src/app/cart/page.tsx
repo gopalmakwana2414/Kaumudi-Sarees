@@ -40,7 +40,7 @@ export default function CartPage() {
   if (isLoading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-[#d4af37] border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -51,7 +51,7 @@ export default function CartPage() {
         <ScrollReveal className="container-custom text-center">
           <ShoppingBag
             size={80}
-            className="mx-auto text-[#d4af37]/60"
+            className="mx-auto text-primary/60"
           />
 
           <h1 className="text-3xl font-bold mt-6 text-gray-800">
@@ -64,7 +64,7 @@ export default function CartPage() {
 
           <Link
             href="/shop"
-            className="inline-block mt-8 bg-[#d4af37] text-white px-8 py-3 rounded-xl hover:bg-[#b8860b] transition-colors duration-200"
+            className="inline-block mt-8 bg-primary text-white px-8 py-3 rounded-xl hover:bg-primary-dark hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20 transition-all"
           >
             Continue Shopping
           </Link>
@@ -111,7 +111,7 @@ export default function CartPage() {
                       {item.product.shortDescription}
                     </p>
 
-                    <p className="font-bold text-[#b8860b] mt-3">
+                    <p className="font-bold text-primary mt-3">
                       ₹{item.product.salePrice.toLocaleString()}
                     </p>
 
@@ -159,7 +159,7 @@ export default function CartPage() {
                               );
                             }
                           }}
-                          className="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:text-[#b8860b] transition-colors cursor-pointer"
+                          className="w-8 h-8 rounded-full flex items-center justify-center text-gray-600 hover:text-primary transition-colors cursor-pointer"
                           title="Increase Quantity"
                         >
                           <Plus size={14} />
@@ -212,7 +212,7 @@ export default function CartPage() {
 
               <div className="flex justify-between text-xl font-bold text-gray-800">
                 <span>Total</span>
-                <span className="text-[#b8860b]">
+                <span className="text-primary">
                   ₹{total.toLocaleString()}
                 </span>
               </div>
@@ -225,7 +225,7 @@ export default function CartPage() {
             >
               <Link
                 href="/checkout"
-                className="block text-center bg-[#d4af37] text-white py-3.5 rounded-xl font-semibold hover:bg-[#b8860b] transition-colors duration-200 shadow-md shadow-[#d4af37]/10"
+                className="block text-center bg-primary text-white py-3.5 rounded-xl font-semibold hover:bg-primary-dark hover:scale-[1.02] duration-300 shadow-md hover:shadow-lg shadow-primary/20 transition-all"
               >
                 Proceed To Checkout
               </Link>

@@ -174,7 +174,7 @@ export default function ProductModal({ open, setOpen, product }: Props) {
   const isSaving = createProduct.isPending || updateProduct.isPending;
 
   const inputClass =
-    "w-full border border-gray-200 p-2.5 rounded-xl text-sm outline-none focus:border-[#d4af37] transition";
+    "w-full border border-gray-200 p-2.5 rounded-xl text-sm outline-none focus:border-primary transition";
   const labelClass = "block text-xs font-medium text-gray-600 mb-1.5";
   const errorClass = "text-red-500 text-xs mt-1";
 
@@ -188,14 +188,14 @@ export default function ProductModal({ open, setOpen, product }: Props) {
         className="bg-white w-full max-w-4xl rounded-3xl my-10 shadow-2xl"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-8 py-5 border-b sticky top-0 bg-white rounded-t-3xl z-10">
-          <h2 className="text-xl font-bold">
+        <div className="flex items-center justify-between px-8 py-5 border-b sticky top-0 bg-white rounded-t-3xl z-10 border-gray-100">
+          <h2 className="text-xl font-bold text-gray-800">
             {product ? "Edit Product" : "Add New Product"}
           </h2>
           <button
             onClick={handleClose}
             type="button"
-            className="text-gray-400 hover:text-gray-700 transition"
+            className="text-gray-400 hover:text-gray-700 transition cursor-pointer"
           >
             <X size={22} />
           </button>
@@ -204,7 +204,7 @@ export default function ProductModal({ open, setOpen, product }: Props) {
         <form onSubmit={handleSubmit(onSubmit)} className="p-8 space-y-8">
           {/* ── BASIC INFO ── */}
           <div>
-            <h3 className="font-semibold text-[#b8860b] mb-4 text-sm uppercase tracking-wide">
+            <h3 className="font-semibold text-primary mb-4 text-sm uppercase tracking-wide">
               Basic Information
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
@@ -247,7 +247,7 @@ export default function ProductModal({ open, setOpen, product }: Props) {
 
           {/* ── PRICING & STOCK ── */}
           <div>
-            <h3 className="font-semibold text-[#b8860b] mb-4 text-sm uppercase tracking-wide">
+            <h3 className="font-semibold text-primary mb-4 text-sm uppercase tracking-wide">
               Pricing & Stock
             </h3>
             <div className="grid md:grid-cols-3 gap-4">
@@ -296,7 +296,7 @@ export default function ProductModal({ open, setOpen, product }: Props) {
 
           {/* ── PRODUCT DETAILS ── */}
           <div>
-            <h3 className="font-semibold text-[#b8860b] mb-4 text-sm uppercase tracking-wide">
+            <h3 className="font-semibold text-primary mb-4 text-sm uppercase tracking-wide">
               Product Details
             </h3>
             <div className="grid md:grid-cols-3 gap-4">
@@ -341,15 +341,15 @@ export default function ProductModal({ open, setOpen, product }: Props) {
               <input
                 type="checkbox"
                 {...register("blouseIncluded")}
-                className="accent-[#d4af37] w-4 h-4"
+                className="accent-primary w-4 h-4"
               />
-              <span className="text-sm">Blouse piece included</span>
+              <span className="text-sm select-none">Blouse piece included</span>
             </label>
           </div>
 
           {/* ── DESCRIPTIONS ── */}
           <div>
-            <h3 className="font-semibold text-[#b8860b] mb-4 text-sm uppercase tracking-wide">
+            <h3 className="font-semibold text-primary mb-4 text-sm uppercase tracking-wide">
               Descriptions
             </h3>
             <div className="space-y-4">
@@ -385,7 +385,7 @@ export default function ProductModal({ open, setOpen, product }: Props) {
 
           {/* ── VISIBILITY FLAGS ── */}
           <div>
-            <h3 className="font-semibold text-[#b8860b] mb-4 text-sm uppercase tracking-wide">
+            <h3 className="font-semibold text-primary mb-4 text-sm uppercase tracking-wide">
               Visibility
             </h3>
             <div className="flex flex-wrap gap-6">
@@ -393,32 +393,32 @@ export default function ProductModal({ open, setOpen, product }: Props) {
                 <input
                   type="checkbox"
                   {...register("featured")}
-                  className="accent-[#d4af37] w-4 h-4"
+                  className="accent-primary w-4 h-4"
                 />
-                <span className="text-sm">Featured (homepage)</span>
+                <span className="text-sm select-none">Featured (homepage)</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   {...register("bestseller")}
-                  className="accent-[#d4af37] w-4 h-4"
+                  className="accent-primary w-4 h-4"
                 />
-                <span className="text-sm">Bestseller</span>
+                <span className="text-sm select-none">Bestseller</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   {...register("newArrival")}
-                  className="accent-[#d4af37] w-4 h-4"
+                  className="accent-primary w-4 h-4"
                 />
-                <span className="text-sm">New Arrival</span>
+                <span className="text-sm select-none">New Arrival</span>
               </label>
             </div>
           </div>
 
           {/* ── IMAGES ── */}
           <div>
-            <h3 className="font-semibold text-[#b8860b] mb-4 text-sm uppercase tracking-wide">
+            <h3 className="font-semibold text-primary mb-4 text-sm uppercase tracking-wide">
               Images
             </h3>
 
@@ -428,7 +428,7 @@ export default function ProductModal({ open, setOpen, product }: Props) {
                 Thumbnail Image {!product && "*"} (main product photo)
               </label>
               <label className="flex items-center gap-4 cursor-pointer">
-                <div className="w-24 h-28 bg-gray-50 border-2 border-dashed rounded-xl flex items-center justify-center overflow-hidden hover:border-[#d4af37] transition flex-shrink-0">
+                <div className="w-24 h-28 bg-gray-50 border-2 border-dashed rounded-xl flex items-center justify-center overflow-hidden hover:border-primary transition flex-shrink-0">
                   {thumbnailPreview ? (
                     <img
                       src={thumbnailPreview}
@@ -439,7 +439,7 @@ export default function ProductModal({ open, setOpen, product }: Props) {
                     <Upload size={20} className="text-gray-300" />
                   )}
                 </div>
-                <span className="text-sm text-[#b8860b] font-medium border border-[#d4af37] px-4 py-2 rounded-xl hover:bg-[#fff8e7] transition">
+                <span className="text-sm text-primary font-semibold border border-primary px-4 py-2 rounded-xl hover:bg-secondary/50 transition">
                   {thumbnailPreview ? "Change Thumbnail" : "Choose Thumbnail"}
                 </span>
                 <input
@@ -464,14 +464,14 @@ export default function ProductModal({ open, setOpen, product }: Props) {
                         key={idx}
                         src={img.url}
                         alt=""
-                        className="w-16 h-16 object-cover rounded-lg border"
+                        className="w-16 h-16 object-cover rounded-lg border border-gray-200"
                       />
                     ))}
                   </div>
                 </div>
               )}
 
-              <label className="inline-flex items-center gap-2 cursor-pointer text-sm text-[#b8860b] font-medium border border-[#d4af37] px-4 py-2 rounded-xl hover:bg-[#fff8e7] transition w-fit">
+              <label className="inline-flex items-center gap-2 cursor-pointer text-sm text-primary font-semibold border border-primary px-4 py-2 rounded-xl hover:bg-secondary/50 transition w-fit">
                 <ImagePlus size={15} />
                 Add Gallery Images
                 <input
@@ -495,14 +495,14 @@ export default function ProductModal({ open, setOpen, product }: Props) {
                       <img
                         src={URL.createObjectURL(file)}
                         alt=""
-                        className="w-16 h-16 object-cover rounded-lg border"
+                        className="w-16 h-16 object-cover rounded-lg border border-gray-200"
                       />
                       <button
                         type="button"
                         onClick={() =>
                           setGalleryFiles(galleryFiles.filter((_, i) => i !== index))
                         }
-                        className="absolute -top-1.5 -right-1.5 bg-red-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center"
+                        className="absolute -top-1.5 -right-1.5 bg-red-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center cursor-pointer"
                       >
                         ×
                       </button>
@@ -515,7 +515,7 @@ export default function ProductModal({ open, setOpen, product }: Props) {
 
           {/* ── SEO (optional, collapsed-style) ── */}
           <div>
-            <h3 className="font-semibold text-[#b8860b] mb-4 text-sm uppercase tracking-wide">
+            <h3 className="font-semibold text-primary mb-4 text-sm uppercase tracking-wide">
               SEO (Optional)
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
@@ -539,18 +539,18 @@ export default function ProductModal({ open, setOpen, product }: Props) {
           </div>
 
           {/* ── ACTIONS ── */}
-          <div className="flex gap-3 pt-4 border-t sticky bottom-0 bg-white pb-1">
+          <div className="flex gap-3 pt-4 border-t border-gray-100 sticky bottom-0 bg-white pb-1">
             <button
               type="submit"
               disabled={isSaving}
-              className="bg-[#d4af37] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-60"
+              className="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-primary-dark transition disabled:opacity-60 cursor-pointer hover:scale-[1.02] duration-300 shadow-md"
             >
               {isSaving ? "Saving..." : product ? "Update Product" : "Create Product"}
             </button>
             <button
               type="button"
               onClick={handleClose}
-              className="border px-8 py-3 rounded-xl font-medium hover:bg-gray-50 transition"
+              className="border px-8 py-3 rounded-xl font-semibold hover:bg-gray-50 border-gray-200 text-gray-600 transition cursor-pointer"
             >
               Cancel
             </button>

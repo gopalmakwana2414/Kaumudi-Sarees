@@ -59,13 +59,13 @@ export default function AdminReviewsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[#b8860b]">Reviews</h1>
+        <h1 className="text-2xl font-bold text-primary">Reviews</h1>
         <p className="text-gray-500 text-sm mt-1">
           Manage all customer reviews — {allReviews.length} total
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         {isLoading ? (
           <div className="p-6 space-y-4">
             {[...Array(5)].map((_, i) => (
@@ -78,13 +78,13 @@ export default function AdminReviewsPage() {
             <p>No reviews yet.</p>
           </div>
         ) : (
-          <div className="divide-y">
+          <div className="divide-y divide-gray-100">
             {allReviews.map((review: any) => (
-              <div key={review._id} className="p-5 hover:bg-gray-50 transition">
+              <div key={review._id} className="p-5 hover:bg-gray-50/50 transition">
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 flex-wrap">
-                      <p className="font-semibold text-sm">
+                      <p className="font-semibold text-sm text-gray-800">
                         {review.user?.name || "Customer"}
                       </p>
                       <div className="flex gap-0.5">
@@ -94,7 +94,7 @@ export default function AdminReviewsPage() {
                             size={13}
                             className={
                               s <= review.rating
-                                ? "fill-[#d4af37] text-[#d4af37]"
+                                ? "fill-primary text-primary"
                                 : "text-gray-300"
                             }
                           />
@@ -108,7 +108,7 @@ export default function AdminReviewsPage() {
                         })}
                       </span>
                     </div>
-                    <p className="text-[#b8860b] text-xs mt-1 font-medium">
+                    <p className="text-primary text-xs mt-1 font-semibold">
                       Product: {review.productName}
                     </p>
                     <p className="text-gray-600 text-sm mt-2 leading-6">
@@ -118,7 +118,7 @@ export default function AdminReviewsPage() {
                   <button
                     onClick={() => deleteMutation.mutate(review._id)}
                     disabled={deleteMutation.isPending}
-                    className="text-red-400 hover:text-red-600 transition flex-shrink-0"
+                    className="text-red-400 hover:text-red-600 transition flex-shrink-0 cursor-pointer"
                     title="Delete review"
                   >
                     <Trash2 size={16} />

@@ -7,11 +7,11 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const GOLD = "#b8860b";
-const GOLD_DARK = "#9c7419";
+const GOLD = "#800020";
+const GOLD_DARK = "#5C0013";
 const DARK = "#222222";
 const GRAY = "#888888";
-const LIGHT_BG = "#fff8e7";
+const LIGHT_BG = "#fff5f5";
 const BORDER = "#eeeeee";
 const PAGE_LEFT = 50;
 const PAGE_RIGHT = 545;

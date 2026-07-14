@@ -146,7 +146,7 @@ function ShopPageContent() {
                     setSearchInput(e.target.value);
                   }}
                   placeholder="Search sarees..."
-                  className="w-full border p-2 rounded-xl text-sm outline-none focus:border-[#d4af37]"
+                  className="w-full border p-2 rounded-xl text-sm outline-none focus:border-primary"
                   suppressHydrationWarning
                 />
               </div>
@@ -161,7 +161,7 @@ function ShopPageContent() {
                       value=""
                       checked={selectedCategory === ""}
                       onChange={() => handleCategoryChange("")}
-                      className="accent-[#d4af37]"
+                      className="accent-primary"
                       suppressHydrationWarning
                     />
                     All Categories
@@ -181,7 +181,7 @@ function ShopPageContent() {
                           selectedCategory === cat.slug
                         }
                         onChange={() => handleCategoryChange(cat._id)}
-                        className="accent-[#d4af37]"
+                        className="accent-primary"
                         suppressHydrationWarning
                       />
                       {cat.name}
@@ -192,7 +192,7 @@ function ShopPageContent() {
 
               <button
                 onClick={clearFilters}
-                className="w-full border border-gray-300 text-gray-600 py-2 rounded-xl text-sm hover:bg-gray-50 transition"
+                className="w-full border border-gray-300 text-gray-600 py-2 rounded-xl text-sm hover:bg-gray-50 transition cursor-pointer"
                 suppressHydrationWarning
               >
                 Clear Filters
@@ -240,7 +240,7 @@ function ShopPageContent() {
                 <p className="text-gray-400 text-xl">No products found.</p>
                 <button
                   onClick={clearFilters}
-                  className="mt-4 text-[#b8860b] underline text-sm"
+                  className="mt-4 text-primary underline text-sm cursor-pointer"
                   suppressHydrationWarning
                 >
                   Clear filters
@@ -259,7 +259,7 @@ function ShopPageContent() {
                 <button
                   onClick={() => handlePageChange(Math.max(1, page - 1))}
                   disabled={page === 1}
-                  className="px-4 py-2 border rounded-xl disabled:opacity-40 hover:bg-gray-50 text-sm"
+                  className="px-4 py-2 border rounded-xl disabled:opacity-40 hover:bg-gray-50 text-sm cursor-pointer"
                   suppressHydrationWarning
                 >
                   Previous
@@ -269,10 +269,10 @@ function ShopPageContent() {
                   <button
                     key={i}
                     onClick={() => handlePageChange(i + 1)}
-                    className={`px-4 py-2 rounded-xl text-sm ${
+                    className={`px-4 py-2 rounded-xl text-sm cursor-pointer transition-all duration-200 ${
                       page === i + 1
-                        ? "bg-[#d4af37] text-white"
-                        : "border hover:bg-gray-50"
+                        ? "bg-primary text-white font-semibold shadow-md shadow-primary/20"
+                        : "border hover:bg-gray-50 border-gray-200"
                     }`}
                     suppressHydrationWarning
                   >
@@ -283,7 +283,7 @@ function ShopPageContent() {
                 <button
                   onClick={() => handlePageChange(Math.min(totalPages, page + 1))}
                   disabled={page === totalPages}
-                  className="px-4 py-2 border rounded-xl disabled:opacity-40 hover:bg-gray-50 text-sm"
+                  className="px-4 py-2 border rounded-xl disabled:opacity-40 hover:bg-gray-50 text-sm cursor-pointer"
                   suppressHydrationWarning
                 >
                   Next

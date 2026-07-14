@@ -32,7 +32,7 @@ export default function FeaturedProducts() {
       <div className="container-custom">
         {/* Header */}
         <ScrollReveal className="text-center">
-          <p className="text-[#b8860b] font-semibold uppercase tracking-widest text-sm">
+          <p className="text-primary font-semibold uppercase tracking-widest text-sm">
             Handpicked Collection
           </p>
           <h2 className="text-4xl md:text-5xl font-bold mt-3">
@@ -131,7 +131,7 @@ export default function FeaturedProducts() {
                     <div className="p-5 flex flex-col flex-1 justify-between">
                       <div>
                         <Link href={`/product/${product.slug}`}>
-                          <h3 className="font-semibold text-lg line-clamp-1 hover:text-[#b8860b] transition-colors duration-200">
+                          <h3 className="font-semibold text-lg line-clamp-1 hover:text-primary transition-colors duration-200">
                             {product.name}
                           </h3>
                         </Link>
@@ -141,7 +141,7 @@ export default function FeaturedProducts() {
                         </p>
 
                         <div className="flex items-center gap-3 mt-4">
-                          <span className="text-2xl font-bold text-[#b8860b]">
+                          <span className="text-2xl font-bold text-primary-dark">
                             ₹{product.salePrice.toLocaleString()}
                           </span>
                           {discount > 0 && (
@@ -159,7 +159,7 @@ export default function FeaturedProducts() {
                           addToCart(product);
                           toast.success("Added to cart!");
                         }}
-                        className="w-full mt-5 flex items-center justify-center gap-2 bg-[#b8860b] text-white py-3 rounded-xl font-medium hover:bg-[#9a7208] transition-colors cursor-pointer text-sm"
+                        className="w-full mt-5 flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl font-medium hover:bg-primary-dark transition-colors cursor-pointer text-sm"
                       >
                         <ShoppingCart size={16} />
                         Add to Cart
@@ -183,7 +183,7 @@ export default function FeaturedProducts() {
         <ScrollReveal className="flex justify-center mt-14">
           <Link
             href="/shop"
-            className="border border-[#b8860b] text-[#b8860b] px-8 py-3 rounded-full font-medium hover:bg-[#b8860b] hover:text-white transition inline-block active:scale-98"
+            className="border border-primary text-primary px-8 py-3 rounded-full font-medium hover:bg-primary hover:text-white transition inline-block active:scale-98 hover:scale-[1.02] duration-300"
           >
             View All Products
           </Link>

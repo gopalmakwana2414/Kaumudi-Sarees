@@ -30,7 +30,7 @@ export default function NewArrivals() {
     <section className="py-20">
       <div className="container-custom">
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-[#fff8e7] border border-[#f0d060] text-[#b8860b] px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 bg-secondary border border-primary/20 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <Sparkles size={15} />
             Just Arrived
           </div>
@@ -61,16 +61,16 @@ export default function NewArrivals() {
                 >
                   <div className="relative overflow-hidden">
                     <Link href={`/product/${product.slug}`}>
-                      <Image
-                        src={product.thumbnail.url}
-                        alt={product.name}
-                        width={500}
-                        height={650}
-                        className="h-80 w-full object-cover group-hover:scale-105 transition duration-500"
-                      />
+                       <Image
+                         src={product.thumbnail.url}
+                         alt={product.name}
+                         width={500}
+                         height={650}
+                         className="h-80 w-full object-cover group-hover:scale-105 transition duration-500"
+                       />
                     </Link>
 
-                    <span className="absolute top-4 left-4 bg-[#d4af37] text-white text-xs font-bold px-3 py-1 rounded-full">
+                    <span className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
                       NEW
                     </span>
 
@@ -95,14 +95,14 @@ export default function NewArrivals() {
 
                   <div className="p-5">
                     <Link href={`/product/${product.slug}`}>
-                      <h3 className="font-semibold text-lg line-clamp-1 hover:text-[#b8860b] transition">
+                      <h3 className="font-semibold text-lg line-clamp-1 hover:text-primary transition">
                         {product.name}
                       </h3>
                     </Link>
                     <p className="text-gray-400 text-sm mt-1">{product.fabric}</p>
 
                     <div className="flex items-center gap-2 mt-3">
-                      <span className="text-xl font-bold text-[#b8860b]">
+                      <span className="text-xl font-bold text-primary-dark">
                         ₹{product.salePrice.toLocaleString()}
                       </span>
                       {discount > 0 && (
@@ -114,7 +114,7 @@ export default function NewArrivals() {
 
                     <button
                       onClick={() => { addToCart(product); toast.success("Added to cart!"); }}
-                      className="w-full mt-4 flex items-center justify-center gap-2 bg-[#d4af37] text-white py-3 rounded-xl hover:bg-[#b8860b] transition font-medium"
+                      className="w-full mt-4 flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl hover:bg-primary-dark transition font-medium hover:scale-[1.02] duration-300 cursor-pointer"
                     >
                       <ShoppingCart size={16} />
                       Add to Cart
@@ -129,7 +129,7 @@ export default function NewArrivals() {
         <div className="text-center mt-12">
           <Link
             href="/shop?newArrival=true"
-            className="border border-[#b8860b] text-[#b8860b] px-8 py-3 rounded-full font-medium hover:bg-[#b8860b] hover:text-white transition"
+            className="border border-primary text-primary px-8 py-3 rounded-full font-medium hover:bg-primary hover:text-white transition hover:scale-[1.02] duration-300 inline-block"
           >
             View All New Arrivals
           </Link>

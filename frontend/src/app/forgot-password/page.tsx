@@ -107,14 +107,14 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <section className="py-20 min-h-[85vh] flex items-center bg-[#faf9f6]">
+    <section className="py-20 min-h-[85vh] flex items-center bg-gradient-to-tr from-[#fff8f8] via-[#fffbfb] to-[#ffffff]">
       <div className="container-custom">
-        <div className="max-w-md mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 p-8">
+        <div className="max-w-md mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 p-8 shadow-[0_20px_50px_rgba(128,0,32,0.04)]">
           
           {step === 1 && (
             <>
               <div className="text-center mb-8">
-                <div className="w-12 h-12 bg-[#fff8e7] text-[#d4af37] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-secondary text-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <KeyRound size={24} />
                 </div>
                 <h1 className="text-3xl font-bold text-[#1f1f1f]">Forgot Password?</h1>
@@ -134,14 +134,14 @@ export default function ForgotPasswordPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value.toLowerCase())}
                     placeholder="you@example.com"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition bg-gray-50/50"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-60 shadow-sm"
+                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition disabled:opacity-60 shadow-md hover:shadow-lg shadow-primary/20 cursor-pointer hover:scale-[1.02] duration-300"
                 >
                   {loading ? "Sending OTP..." : "Request Reset OTP"}
                 </button>
@@ -149,7 +149,7 @@ export default function ForgotPasswordPage() {
                 <p className="text-center text-sm text-gray-600">
                   <Link
                     href="/login"
-                    className="text-[#b8860b] font-medium hover:underline inline-flex items-center gap-1.5"
+                    className="text-primary font-medium hover:underline inline-flex items-center gap-1.5"
                   >
                     <ArrowLeft size={14} /> Back to Login
                   </Link>
@@ -161,7 +161,7 @@ export default function ForgotPasswordPage() {
           {step === 2 && (
             <>
               <div className="text-center mb-8">
-                <div className="w-12 h-12 bg-[#fff8e7] text-[#d4af37] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-secondary text-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <MailCheck size={24} />
                 </div>
                 <h1 className="text-3xl font-bold text-[#1f1f1f]">Enter OTP</h1>
@@ -182,14 +182,14 @@ export default function ForgotPasswordPage() {
                     value={otp}
                     onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
                     placeholder="123456"
-                    className="w-full text-center tracking-[0.5em] text-xl font-bold border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition bg-gray-50/50"
+                    className="w-full text-center tracking-[0.5em] text-xl font-bold border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition bg-gray-50/50"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-60 shadow-sm"
+                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition disabled:opacity-60 shadow-md hover:shadow-lg shadow-primary/20 cursor-pointer hover:scale-[1.02] duration-300"
                 >
                   {loading ? "Verifying..." : "Verify Code"}
                 </button>
@@ -204,7 +204,7 @@ export default function ForgotPasswordPage() {
                       type="button"
                       disabled={loading}
                       onClick={handleResendOTP}
-                      className="text-xs text-[#b8860b] font-semibold hover:underline"
+                      className="text-xs text-primary font-semibold hover:underline cursor-pointer"
                     >
                       Resend Verification OTP
                     </button>
@@ -215,7 +215,7 @@ export default function ForgotPasswordPage() {
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="text-[#b8860b] font-medium hover:underline inline-flex items-center gap-1.5"
+                    className="text-primary font-medium hover:underline inline-flex items-center gap-1.5 cursor-pointer"
                   >
                     <ArrowLeft size={14} /> Change Email
                   </button>
@@ -227,7 +227,7 @@ export default function ForgotPasswordPage() {
           {step === 3 && (
             <>
               <div className="text-center mb-8">
-                <div className="w-12 h-12 bg-[#fff8e7] text-[#d4af37] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-secondary text-primary rounded-full flex items-center justify-center mx-auto mb-4">
                   <Lock size={24} />
                 </div>
                 <h1 className="text-3xl font-bold text-[#1f1f1f]">New Password</h1>
@@ -247,7 +247,7 @@ export default function ForgotPasswordPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition bg-gray-50/50"
                   />
                 </div>
 
@@ -261,14 +261,14 @@ export default function ForgotPasswordPage() {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] focus:ring-1 focus:ring-[#d4af37] transition bg-gray-50/50"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition bg-gray-50/50"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-60 shadow-sm"
+                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition disabled:opacity-60 shadow-md hover:shadow-lg shadow-primary/20 cursor-pointer hover:scale-[1.02] duration-300"
                 >
                   {loading ? "Resetting Password..." : "Update Password"}
                 </button>
@@ -287,13 +287,12 @@ export default function ForgotPasswordPage() {
               </p>
               <Link
                 href="/login"
-                className="inline-flex items-center justify-center w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition mt-8 shadow-sm"
+                className="inline-flex items-center justify-center w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition mt-8 shadow-md hover:shadow-lg shadow-primary/20 cursor-pointer hover:scale-[1.02] duration-300"
               >
                 Go to Login
               </Link>
             </div>
           )}
-
         </div>
       </div>
     </section>

@@ -83,11 +83,11 @@ export default function RefundPolicyPage() {
             <h2 className="text-xl font-bold mb-3">Contact Us</h2>
             <p className="text-gray-600">
               For return or refund queries:{" "}
-              <a href="mailto:g91652251@gmail.com" className="text-[#b8860b] underline">
+              <a href="mailto:g91652251@gmail.com" className="text-primary hover:text-primary-dark underline transition">
                 g91652251@gmail.com
               </a>{" "}
               |{" "}
-              <a href="https://wa.me/918959465264" className="text-[#b8860b] underline">
+              <a href="https://wa.me/918959465264" className="text-primary hover:text-primary-dark underline transition">
                 WhatsApp +91 89594 65264
               </a>
             </p>

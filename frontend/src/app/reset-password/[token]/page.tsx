@@ -48,9 +48,9 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <section className="py-20 min-h-[80vh] flex items-center">
+    <section className="py-20 min-h-[80vh] flex items-center bg-gradient-to-tr from-[#fff8f8] via-[#fffbfb] to-[#ffffff]">
       <div className="container-custom">
-        <div className="max-w-md mx-auto bg-white rounded-3xl shadow-sm border p-8">
+        <div className="max-w-md mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 p-8 shadow-[0_20px_50px_rgba(128,0,32,0.04)]">
           {success ? (
             <div className="text-center">
               <CheckCircle2 size={48} className="mx-auto text-green-500" />
@@ -77,7 +77,7 @@ export default function ResetPasswordPage() {
                     type="password"
                     {...register("password")}
                     placeholder="••••••••"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] transition"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition bg-gray-50/50"
                   />
                   {errors.password && (
                     <p className="text-red-500 text-sm mt-1">
@@ -94,7 +94,7 @@ export default function ResetPasswordPage() {
                     type="password"
                     {...register("confirmPassword")}
                     placeholder="••••••••"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-[#d4af37] transition"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-1 focus:ring-primary transition bg-gray-50/50"
                   />
                   {errors.confirmPassword && (
                     <p className="text-red-500 text-sm mt-1">
@@ -106,13 +106,13 @@ export default function ResetPasswordPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#d4af37] text-white py-3 rounded-xl font-semibold hover:bg-[#b8860b] transition disabled:opacity-60"
+                  className="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-primary-dark transition disabled:opacity-60 shadow-md hover:shadow-lg shadow-primary/20 cursor-pointer hover:scale-[1.02] duration-300"
                 >
                   {loading ? "Resetting..." : "Reset Password"}
                 </button>
 
                 <p className="text-center text-sm text-gray-600">
-                  <Link href="/login" className="text-[#b8860b] font-medium hover:underline">
+                  <Link href="/login" className="text-primary font-medium hover:underline inline-flex items-center gap-1.5">
                     Back to Login
                   </Link>
                 </p>

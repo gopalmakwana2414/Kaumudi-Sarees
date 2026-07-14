@@ -1,15 +1,29 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  
+  --color-deep-maroon: #4A0010;
+  --color-light-burgundy: #9B1B30;
+  --color-accent-rose: #C0405C;
+  --color-soft-bg: #FFF8F8;
+  --color-footer-bg: #4A0010;
+  --color-hover-burgundy: #6B0018;
+  --color-soft-bg-hover: #FFEAEA;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #222222;
 
-  --primary: #d4af37;
-  --primary-dark: #b8860b;
+  --primary: #800020;
+  --primary-dark: #5C0013;
 
-  --secondary: #fff8e7;
+  --secondary: #FFF8F8;
 
-  --border: #ececec;
+  --border: #E6D6D6;
 
   --card: #ffffff;
 }
@@ -30,19 +44,20 @@ body {
   padding-inline: 1rem;
 }
 
-.gold-gradient {
+.gold-gradient,
+.burgundy-gradient {
   background: linear-gradient(
     135deg,
-    #d4af37,
-    #f5d76e
+    #800020,
+    #C0405C
   );
 }
 
 .hero-gradient {
   background: linear-gradient(
     180deg,
-    #fffef8 0%,
-    #fff7dd 100%
+    #FFFAFA 0%,
+    #FFF8F8 100%
   );
 }
 
@@ -59,7 +74,7 @@ body {
   background: linear-gradient(
     90deg,
     #f5f5f5 25%,
-    #fff7df 50%,
+    #FFF0F2 50%,
     #f5f5f5 75%
   );
   background-size: 200% 100%;
@@ -70,8 +85,8 @@ body {
 .cn-toast {
   background-color: #ffffff !important;
   color: #1f2937 !important;
-  border: 1px solid #f9f9f9 !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid #FFF0F2 !important;
+  box-shadow: 0 20px 25px -5px rgba(128, 0, 32, 0.05), 0 8px 10px -6px rgba(128, 0, 32, 0.05) !important;
   border-radius: 16px !important;
   padding: 14px 16px !important;
   font-family: inherit !important;
@@ -92,4 +107,32 @@ body {
 
 .cn-toast[data-mounted="true"] {
   animation: toastSlideIn 0.35s cubic-bezier(0.215, 0.61, 0.355, 1) forwards !important;
+}
+
+/* Custom premium hover animations */
+.premium-btn-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.premium-btn-hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 0;
+  padding-bottom: 120%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.premium-btn-hover:active::after {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transition: 0s;
 }

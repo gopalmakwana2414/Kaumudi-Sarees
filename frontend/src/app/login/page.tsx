@@ -209,13 +209,13 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="py-16 md:py-24 min-h-[90vh] flex items-center justify-center bg-gradient-to-tr from-[#fbf8f0] via-[#fcfaf2] to-[#fffefc] relative overflow-hidden px-4">
+    <section className="py-16 md:py-24 min-h-[90vh] flex items-center justify-center bg-gradient-to-tr from-[#fff8f8] via-[#fffbfb] to-[#ffffff] relative overflow-hidden px-4">
       {/* Dynamic luxury background shapes */}
-      <div className="absolute top-0 left-0 w-72 h-72 md:w-96 md:h-96 bg-[#D4AF37]/5 rounded-full filter blur-[80px] md:blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 md:w-[450px] md:h-[450px] bg-[#B8860B]/5 rounded-full filter blur-[100px] md:blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 left-0 w-72 h-72 md:w-96 md:h-96 bg-primary/5 rounded-full filter blur-[80px] md:blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 md:w-[450px] md:h-[450px] bg-primary-dark/5 rounded-full filter blur-[100px] md:blur-[140px] pointer-events-none" />
 
       <div className="container-custom flex justify-center w-full relative z-10">
-        <div className="w-full max-w-[460px] bg-white rounded-3xl border border-[#d4af37]/15 p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_rgba(212,175,55,0.06)]">
+        <div className="w-full max-w-[460px] bg-white rounded-3xl border border-primary/15 p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_rgba(128,0,32,0.06)]">
           
           {/* Brand Logo and Title */}
           <div className="flex flex-col items-center justify-center text-center mb-6">
@@ -226,7 +226,7 @@ export default function LoginPage() {
             <h1 className="text-2xl font-medium tracking-tight text-gray-900 font-serif mt-5">
               Kaumudi Portal
             </h1>
-            <p className="text-gray-400 mt-1 text-xs uppercase tracking-wider font-semibold">
+            <p className="text-gray-500 mt-1 text-xs uppercase tracking-wider font-semibold">
               Enterprise Secure Login
             </p>
           </div>
@@ -241,9 +241,9 @@ export default function LoginPage() {
                 setOtp("");
                 setAdminStep(1);
               }}
-              className={`flex items-center justify-center gap-2 py-2.5 rounded-lg font-medium transition-all duration-300 ${
+              className={`flex items-center justify-center gap-2 py-2.5 rounded-lg font-medium transition-all duration-300 cursor-pointer ${
                 activeTab === "customer"
-                  ? "bg-white text-[#b8860b] shadow-[0_4px_12px_rgba(184,134,11,0.06)] border border-[#d4af37]/10"
+                  ? "bg-white text-primary shadow-[0_4px_12px_rgba(128,0,32,0.06)] border border-primary/10"
                   : "text-gray-400 hover:text-gray-600"
               }`}
             >
@@ -258,9 +258,9 @@ export default function LoginPage() {
                 setOtp("");
                 setAdminStep(1);
               }}
-              className={`flex items-center justify-center gap-2 py-2.5 rounded-lg font-medium transition-all duration-300 ${
+              className={`flex items-center justify-center gap-2 py-2.5 rounded-lg font-medium transition-all duration-300 cursor-pointer ${
                 activeTab === "admin"
-                  ? "bg-white text-[#b8860b] shadow-[0_4px_12px_rgba(184,134,11,0.06)] border border-[#d4af37]/10"
+                  ? "bg-white text-primary shadow-[0_4px_12px_rgba(128,0,32,0.06)] border border-primary/10"
                   : "text-gray-400 hover:text-gray-600"
               }`}
             >
@@ -278,7 +278,7 @@ export default function LoginPage() {
                   Email Address
                 </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#b8860b]/60">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-primary/60">
                     <Mail size={18} />
                   </span>
                   <input
@@ -287,7 +287,7 @@ export default function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@example.com"
                     required
-                    className="w-full pl-11 pr-4 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 placeholder:text-gray-400"
+                    className="w-full pl-11 pr-4 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 placeholder:text-gray-400"
                   />
                 </div>
               </div>
@@ -300,13 +300,13 @@ export default function LoginPage() {
                   </label>
                   <Link
                     href="/forgot-password"
-                    className="text-xs text-[#b8860b] hover:text-[#d4af37] transition-colors font-medium"
+                    className="text-xs text-primary hover:text-primary-dark transition-colors font-medium"
                   >
                     Forgot Password?
                   </Link>
                 </div>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#b8860b]/60">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-primary/60">
                     <Lock size={18} />
                   </span>
                   <input
@@ -315,12 +315,12 @@ export default function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
                     required
-                    className="w-full pl-11 pr-11 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 placeholder:text-gray-400"
+                    className="w-full pl-11 pr-11 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 placeholder:text-gray-400"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-[#b8860b] transition-colors focus:outline-none"
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-primary transition-colors focus:outline-none cursor-pointer"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -344,7 +344,7 @@ export default function LoginPage() {
                     type="button"
                     onClick={fetchCaptcha}
                     disabled={captchaLoading}
-                    className="p-3 bg-gray-50 hover:bg-gray-100/80 border border-gray-200 rounded-xl transition-all duration-300 disabled:opacity-50 text-gray-500 hover:text-[#b8860b] flex items-center justify-center h-[50px] w-[50px]"
+                    className="p-3 bg-gray-50 hover:bg-gray-100/80 border border-gray-200 rounded-xl transition-all duration-300 disabled:opacity-50 text-gray-500 hover:text-primary flex items-center justify-center h-[50px] w-[50px] cursor-pointer"
                     title="Refresh CAPTCHA"
                   >
                     <RefreshCw size={18} className={captchaLoading ? "animate-spin" : ""} />
@@ -359,7 +359,7 @@ export default function LoginPage() {
                   onChange={(e) => setCaptchaText(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, ""))}
                   placeholder="Enter 6-Character Captcha Code"
                   required
-                  className="w-full px-4 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 font-mono tracking-widest text-center uppercase placeholder:font-sans placeholder:tracking-normal"
+                  className="w-full px-4 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 font-mono tracking-widest text-center uppercase placeholder:font-sans placeholder:tracking-normal"
                 />
               </div>
 
@@ -367,7 +367,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white py-3.5 rounded-xl font-semibold text-sm tracking-wider uppercase shadow-[0_4px_14px_0_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_0_rgba(184,134,11,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none flex items-center justify-center min-h-[48px] cursor-pointer"
+                className="w-full bg-gradient-to-r from-primary to-primary-dark text-white py-3.5 rounded-xl font-semibold text-sm tracking-wider uppercase shadow-[0_4px_14px_0_rgba(128,0,32,0.2)] hover:shadow-[0_6px_20px_0_rgba(92,0,19,0.3)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none flex items-center justify-center min-h-[48px] cursor-pointer"
               >
                 {loading ? (
                   <>
@@ -393,7 +393,7 @@ export default function LoginPage() {
                   Admin Email
                 </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#b8860b]/60">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-primary/60">
                     <Mail size={18} />
                   </span>
                   <input
@@ -403,7 +403,7 @@ export default function LoginPage() {
                     placeholder="admin@kaumudi.com"
                     required
                     disabled={adminStep === 2}
-                    className="w-full pl-11 pr-4 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 placeholder:text-gray-400 disabled:opacity-60"
+                    className="w-full pl-11 pr-4 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 placeholder:text-gray-400 disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -413,7 +413,7 @@ export default function LoginPage() {
                   Password
                 </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#b8860b]/60">
+                  <span className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-primary/60">
                     <Lock size={18} />
                   </span>
                   <input
@@ -423,13 +423,13 @@ export default function LoginPage() {
                     placeholder="••••••••"
                     required
                     disabled={adminStep === 2}
-                    className="w-full pl-11 pr-11 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 placeholder:text-gray-400 disabled:opacity-60"
+                    className="w-full pl-11 pr-11 py-3 bg-gray-50/40 border border-gray-200/80 rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 focus:bg-white transition-all duration-300 text-sm text-gray-800 placeholder:text-gray-400 disabled:opacity-60"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     disabled={adminStep === 2}
-                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-[#b8860b] transition-colors focus:outline-none disabled:opacity-40"
+                    className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-gray-400 hover:text-primary transition-colors focus:outline-none disabled:opacity-40 cursor-pointer"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -438,10 +438,10 @@ export default function LoginPage() {
 
               {/* Step 2: OTP Entry Field */}
               {adminStep === 2 && (
-                <div className="space-y-1.5 bg-[#fffdf5] border border-[#d4af37]/10 p-4 rounded-2xl animate-[fadeInSlideDown_0.3s_ease-out]">
+                <div className="space-y-1.5 bg-secondary border border-primary/10 p-4 rounded-2xl animate-[fadeInSlideDown_0.3s_ease-out]">
                   <div className="flex items-center justify-between">
                     <label className="block text-xs font-semibold uppercase tracking-wider text-gray-600 flex items-center gap-1">
-                      <KeyRound size={13} className="text-[#b8860b]" />
+                      <KeyRound size={13} className="text-primary" />
                       <span>Enter 6-Digit Email OTP</span>
                     </label>
                     <span className="text-[10px] text-gray-400 bg-white px-2 py-0.5 border border-gray-100 rounded-full font-medium">
@@ -455,7 +455,7 @@ export default function LoginPage() {
                     onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
                     placeholder="123456"
                     required
-                    className="w-full px-4 py-3 bg-white border border-[#d4af37]/25 rounded-xl outline-none focus:border-[#d4af37] focus:ring-2 focus:ring-[#d4af37]/10 transition-all duration-300 text-sm text-gray-800 font-mono tracking-widest text-center"
+                    className="w-full px-4 py-3 bg-white border border-primary/25 rounded-xl outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-300 text-sm text-gray-800 font-mono tracking-widest text-center"
                   />
 
                   {/* Resend Helper Action */}
@@ -469,7 +469,7 @@ export default function LoginPage() {
                       <button
                         type="button"
                         onClick={handleAdminSendOtp}
-                        className="text-[#b8860b] hover:text-[#d4af37] font-semibold underline underline-offset-2 transition-colors cursor-pointer"
+                        className="text-primary hover:text-primary-dark font-semibold underline underline-offset-2 transition-colors cursor-pointer"
                       >
                         Resend OTP
                       </button>
@@ -484,7 +484,7 @@ export default function LoginPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white py-3.5 rounded-xl font-semibold text-sm tracking-wider uppercase shadow-[0_4px_14px_0_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_0_rgba(184,134,11,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none flex items-center justify-center min-h-[48px] cursor-pointer"
+                    className="w-full bg-gradient-to-r from-primary to-primary-dark text-white py-3.5 rounded-xl font-semibold text-sm tracking-wider uppercase shadow-[0_4px_14px_0_rgba(128,0,32,0.2)] hover:shadow-[0_6px_20px_0_rgba(92,0,19,0.3)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none flex items-center justify-center min-h-[48px] cursor-pointer"
                   >
                     {loading ? "Verifying Credentials..." : "Send OTP"}
                   </button>
@@ -496,14 +496,14 @@ export default function LoginPage() {
                         setAdminStep(1);
                         setOtp("");
                       }}
-                      className="col-span-1 border border-gray-200 text-gray-500 hover:bg-gray-50 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 flex items-center justify-center min-h-[48px]"
+                      className="col-span-1 border border-gray-200 text-gray-500 hover:bg-gray-50 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 flex items-center justify-center min-h-[48px] cursor-pointer"
                     >
                       Back
                     </button>
                     <button
                       type="submit"
                       disabled={loading}
-                      className="col-span-2 bg-gradient-to-r from-[#d4af37] to-[#b8860b] text-white py-3.5 rounded-xl font-semibold text-sm tracking-wider uppercase shadow-[0_4px_14px_0_rgba(212,175,55,0.25)] hover:shadow-[0_6px_20px_0_rgba(184,134,11,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none flex items-center justify-center min-h-[48px] cursor-pointer"
+                      className="col-span-2 bg-gradient-to-r from-primary to-primary-dark text-white py-3.5 rounded-xl font-semibold text-sm tracking-wider uppercase shadow-[0_4px_14px_0_rgba(128,0,32,0.2)] hover:shadow-[0_6px_20px_0_rgba(92,0,19,0.3)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 disabled:opacity-60 disabled:pointer-events-none flex items-center justify-center min-h-[48px] cursor-pointer"
                     >
                       {loading ? "Verifying OTP..." : "Admin Login"}
                     </button>
@@ -527,7 +527,7 @@ export default function LoginPage() {
             </p>
             <Link
               href="/register"
-              className="block w-full py-3 px-4 border border-[#d4af37]/80 text-[#b8860b] hover:text-[#d4af37] rounded-xl text-center text-xs font-semibold uppercase tracking-wider hover:bg-[#fff8e7]/30 hover:border-[#b8860b] active:scale-[0.99] transition-all duration-300 shadow-[0_2px_4px_rgba(0,0,0,0.01)]"
+              className="block w-full py-3 px-4 border border-primary/80 text-primary hover:text-primary hover:bg-secondary/30 hover:border-primary-dark rounded-xl text-center text-xs font-semibold uppercase tracking-wider active:scale-[0.99] transition-all duration-300 shadow-[0_2px_4px_rgba(0,0,0,0.01)]"
             >
               Create Account
             </Link>

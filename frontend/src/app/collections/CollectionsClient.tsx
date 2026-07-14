@@ -84,15 +84,15 @@ export default function CollectionsClient() {
   };
 
   return (
-    <main className="overflow-hidden">
+    <main className="overflow-hidden bg-gradient-to-tr from-[#fff8f8] via-[#fffbfb] to-[#ffffff]">
       {/* Hero */}
       <section className="hero-gradient py-24">
         <ScrollReveal className="container-custom text-center">
-          <p className="text-[#b8860b] font-semibold uppercase tracking-[4px] text-sm">
+          <p className="text-primary font-semibold uppercase tracking-[4px] text-sm">
             Curated for You
           </p>
           <h1 className="text-5xl lg:text-6xl font-bold mt-4">
-            Our <span className="text-[#d4af37]">Collections</span>
+            Our <span className="text-primary">Collections</span>
           </h1>
           <p className="mt-5 text-gray-600 max-w-xl mx-auto text-lg">
             Discover sarees carefully curated for every occasion — from
@@ -120,11 +120,11 @@ export default function CollectionsClient() {
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${col.color} z-10`}
                   />
-                  <div className="absolute inset-0 bg-[#d4af37]/10 group-hover:bg-[#d4af37]/20 transition-colors duration-300 z-10" />
+                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors duration-300 z-10" />
                   <div className="absolute inset-0 flex flex-col justify-end p-8 z-20">
                     <h2 className="text-white text-2xl font-bold transition-transform duration-300 group-hover:translate-x-1">{col.label}</h2>
                     <p className="text-white/80 text-sm mt-2 max-w-xs">{col.desc}</p>
-                    <span className="mt-4 inline-block bg-white/20 backdrop-blur text-white text-sm px-4 py-2 rounded-full w-fit group-hover:bg-white group-hover:text-[#b8860b] transition-all duration-300 font-medium group-hover:scale-105 active:scale-98">
+                    <span className="mt-4 inline-block bg-white/20 backdrop-blur text-white text-sm px-4 py-2 rounded-full w-fit group-hover:bg-white group-hover:text-primary transition-all duration-300 font-medium group-hover:scale-105 active:scale-98">
                       Explore →
                     </span>
                   </div>
@@ -140,7 +140,7 @@ export default function CollectionsClient() {
         <section className="py-20 bg-[#fafafa]">
           <div className="container-custom">
             <ScrollReveal className="text-center mb-12">
-              <p className="text-[#b8860b] font-semibold uppercase tracking-widest text-sm">
+              <p className="text-primary font-semibold uppercase tracking-widest text-sm">
                 Browse
               </p>
               <h2 className="text-4xl font-bold mt-3">Shop by Category</h2>
@@ -160,12 +160,12 @@ export default function CollectionsClient() {
                 >
                   <Link
                     href={`/category/${cat.slug}`}
-                    className="block bg-white border rounded-2xl p-8 text-center hover:shadow-xl hover:border-[#d4af37] transition-all duration-300 group"
+                    className="block bg-white border rounded-2xl p-8 text-center hover:shadow-xl hover:border-primary transition-all duration-300 group"
                   >
-                    <div className="w-16 h-16 bg-[#fff8e7] rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#d4af37] transition-colors duration-300">
+                    <div className="w-16 h-16 bg-secondary/50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors duration-300">
                       <span className="text-2xl">🪡</span>
                     </div>
-                    <h3 className="font-semibold text-lg group-hover:text-[#b8860b] transition-colors">
+                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
                       {cat.name}
                     </h3>
                     {cat.description && (
@@ -186,7 +186,7 @@ export default function CollectionsClient() {
         <section className="py-20">
           <div className="container-custom">
             <ScrollReveal className="text-center mb-12">
-              <p className="text-[#b8860b] font-semibold uppercase tracking-widest text-sm">
+              <p className="text-primary font-semibold uppercase tracking-widest text-sm">
                 Most Loved
               </p>
               <h2 className="text-4xl font-bold mt-3">Bestsellers</h2>
@@ -216,15 +216,15 @@ export default function CollectionsClient() {
                         height={500}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
-                      <span className="absolute top-3 left-3 bg-[#d4af37] text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="absolute top-3 left-3 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                         BESTSELLER
                       </span>
                     </div>
                     <div className="p-5">
-                      <h3 className="font-semibold line-clamp-1 group-hover:text-[#b8860b] transition-colors duration-200">
+                      <h3 className="font-semibold line-clamp-1 group-hover:text-primary transition-colors duration-200">
                         {product.name}
                       </h3>
-                      <p className="font-bold text-[#b8860b] mt-2">
+                      <p className="font-bold text-primary mt-2">
                         ₹{product.salePrice.toLocaleString()}
                       </p>
                     </div>
@@ -241,7 +241,7 @@ export default function CollectionsClient() {
         <section className="py-20 bg-[#fafafa]">
           <div className="container-custom">
             <ScrollReveal className="text-center mb-12">
-              <p className="text-[#b8860b] font-semibold uppercase tracking-widest text-sm">
+              <p className="text-primary font-semibold uppercase tracking-widest text-sm">
                 Handpicked
               </p>
               <h2 className="text-4xl font-bold mt-3">Featured Collection</h2>
@@ -273,11 +273,11 @@ export default function CollectionsClient() {
                       />
                     </div>
                     <div className="p-5">
-                      <h3 className="font-semibold line-clamp-1 group-hover:text-[#b8860b] transition-colors duration-200">
+                      <h3 className="font-semibold line-clamp-1 group-hover:text-primary transition-colors duration-200">
                         {product.name}
                       </h3>
                       <div className="flex items-center gap-2 mt-2">
-                        <span className="font-bold text-[#b8860b]">
+                        <span className="font-bold text-primary">
                           ₹{product.salePrice.toLocaleString()}
                         </span>
                         <span className="line-through text-gray-400 text-sm">
@@ -292,7 +292,7 @@ export default function CollectionsClient() {
             <ScrollReveal className="text-center mt-12">
               <Link
                 href="/shop"
-                className="border border-[#b8860b] text-[#b8860b] px-8 py-3 rounded-full font-medium hover:bg-[#b8860b] hover:text-white transition inline-block active:scale-98"
+                className="border border-primary text-primary px-8 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition inline-block cursor-pointer hover:scale-[1.02] duration-300 shadow-sm hover:shadow-md"
               >
                 View All Products
               </Link>
