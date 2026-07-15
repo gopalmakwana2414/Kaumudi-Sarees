@@ -147,7 +147,7 @@ export default function Hero() {
               unoptimized
             />
             {/* Dark overlay for text contrast */}
-            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -162,18 +162,18 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="space-y-6"
               >
-                <p className="text-secondary font-semibold uppercase tracking-[4px] bg-secondary/15 backdrop-blur-sm border border-secondary/10 px-4 py-1.5 rounded-full inline-block text-[10px] md:text-xs">
+                <span className="text-accent-gold font-semibold uppercase tracking-[6px] text-xs inline-block">
                   Premium Saree Collection
-                </p>
+                </span>
 
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight drop-shadow-md">
+                <h1 className="text-4xl md:text-7xl font-serif font-light leading-tight tracking-wide drop-shadow-md">
                   {currentSlide.title || "Celebrate Every Occasion"}
                 </h1>
 
-                <p className="text-sm md:text-lg text-gray-200 drop-shadow-sm font-light max-w-xl">
+                <p className="text-sm md:text-lg text-gray-200 drop-shadow-sm font-light max-w-xl leading-relaxed">
                   {currentSlide.subtitle ||
                     "Discover handcrafted Banarasi, Kanjivaram, Silk and Designer Sarees curated specially for weddings, festivals and special moments."}
                 </p>
@@ -181,16 +181,16 @@ export default function Hero() {
                 <div className="flex flex-wrap gap-4 pt-2">
                   <Link
                     href={currentSlide.buttonLink || "/shop"}
-                    className="bg-primary text-white px-8 py-3.5 rounded-full font-semibold transition hover:bg-primary-dark shadow-lg shadow-primary/20 hover:scale-[1.03] duration-300 border border-primary text-sm"
+                    className="bg-primary hover:bg-primary-dark text-white px-8 py-3.5 rounded-full font-semibold transition hover:scale-[1.03] duration-300 border border-primary text-xs uppercase tracking-widest shadow-lg shadow-primary/20 cursor-pointer"
                   >
                     {currentSlide.buttonText || "Shop Now"}
                   </Link>
 
                   <Link
                     href="/collections"
-                    className="border border-white/40 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white hover:text-primary transition hover:scale-[1.03] duration-300 text-sm"
+                    className="border border-white/50 text-white px-8 py-3.5 rounded-full font-semibold hover:bg-white hover:text-primary hover:border-white transition hover:scale-[1.03] duration-300 text-xs uppercase tracking-widest cursor-pointer"
                   >
-                    View Collections
+                    Explore Collection
                   </Link>
                 </div>
               </motion.div>
@@ -227,7 +227,7 @@ export default function Hero() {
               key={idx}
               onClick={() => setCurrentIndex(idx)}
               className={`h-2 rounded-full transition-all cursor-pointer outline-none ${
-                idx === currentIndex ? "w-6 bg-primary" : "w-2 bg-white/50 hover:bg-white/80"
+                idx === currentIndex ? "w-6 bg-accent-gold" : "w-2 bg-white/50 hover:bg-white/80"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
               aria-current={idx === currentIndex ? "true" : "false"}

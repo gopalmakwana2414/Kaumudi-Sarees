@@ -1,19 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
-import { ShoppingCart, Heart, Sparkles } from "lucide-react";
-import { toast } from "sonner";
 import api from "@/lib/api";
-import { useCartStore } from "@/store/cartStore";
-import { useWishlistStore } from "@/store/wishlistStore";
 import { Product } from "@/types/product";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import HomeProductCard from "./HomeProductCard";
 
-export default function NewArrivals() {
-  const addToCart = useCartStore((s) => s.addToCart);
-  const { items: wishlist, toggleWishlist } = useWishlistStore();
+interface NewArrivalsProps {
+  onQuickView: (product: Product) => void;
+}
 
+export default function NewArrivals({ onQuickView }: NewArrivalsProps) {
   const { data, isLoading } = useQuery({
     queryKey: ["new-arrivals-home"],
     queryFn: async () => {
@@ -27,113 +25,60 @@ export default function NewArrivals() {
   if (!isLoading && products.length === 0) return null;
 
   return (
-    <section className="py-20">
+    <section className="py-28 bg-white overflow-hidden">
       <div className="container-custom">
-        <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 bg-secondary border border-primary/20 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            <Sparkles size={15} />
-            Just Arrived
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold">New Arrivals</h2>
-          <p className="text-gray-500 mt-4 max-w-xl mx-auto">
-            Fresh from our looms in Surat — the latest designs added to our collection this season.
+        {/* Header */}
+        <ScrollReveal className="text-center">
+          <span className="text-primary font-semibold uppercase tracking-[4px] text-xs">
+            Fresh From Looms
+          </span>
+          <h2 className="text-4xl md:text-5xl font-serif font-light mt-3 text-gray-900">
+            New Arrivals
+          </h2>
+          <div className="w-12 h-[1px] bg-accent-gold mx-auto mt-4" />
+          <p className="text-gray-500 mt-4 max-w-2xl mx-auto font-light text-sm md:text-base leading-relaxed">
+            Freshly crafted heritage designs direct from our master weavers. The newest patterns and textures introduced to our catalog this week.
           </p>
-        </div>
+        </ScrollReveal>
 
-        {isLoading ? (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Skeleton Loading state */}
+        {isLoading && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-gray-100 rounded-3xl h-[460px] animate-pulse" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product) => {
-              const isWishlisted = wishlist.includes(product._id);
-              const discount = Math.round(
-                ((product.originalPrice - product.salePrice) / product.originalPrice) * 100
-              );
-
-              return (
-                <div
-                  key={product._id}
-                  className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 border border-gray-100"
-                >
-                  <div className="relative overflow-hidden">
-                    <Link href={`/product/${product.slug}`}>
-                       <Image
-                         src={product.thumbnail.url}
-                         alt={product.name}
-                         width={500}
-                         height={650}
-                         className="h-80 w-full object-cover group-hover:scale-105 transition duration-500"
-                       />
-                    </Link>
-
-                    <span className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full">
-                      NEW
-                    </span>
-
-                    {discount > 0 && (
-                      <span className="absolute top-4 right-12 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                        {discount}% OFF
-                      </span>
-                    )}
-
-                    <button
-                      onClick={() => {
-                        toggleWishlist(product._id);
-                        toast.success(isWishlisted ? "Removed from wishlist" : "Added to wishlist!");
-                      }}
-                      className={`absolute top-4 right-4 bg-white rounded-full p-2 shadow transition ${
-                        isWishlisted ? "text-red-500" : "text-gray-400 hover:text-red-500"
-                      }`}
-                    >
-                      <Heart size={16} fill={isWishlisted ? "currentColor" : "none"} />
-                    </button>
-                  </div>
-
-                  <div className="p-5">
-                    <Link href={`/product/${product.slug}`}>
-                      <h3 className="font-semibold text-lg line-clamp-1 hover:text-primary transition">
-                        {product.name}
-                      </h3>
-                    </Link>
-                    <p className="text-gray-400 text-sm mt-1">{product.fabric}</p>
-
-                    <div className="flex items-center gap-2 mt-3">
-                      <span className="text-xl font-bold text-primary-dark">
-                        ₹{product.salePrice.toLocaleString()}
-                      </span>
-                      {discount > 0 && (
-                        <span className="text-sm text-gray-400 line-through">
-                          ₹{product.originalPrice.toLocaleString()}
-                        </span>
-                      )}
-                    </div>
-
-                    <button
-                      onClick={() => { addToCart(product); toast.success("Added to cart!"); }}
-                      className="w-full mt-4 flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl hover:bg-primary-dark transition font-medium hover:scale-[1.02] duration-300 cursor-pointer"
-                    >
-                      <ShoppingCart size={16} />
-                      Add to Cart
-                    </button>
-                  </div>
+              <div key={i} className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm animate-pulse">
+                <div className="aspect-[3/4] bg-gray-50" />
+                <div className="p-5 space-y-3">
+                  <div className="h-4 bg-gray-50 rounded w-1/3" />
+                  <div className="h-4 bg-gray-50 rounded" />
+                  <div className="h-4 bg-gray-50 rounded w-1/2" />
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         )}
 
-        <div className="text-center mt-12">
+        {/* Products Grid */}
+        {!isLoading && products.length > 0 && (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+            {products.map((product) => (
+              <HomeProductCard
+                key={product._id}
+                product={product}
+                onQuickView={onQuickView}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* View All CTA */}
+        <ScrollReveal className="flex justify-center mt-16">
           <Link
             href="/shop?newArrival=true"
-            className="border border-primary text-primary px-8 py-3 rounded-full font-medium hover:bg-primary hover:text-white transition hover:scale-[1.02] duration-300 inline-block"
+            className="border border-primary text-primary hover:bg-primary hover:text-white px-9 py-3.5 rounded-full font-medium transition-all duration-300 transform active:scale-95 text-xs uppercase tracking-widest cursor-pointer shadow-sm hover:shadow-md"
           >
-            View All New Arrivals
+            View All Arrivals
           </Link>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

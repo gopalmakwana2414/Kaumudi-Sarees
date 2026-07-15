@@ -56,6 +56,18 @@ export default function AdminReviewsPage() {
     onError: () => toast.error("Failed to delete review"),
   });
 
+  const toggleHomepageMutation = useMutation({
+    mutationFn: async (id: string) => {
+      await api.patch(`/reviews/${id}/homepage`);
+    },
+    onSuccess: () => {
+      toast.success("Homepage review status updated");
+      queryClient.invalidateQueries({ queryKey: ["all-reviews"] });
+      refetch();
+    },
+    onError: () => toast.error("Failed to update homepage status"),
+  });
+
   return (
     <div className="space-y-6">
       <div>
@@ -94,7 +106,7 @@ export default function AdminReviewsPage() {
                             size={13}
                             className={
                               s <= review.rating
-                                ? "fill-primary text-primary"
+                                ? "fill-accent-gold text-accent-gold"
                                 : "text-gray-300"
                             }
                           />
@@ -115,14 +127,28 @@ export default function AdminReviewsPage() {
                       {review.comment}
                     </p>
                   </div>
-                  <button
-                    onClick={() => deleteMutation.mutate(review._id)}
-                    disabled={deleteMutation.isPending}
-                    className="text-red-400 hover:text-red-600 transition flex-shrink-0 cursor-pointer"
-                    title="Delete review"
-                  >
-                    <Trash2 size={16} />
-                  </button>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <button
+                      onClick={() => toggleHomepageMutation.mutate(review._id)}
+                      disabled={toggleHomepageMutation.isPending}
+                      className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition cursor-pointer ${
+                        review.showOnHomepage
+                          ? "bg-green-50 border-green-200 text-green-700 hover:bg-green-100"
+                          : "bg-white border-gray-200 text-gray-600 hover:bg-gray-50"
+                      }`}
+                      title={review.showOnHomepage ? "Remove from Homepage" : "Add to Homepage"}
+                    >
+                      {review.showOnHomepage ? "✓ Homepage" : "+ Homepage"}
+                    </button>
+                    <button
+                      onClick={() => deleteMutation.mutate(review._id)}
+                      disabled={deleteMutation.isPending}
+                      className="text-red-400 hover:text-red-600 transition p-1.5 rounded-full hover:bg-red-50 cursor-pointer"
+                      title="Delete review"
+                    >
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

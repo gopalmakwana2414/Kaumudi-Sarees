@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
-import Hero from "@/components/home/Hero";
-import Categories from "@/components/home/Categories";
-import FeaturedProducts from "@/components/home/FeaturedProducts";
-import NewArrivals from "@/components/home/NewArrivals";
-import WhyUs from "@/components/home/WhyUs";
-import PromoStrip from "@/components/home/PromoStrip";
-import CategoryBanner from "@/components/home/CategoryBanner";
+import HomeClient from "@/components/home/HomeClient";
 import { constructMetadata } from "@/utils/seo";
 
 export const metadata: Metadata = constructMetadata({
@@ -16,15 +10,5 @@ export const metadata: Metadata = constructMetadata({
 });
 
 export default function HomePage() {
-  return (
-    <main>
-      <Hero />
-      <Categories />
-      <PromoStrip />
-      <FeaturedProducts />
-      <CategoryBanner />
-      <NewArrivals />
-      <WhyUs />
-    </main>
-  );
+  return <HomeClient />;
 }

@@ -2,10 +2,12 @@
 
 @theme {
   --font-sans: var(--font-sans, "Inter"), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: var(--font-serif, "Playfair Display"), Georgia, serif;
 
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-secondary: var(--secondary);
+  --color-accent-gold: var(--accent-gold);
   
   --color-deep-maroon: #4A0010;
   --color-light-burgundy: #9B1B30;
@@ -41,6 +43,7 @@
   --primary-dark: #5C0013;
 
   --secondary: #FFF8F8;
+  --accent-gold: #D4AF37;
 
   --border: #E6D6D6;
 

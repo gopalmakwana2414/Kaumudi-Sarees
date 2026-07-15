@@ -96,7 +96,7 @@ export default function ProductInfo({ product }: { product: Product }) {
               size={16}
               className={
                 s <= Math.round(product.averageRating)
-                  ? "fill-primary text-primary"
+                  ? "fill-accent-gold text-accent-gold"
                   : "text-gray-300"
               }
             />
@@ -282,7 +282,7 @@ export default function ProductInfo({ product }: { product: Product }) {
                         size={14}
                         className={
                           s <= review.rating
-                            ? "fill-primary text-primary"
+                            ? "fill-accent-gold text-accent-gold"
                             : "text-gray-300"
                         }
                       />
@@ -320,8 +320,8 @@ export default function ProductInfo({ product }: { product: Product }) {
                       size={22}
                       className={
                         s <= reviewRating
-                          ? "fill-primary text-primary"
-                          : "text-gray-300 hover:text-primary"
+                          ? "fill-accent-gold text-accent-gold"
+                          : "text-gray-300 hover:text-accent-gold"
                       }
                     />
                   </button>

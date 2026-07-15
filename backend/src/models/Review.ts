@@ -8,6 +8,7 @@ export interface IReview extends Document {
   rating: number;
 
   comment: string;
+  showOnHomepage?: boolean;
 
   createdAt: Date;
   updatedAt: Date;
@@ -38,6 +39,11 @@ const reviewSchema = new Schema<IReview>(
       type: String,
       required: true,
       trim: true,
+    },
+
+    showOnHomepage: {
+      type: Boolean,
+      default: false,
     },
   },
   {

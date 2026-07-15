@@ -37,7 +37,7 @@ export const createReview = async (
 
     await updateProductRatings(productId);
 
-    const populated = await Review.findById(review._id).populate("user", "name");
+    const populated = await Review.findById(review._id).populate("user", "name profilePic");
 
     return res.status(201).json(populated);
   } catch (error: any) {
@@ -58,7 +58,7 @@ export const getProductReviews = async (
     const reviews = await Review.find({
       product: req.params.productId,
     })
-      .populate("user", "name")
+      .populate("user", "name profilePic")
       .sort({ createdAt: -1 })
       .limit(200)
       .lean();
@@ -142,4 +142,57 @@ const updateProductRatings = async (productId: string) => {
     averageRating: stats ? Math.round(stats.averageRating * 10) / 10 : 0,
     numReviews: stats ? stats.numReviews : 0,
   });
+};
+
+// toggle show on homepage status (admin only)
+export const toggleShowOnHomepage = async (
+  req: AuthRequest,
+  res: Response
+) => {
+  try {
+    const { reviewId } = req.params;
+
+    const review = await Review.findById(reviewId);
+
+    if (!review) {
+      return res.status(404).json({
+        message: "Review not found",
+      });
+    }
+
+    review.showOnHomepage = !review.showOnHomepage;
+    await review.save();
+
+    return res.status(200).json({
+      success: true,
+      message: `Review ${review.showOnHomepage ? "added to" : "removed from"} homepage`,
+      review,
+    });
+  } catch (error: any) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// get reviews enabled for homepage (public)
+export const getHomepageReviews = async (
+  req: any,
+  res: Response
+) => {
+  try {
+    const reviews = await Review.find({
+      showOnHomepage: true,
+    })
+      .populate("user", "name profilePic")
+      .populate("product", "name slug")
+      .sort({ createdAt: -1 })
+      .lean();
+
+    return res.status(200).json(reviews);
+  } catch (error: any) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
 };
