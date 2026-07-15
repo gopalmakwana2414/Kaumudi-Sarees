@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import dynamic from "next/dynamic";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -19,15 +20,15 @@ import {
 
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const WhatsAppButton = dynamic(
+  () => import("@/components/common/WhatsAppButton")
+);
 
 export const metadata: Metadata = constructMetadata({
   title: "Kaumudi | Premium Sarees Online in India",
@@ -48,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
     >
       <head>
         <script
@@ -83,6 +84,8 @@ export default function RootLayout({
             position="top-right"
             closeButton
           />
+
+          <WhatsAppButton />
         </ReactQueryProvider>
       </body>
     </html>

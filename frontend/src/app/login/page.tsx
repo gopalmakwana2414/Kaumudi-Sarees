@@ -223,7 +223,7 @@ export default function LoginPage() {
               <Logo className="mx-auto" />
             </div>
             
-            <h1 className="text-2xl font-medium tracking-tight text-gray-900 font-serif mt-5">
+            <h1 className="text-2xl font-medium tracking-tight text-gray-900 mt-5">
               Kaumudi Portal
             </h1>
             <p className="text-gray-500 mt-1 text-xs uppercase tracking-wider font-semibold">

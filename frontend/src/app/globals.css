@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: var(--font-sans, "Inter"), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-secondary: var(--secondary);
@@ -12,6 +14,23 @@
   --color-footer-bg: #4A0010;
   --color-hover-burgundy: #6B0018;
   --color-soft-bg-hover: #FFEAEA;
+
+  --animate-whatsapp-ripple: whatsapp-ripple 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes whatsapp-ripple {
+    0% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    70% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
 }
 
 :root {
@@ -35,7 +54,8 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, "Inter"), system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .container-custom {
