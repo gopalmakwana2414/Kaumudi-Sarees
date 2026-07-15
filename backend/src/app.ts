@@ -20,6 +20,7 @@ import couponRoutes from "./routes/couponRoutes";
 import dashboardRoutes from "./routes/dashboardRoutes";
 import paymentRoutes from "./routes/paymentRoutes";
 import bannerRoutes from "./routes/bannerRoutes";
+import homeBackgroundRoutes from "./routes/homeBackgroundRoutes";
 import contactRoutes from "./routes/contactRoutes";
 
 import { apiLimiter, contactLimiter } from "./middlewares/rateLimiter";
@@ -99,6 +100,7 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.use("/api/banners", bannerRoutes);
+app.use("/api/home-backgrounds", homeBackgroundRoutes);
 
 app.use("/api/contact", contactLimiter, contactRoutes);
 

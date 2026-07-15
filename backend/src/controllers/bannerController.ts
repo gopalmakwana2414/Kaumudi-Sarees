@@ -58,9 +58,6 @@ export const getActiveBanners = async (req: Request, res: Response) => {
 
     const banners = await Banner.find(filter).sort({ order: 1 }).lean();
 
-    // this is the homepage hero endpoint — every visitor hits it, and
-    // banners only change when an admin edits one, so cache it briefly
-    res.set("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
     return res.status(200).json(banners);
   } catch (error: any) {
     return res.status(500).json({ message: error.message });
