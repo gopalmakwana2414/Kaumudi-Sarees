@@ -9,6 +9,7 @@ interface User {
   name: string;
   email: string;
   role: "user" | "admin";
+  mobile?: string;
 }
 
 interface AuthStore {

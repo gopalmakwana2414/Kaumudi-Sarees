@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { useAuthStore } from "@/store/authStore";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import api from "@/lib/api";
 import { motion, useReducedMotion } from "framer-motion";
@@ -9,6 +10,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function ContactClient() {
   const shouldReduceMotion = useReducedMotion();
+  const { user } = useAuthStore();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -16,6 +18,17 @@ export default function ContactClient() {
     phone: "",
     message: "",
   });
+
+  useEffect(() => {
+    if (user) {
+      setForm((prev) => ({
+        ...prev,
+        name: user.name || prev.name,
+        email: user.email || prev.email,
+        phone: user.mobile || prev.phone,
+      }));
+    }
+  }, [user]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,7 +51,12 @@ export default function ContactClient() {
       toast.success(
         "Message sent! We will get back to you within 24 hours."
       );
-      setForm({ name: "", email: "", phone: "", message: "" });
+      setForm({
+        name: user?.name || "",
+        email: user?.email || "",
+        phone: user?.mobile || "",
+        message: "",
+      });
     } catch (err: any) {
       toast.error(
         err?.response?.data?.message || "Failed to send message. Please try again."
@@ -103,6 +121,7 @@ export default function ContactClient() {
                     onChange={handleChange}
                     placeholder="Priya Sharma"
                     className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200"
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -116,7 +135,9 @@ export default function ContactClient() {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="you@example.com"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200 read-only:bg-gray-50 read-only:text-gray-500 read-only:cursor-not-allowed"
+                    readOnly={!!user}
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -130,7 +151,9 @@ export default function ContactClient() {
                     value={form.phone}
                     onChange={handleChange}
                     placeholder="9876543210"
-                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200"
+                    className="w-full border border-gray-200 p-3 rounded-xl outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200 read-only:bg-gray-50 read-only:text-gray-500 read-only:cursor-not-allowed"
+                    readOnly={!!user && !!user.mobile}
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -154,6 +177,7 @@ export default function ContactClient() {
                   type="submit"
                   disabled={loading}
                   className="w-full bg-primary text-white py-3.5 rounded-xl font-semibold hover:bg-primary-dark transition-colors duration-200 disabled:opacity-60 cursor-pointer shadow-md hover:shadow-lg shadow-primary/20 hover:scale-[1.02] duration-300"
+                  suppressHydrationWarning
                 >
                   {loading ? "Sending..." : "Send Message"}
                 </motion.button>
