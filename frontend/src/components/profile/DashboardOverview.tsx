@@ -120,23 +120,23 @@ export default function DashboardOverview({
       {/* Welcome Banner */}
       <motion.div
         variants={itemVariants}
-        className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#800020] to-[#5C0013] p-8 text-white shadow-xl shadow-primary/10"
+        className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#4A0010]/85 via-[#4A0010]/90 to-[#2c000a]/95 p-6 text-white shadow-md border border-accent-gold/20"
       >
-        <div className="relative z-10 max-w-xl space-y-2">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">
+        <div className="relative z-10 max-w-xl space-y-1.5">
+          <span className="text-[10px] font-bold uppercase tracking-[3px] text-[#D4AF37]">
             Welcome Back
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight">
             Greetings, {user.name}
           </h2>
-          <p className="text-sm text-[#FFF8F8]/80 leading-relaxed font-sans font-light">
+          <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-sans font-light">
             Manage your orders, customize delivery addresses, configure preferences, and view your style details. Experience premium luxury fashion at your fingertips.
           </p>
         </div>
         
         {/* Background Subtle Shape Accent */}
         <div className="absolute right-0 bottom-0 top-0 w-1/3 bg-gradient-to-l from-white/5 to-transparent pointer-events-none skew-x-12" />
-        <div className="absolute right-12 bottom-0 w-24 h-24 rounded-full bg-gradient-to-br from-[#D4AF37]/20 to-transparent blur-xl" />
+        <div className="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-[radial-gradient(circle,rgba(212,175,55,0.15)_0%,transparent_70%)] pointer-events-none" />
       </motion.div>
 
       {/* Summary Cards */}
